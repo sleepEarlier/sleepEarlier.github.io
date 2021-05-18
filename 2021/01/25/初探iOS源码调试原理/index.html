@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>初探iOS源码调试原理 | Usopp&#39;s Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="Welcome">
+  
+  
+    <meta name="keywords" content="iOS">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Usopp's Page" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Usopp&#39;s Page</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-初探iOS源码调试原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      初探iOS源码调试原理
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-01-25T07:58:38.000Z" itemprop="datePublished">2021年01月25日</time>
+</span>
+      
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="初探iOS源码调试原理"><a href="#初探iOS源码调试原理" class="headerlink" title="初探iOS源码调试原理"></a>初探iOS源码调试原理</h1><h2 id="一、问题从开发中常见的调试场景开始"><a href="#一、问题从开发中常见的调试场景开始" class="headerlink" title="一、问题从开发中常见的调试场景开始"></a>一、问题从开发中常见的调试场景开始</h2><ul>
+<li><p>打开IDE在某个方法中设置断点，切换到其他源文件后运行程序</p>
+</li>
+<li><p>运行到断点时，程序停止，IDE显示对应文件的源码</p>
+</li>
+<li><p>能够输出的函数堆栈中变量值</p>
+</li>
+</ul>
+<p>这是日常开发中常见的一幕，但调试器是如何做到这一切的？</p>
+<ul>
+<li><p>调试器是如何找到对应的源码文件？</p>
+</li>
+<li><p>调试器是如何找到文件中对应的函数来设置断点？</p>
+</li>
+<li><p>调试器是如何在函数内找到并输出变量的值？</p>
+</li>
+</ul>
+<h2 id="二、调试器"><a href="#二、调试器" class="headerlink" title="二、调试器"></a>二、调试器</h2><p>大部分类 UnixiOS 上的调试器是基于 <code>ptrace</code> 系统调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/ptrace.h&gt; </span><br><span class="line">int ptrace(int request, int pid, int addr, int data);</span><br><span class="line"></span><br><span class="line">// request: 请求ptrace执行的操作</span><br><span class="line">// pid:     目标进程的id</span><br><span class="line">// addr:    目标进程的地址值</span><br><span class="line">// data:    读取或写入的数据</span><br></pre></td></tr></table></figure>
+
+<h3 id="常见-ptrace-请求"><a href="#常见-ptrace-请求" class="headerlink" title="常见 ptrace 请求"></a>常见 ptrace 请求</h3><table>
+<thead>
+<tr>
+<th>请求</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PTRACE_TRACEME</td>
+<td>该进程被其父进程所跟踪，发送给该进程的信号都将通知其父进程</td>
+</tr>
+<tr>
+<td>PTRACE_KILL</td>
+<td>杀掉子进程，使它退出</td>
+</tr>
+<tr>
+<td>PTRACE_SINGLESTEP</td>
+<td>设置单步执行标志</td>
+</tr>
+<tr>
+<td>PTRACE_ATTACH</td>
+<td>附加到指定pid进程</td>
+</tr>
+<tr>
+<td>PTRACE_GETREGS</td>
+<td>读取寄存器</td>
+</tr>
+<tr>
+<td>PTRACE_PEEKTEXT</td>
+<td>从内存地址中读取一个字节数据，内存地址由addr给出</td>
+</tr>
+<tr>
+<td>PTRACE_POKETEXT</td>
+<td>往内存地址中写入一个字节数据，内存地址由addr给出</td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取寄存器状态</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">user_regs_struct</span> <span class="title">regs</span>;</span></span><br><span class="line">ptrace(PTRACE_GETREGS, child_pid, <span class="number">0</span>, &amp;regs);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取rip寄存器内容</span></span><br><span class="line"><span class="keyword">unsigned</span> instruction = ptrace(PTRACE_PEEKTEXT, child_pid, regs.rip, <span class="number">0</span>);</span><br><span class="line">procmsg(<span class="string">&quot;IP = 0x%08x.  instr = 0x%08x&quot;</span>, regs.rip, instruction);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例输出</span></span><br><span class="line"><span class="comment">// IP = 0x38182743.  instr = 0x0fc08944</span></span><br></pre></td></tr></table></figure>
+
+<p>调试器从 <code>ptrace</code> 获取到的信息有：</p>
+<ul>
+<li><p>regs，部分寄存器信息，如 IP 指令寄存器的地址</p>
+</li>
+<li><p>instruction，当前CPU执行的指令内容</p>
+</li>
+</ul>
+<p>看起来十分有限而且都是十分底层的信息，但我们平时使用的调试器能给我们提供一些更直观和更丰富的信息：</p>
+<ul>
+<li><p>当前指令的源码文件、行号</p>
+</li>
+<li><p>根据函数、行号进行断点</p>
+</li>
+<li><p>读取当前栈帧(stack frame|activation record) 下的布局变量信息</p>
+</li>
+</ul>
+<p>因此，调试器必然需要以某种方式将这些基础信息转化为更友好的信息。</p>
+<p><strong>DWARF 就是调试器与源码之间的桥梁。</strong></p>
+<h2 id="三、引入DWARF"><a href="#三、引入DWARF" class="headerlink" title="三、引入DWARF"></a>三、引入DWARF</h2><p>DWARF（Debugging With Attributed Record Formats）是一种广泛使用的标准化调试数据格式，通常用于源码级别调试，主要服务于调试器。</p>
+<ul>
+<li><p>DWARF 第一版发布于 1992 年,主要是为UNIX下的调试器提供必要的调试信息，例如PC地址对应的文件名及行号等信息，以方便源码级调试。到90年代末期，DWARF取代 stabs 成为 Linux上的默认配置。</p>
+</li>
+<li><p>其包含足够的信息以供调试器完成特定的一些功能, 例如显示当前栈帧(Stack Frame)下的局部变量, 尝试修改一些变量, 直接跳到函数末尾等</p>
+</li>
+<li><p>有足够的可扩展性，可为多种语言提供调试信息: 如: Ada, C, C++, Fortran, Java, Objective C, Go, Python, Haskell …</p>
+</li>
+</ul>
+<p>目前 DWARF 已经在类UNIX系统中逐步替换 stabs(symbol table strings)成为主流的调试信息格式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/88bc5f6c84f44f18b16bf2e6ed29498f">DWARF发展史</a><br><a target="_blank" rel="noopener" href="https://www.notion.so/59422db137d0499084b5dd4e5c1798b1">DWARF竞品</a></p>
+<h2 id="四、认识-DWARF"><a href="#四、认识-DWARF" class="headerlink" title="四、认识 DWARF"></a>四、认识 DWARF</h2><p>借助一段简单的 C++ 程序来探索 DWARF</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foo.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> num = x + y;</span><br><span class="line">  <span class="keyword">return</span> num * multiplier;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ans = foo(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果用一段自己的语言来描述这个源码文件：</p>
+<ul>
+<li><p>这是一个 c++ 源码文件名字叫 foo.cpp</p>
+</li>
+<li><p>定义了一个 <code>foo</code> 函数，接收两个 <code>int</code> 类型参数，返回值为 <code>int</code></p>
+</li>
+<li><p><code>foo</code> 函数内定义了一个 <code>int</code> 类型的变量叫 <code>num</code></p>
+</li>
+<li><p>… …</p>
+</li>
+</ul>
+<h3 id="使用-GCC-生成-DWARF-信息"><a href="#使用-GCC-生成-DWARF-信息" class="headerlink" title="使用 GCC 生成 DWARF 信息"></a>使用 GCC 生成 DWARF 信息</h3><p>先编译源码，看看在没有DWARF信息情况下调试是什么样的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang -O0 foo.c -o foo</span><br></pre></td></tr></table></figure>
+
+<p>生成可执行文件后，使用 <code>lldb</code> 调试器进行调试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ lldb foo</span><br><span class="line">(lldb) target create <span class="string">&quot;foo&quot;</span></span><br><span class="line">Current executable <span class="built_in">set</span> to <span class="string">&#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27;</span> (x86_64).</span><br><span class="line">(lldb) b foo</span><br><span class="line">Breakpoint 1: <span class="built_in">where</span> = foo`foo, address = 0x0000000100000f60</span><br><span class="line">(lldb) run</span><br><span class="line">Process 34037 launched: <span class="string">&#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27;</span> (x86_64)</span><br><span class="line">Process 34037 stopped</span><br><span class="line">* thread <span class="comment">#1, queue = &#x27;com.apple.main-thread&#x27;, stop reason = breakpoint 1.1</span></span><br><span class="line">    frame <span class="comment">#0: 0x0000000100000f60 foo`foo</span></span><br><span class="line">foo`foo:</span><br><span class="line">-&gt;  0x100000f60 &lt;+0&gt;: pushq  %rbp</span><br><span class="line">    0x100000f61 &lt;+1&gt;: movq   %rsp, %rbp</span><br><span class="line">    0x100000f64 &lt;+4&gt;: movl   %edi, -0x4(%rbp)</span><br><span class="line">    0x100000f67 &lt;+7&gt;: movl   %esi, -0x8(%rbp)</span><br><span class="line">Target 0: (foo) stopped.</span><br></pre></td></tr></table></figure>
+
+<p>对于 GCC 及 CLang 编译器, 使用参数 <code>-gdwarf-4</code> 即可生成 DWARF4 调试信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang -O0 -gdwarf-4 foo.c -o foo</span><br></pre></td></tr></table></figure>
+
+<p>编译后目录下可执行文件，还多了 foo.dSYM</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ll</span><br><span class="line">total 24</span><br><span class="line">-rwxr-xr-x  1 lindubo  ECC\Domain Users   4.5K 10 26 21:00 foo</span><br><span class="line">-rw-r--r--@ 1 lindubo  ECC\Domain Users   109B 10 26 21:00 foo.c</span><br><span class="line">drwxr-xr-x  3 lindubo  ECC\Domain Users    96B 10 26 21:00 foo.dSYM</span><br></pre></td></tr></table></figure>
+
+<p>进行调试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ lldb foo</span><br><span class="line">(lldb) target create &quot;foo&quot;</span><br><span class="line">Current executable set to &#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27; (x86_64).</span><br><span class="line">(lldb) b foo</span><br><span class="line">Breakpoint 1: where = foo`foo + 10 at foo.c:2:13, address = 0x0000000100000f6a</span><br><span class="line">(lldb) run</span><br><span class="line">Process 93727 launched: &#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27; (x86_64)</span><br><span class="line">Process 93727 stopped</span><br><span class="line">* thread #1, queue = &#x27;com.apple.main-thread&#x27;, stop reason = breakpoint 1.1</span><br><span class="line">    frame #0: 0x0000000100000f6a foo`foo(x=1, y=2) at foo.c:2:13</span><br><span class="line">   1   	int foo(int x, int y) &#123;</span><br><span class="line">-&gt; 2   	  int num = x + y;</span><br><span class="line">   3   	  return num;</span><br><span class="line">   4   	&#125;</span><br><span class="line">   5   	int main() &#123;</span><br><span class="line">   6   	  int ans = foo(1, 2);</span><br><span class="line">   7   	  return 0;</span><br><span class="line">Target 0: (foo) stopped.</span><br></pre></td></tr></table></figure>
+
+<p>当没有 DWARF 信息时，断点是停留在汇编层面，可读性非常差，而在有 DWARF 信息时将停留在源码层面。</p>
+<h3 id="查看-DWARF-信息"><a href="#查看-DWARF-信息" class="headerlink" title="查看 DWARF 信息"></a>查看 DWARF 信息</h3><p>使用 file 命令查看 DWARF 的文件描述</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd foo.dSYM/Contents/Resources/DWARF</span><br><span class="line">$ file foo</span><br><span class="line">foo: Mach-O 64-bit dSYM companion file x86_64</span><br></pre></td></tr></table></figure>
+
+<p>可以看到它是一个 <code>mach-o</code> 文件，既然是 Mach-O 文件, 可以使用 <code>machOView</code> 或者 <code>size</code> 命令查看可执行文件包含的 Segment 和 Section：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ size -m -l -x foo</span><br><span class="line">Segment __PAGEZERO: 0x100000000 (vmaddr 0x0 fileoff 0)</span><br><span class="line">Segment __TEXT: 0x1000 (vmaddr 0x100000000 fileoff 0)</span><br><span class="line">	Section __text: 0x4b (addr 0x100000f60 offset 0)</span><br><span class="line">	Section __unwind_info: 0x48 (addr 0x100000fac offset 0)</span><br><span class="line">	total 0x93</span><br><span class="line">Segment __LINKEDIT: 0x1000 (vmaddr 0x100001000 fileoff 4096)</span><br><span class="line">Segment __DWARF: 0x1000 (vmaddr 0x100002000 fileoff 8192)</span><br><span class="line">	Section __debug_line: 0x69 (addr 0x100002000 offset 8192)</span><br><span class="line">	Section __debug_pubnames: 0x23 (addr 0x100002069 offset 8297)</span><br><span class="line">	Section __debug_pubtypes: 0x1a (addr 0x10000208c offset 8332)</span><br><span class="line">	Section __debug_aranges: 0x40 (addr 0x1000020a6 offset 8358)</span><br><span class="line">	Section __debug_info: 0x9e (addr 0x1000020e6 offset 8422)</span><br><span class="line">	Section __debug_abbrev: 0x69 (addr 0x100002184 offset 8580)</span><br><span class="line">	Section __debug_str: 0x71 (addr 0x1000021ed offset 8685)</span><br><span class="line">	Section __apple_names: 0x58 (addr 0x10000225e offset 8798)</span><br><span class="line">	Section __apple_namespac: 0x24 (addr 0x1000022b6 offset 8886)</span><br><span class="line">	Section __apple_types: 0x4f (addr 0x1000022da offset 8922)</span><br><span class="line">	Section __apple_objc: 0x24 (addr 0x100002329 offset 9001)</span><br><span class="line">	total 0x34d</span><br><span class="line">total 0x100003000</span><br></pre></td></tr></table></figure>
+
+<p>可以看到有一个名为 <strong>DWARF 的 Segment，下面包含</strong> debug_line、<strong>debug_pubnames、</strong>debug_info … 等Section。调试器所需要的调试信息便存储在这些 Section 中，可以使用 <code>dwarfdump</code> 查看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">$ dwarfdump foo --debug-info</span><br><span class="line">foo:	file format Mach-O 64-bit x86-64</span><br><span class="line"></span><br><span class="line">.debug_info contents:</span><br><span class="line">0x00000000: Compile Unit: length = 0x0000009a version = 0x0004 abbr_offset = 0x0000 addr_size = 0x08 (next unit at 0x0000009e)</span><br><span class="line"></span><br><span class="line">0x0000000b: DW_TAG_compile_unit</span><br><span class="line">              DW_AT_producer	(&quot;Apple clang version 11.0.3 (clang-1103.0.32.62)&quot;)</span><br><span class="line">              DW_AT_language	(DW_LANG_C99)</span><br><span class="line">              DW_AT_name	(&quot;foo.c&quot;)</span><br><span class="line">              DW_AT_stmt_list	(0x00000000)</span><br><span class="line">              DW_AT_comp_dir	(&quot;/Users/lindubo/Desktop/DebugDemo&quot;)</span><br><span class="line">              DW_AT_low_pc	(0x0000000100000f60)</span><br><span class="line">              DW_AT_high_pc	(0x0000000100000fab)</span><br><span class="line"></span><br><span class="line">0x0000002a:   DW_TAG_subprogram</span><br><span class="line">                DW_AT_low_pc	(0x0000000100000f60)</span><br><span class="line">                DW_AT_high_pc	(0x0000000100000f78)</span><br><span class="line">                DW_AT_frame_base	(DW_OP_reg6 RBP)</span><br><span class="line">                DW_AT_name	(&quot;foo&quot;)</span><br><span class="line">                DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                DW_AT_decl_line	(1)</span><br><span class="line">                DW_AT_prototyped	(true)</span><br><span class="line">                DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line">                DW_AT_external	(true)</span><br><span class="line"></span><br><span class="line">0x00000043:     DW_TAG_formal_parameter</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -4)</span><br><span class="line">                  DW_AT_name	(&quot;x&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(1)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x00000051:     DW_TAG_formal_parameter</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -8)</span><br><span class="line">                  DW_AT_name	(&quot;y&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(1)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x0000005f:     DW_TAG_variable</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -12)</span><br><span class="line">                  DW_AT_name	(&quot;num&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(2)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x0000006d:     NULL</span><br><span class="line"></span><br><span class="line">0x0000006e:   DW_TAG_subprogram</span><br><span class="line">                DW_AT_low_pc	(0x0000000100000f80)</span><br><span class="line">                DW_AT_high_pc	(0x0000000100000fab)</span><br><span class="line">                DW_AT_frame_base	(DW_OP_reg6 RBP)</span><br><span class="line">                DW_AT_name	(&quot;main&quot;)</span><br><span class="line">                DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                DW_AT_decl_line	(5)</span><br><span class="line">                DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line">                DW_AT_external	(true)</span><br><span class="line"></span><br><span class="line">0x00000087:     DW_TAG_variable</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -8)</span><br><span class="line">                  DW_AT_name	(&quot;ans&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(6)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x00000095:     NULL</span><br><span class="line"></span><br><span class="line">0x00000096:   DW_TAG_base_type</span><br><span class="line">                DW_AT_name	(&quot;int&quot;)</span><br><span class="line">                DW_AT_encoding	(DW_ATE_signed)</span><br><span class="line">                DW_AT_byte_size	(0x04)</span><br><span class="line"></span><br><span class="line">0x0000009d:   NULL</span><br></pre></td></tr></table></figure>
+
+<p>可以看到里面包含了关于源码非常细致的描述，从编译器到源码函数、形参、布局变量、声明位置等等。</p>
+<p>DWARF 使用 DIE (The Debugging Information Entry) 的统一形式来描述这些信息，每个 DIE 包括:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0x0000002a:   DW_TAG_subprogram</span><br><span class="line">                DW_AT_low_pc	(0x0000000100000f60)</span><br><span class="line">                DW_AT_high_pc	(0x0000000100000f78)</span><br><span class="line">                DW_AT_frame_base	(DW_OP_reg6 RBP)</span><br><span class="line">                DW_AT_name	(&quot;foo&quot;)</span><br><span class="line">                DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                DW_AT_decl_line	(1)</span><br><span class="line">                DW_AT_prototyped	(true)</span><br><span class="line">                DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line">                DW_AT_external	(true)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>一个 TAG (DW_TAG_xxx) 表示这是什么类型的信息，如</p>
+<ul>
+<li><p>TAG_subprogram 函数</p>
+</li>
+<li><p>TAG_formal_parameter 形式参数</p>
+</li>
+<li><p>TAG_variable 变量</p>
+</li>
+</ul>
+</li>
+<li><p>多个属性 (DW_AT_xxx) 表示具体的属性信息</p>
+<ul>
+<li><p>AT_low_pc, AT_high_pc 分别代表函数的 起始/结束 PC地址</p>
+</li>
+<li><p>AT_frame_base 表达函数的栈帧基址(frame base) ，示例中为寄存器 rbp 的值，后面的 DW_OP_fbreg 就是这个栈帧基址</p>
+</li>
+<li><p>AT_name 描述名称，如文件、函数、变量的名称</p>
+</li>
+<li><p>AT_decl_file 描述在哪个文件中声明</p>
+</li>
+<li><p>AT_decl_line 描述在哪一行声明</p>
+</li>
+<li><p>AT_prototyped 为一个 Bool 值, 为 True时代表这是一个子程序/函数(subroutine)</p>
+</li>
+<li><p>AT_type 属性描述这个函数返回值的类型是什么, 对于 foo 函数来说, 为int</p>
+</li>
+<li><p>AT_external 表示这个函数是否为全局可访问</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>将多个DIE组合起来就能描述整个程序，DIE内也可以进行嵌套，一个文件有多个函数、一个函数有多个参数等，DIE使用空行进行分割，使用缩进的形式来表达嵌套。</p>
+<ul>
+<li><p>几个常用的寄存器</p>
+<p>sp/esp/rsp（16bit/32bit/64bit）栈寄存器—指向栈顶</p>
+<p>bp/ebp/rbp 栈基址寄存器—指向栈底</p>
+<p>ip/eip/rip 程序指令寄存器—指向下一条待执行指令</p>
+</li>
+</ul>
+<h3 id="验证问题"><a href="#验证问题" class="headerlink" title="验证问题"></a>验证问题</h3><ol>
+<li><p><strong>如何找到设置断点的函数对应的源码文件？</strong></p>
+<p>从上面的 debug_info 信息中已经可以清晰的看到，在函数相关的DIE信息中包含了所在的文件、行数，因此调试器可以根据这些信息找到对应的源码和行数。</p>
+</li>
+<li><p><strong>如何找到对应的函数设置断点？</strong></p>
+<p>调试器与 ptrace 的交互都是基于有限的信息（指令、寄存器、内存地址等信息），因此需要将需要设置断点的函数转化为对应的内存地址信息，在对应的地址设置断点。从上面的调试信息中可以看到 <code>foo</code> 函数的入口地址为 <code>0x0000000100000f60</code> ，我们可以在对应的地址设置断点来测试:</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(lldb) b 0x0000000100000f60</span><br><span class="line">Breakpoint 3: where = foo`foo at foo.c:1, address = 0x0000000100000f60</span><br><span class="line">(lldb) run</span><br><span class="line">There is a running process, kill it and restart?: [Y/n] y</span><br><span class="line">Process 42581 exited with status = 9 (0x00000009)</span><br><span class="line">Process 42689 launched: &#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27; (x86_64)</span><br><span class="line">Process 42689 stopped</span><br><span class="line">* thread #1, queue = &#x27;com.apple.main-thread&#x27;, stop reason = breakpoint 3.1</span><br><span class="line">    frame #0: 0x0000000100000f60 foo`foo(x=0, y=12325) at foo.c:1</span><br><span class="line">-&gt; 1   	int foo(int x, int y) &#123;</span><br><span class="line">   2   	  int num = x + y;</span><br><span class="line">   3   	  return num;</span><br><span class="line">   4   	&#125;</span><br><span class="line">   5   	int main() &#123;</span><br><span class="line">   6   	  int ans = foo(1, 2);</span><br><span class="line">   7   	  return 0;</span><br><span class="line">Target 0: (foo) stopped.</span><br><span class="line">(lldb)</span><br></pre></td></tr></table></figure>
+
+<p>程序确实在 <code>foo</code> 函数的入口位置停止。</p>
+<ol start="3">
+<li><strong>如何在函数内找到对应的变量？</strong></li>
+</ol>
+<p>当程序停止在对应位置后，比如 <code>foo</code> 函数 <code>return</code> 前，用 <code>p</code> 命令查看几个变量的值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(lldb) p x</span><br><span class="line">(int) $0 = 1</span><br><span class="line">(lldb) p y</span><br><span class="line">(int) $1 = 2</span><br><span class="line">(lldb) p num</span><br><span class="line">(int) $2 = 3</span><br></pre></td></tr></table></figure>
+
+<p>基于前面的调试信息可以看出，x、y、num几个变量的地址分别在 <code>DW_OP_fbreg</code> 往前偏移 4、8、12的位置，而 <code>DW_OP_fbreg</code> 指的就是函数的栈帧基址即 rbp 寄存器地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 读取 rbp 寄存器地址</span><br><span class="line">(lldb) register read rbp</span><br><span class="line">     rbp = 0x00007ffeefbff190</span><br><span class="line">// 计算rbp往前偏移4的地址</span><br><span class="line">(lldb) p/x 0x00007ffeefbff190-4</span><br><span class="line">(long) $4 = 0x00007ffeefbff18c</span><br><span class="line">// 读取4字节内存数据以16进制输出，与形参x值相同为1</span><br><span class="line">(lldb) x/4bx 0x00007ffeefbff18c</span><br><span class="line">0x7ffeefbff18c: 0x01 0x00 0x00 0x00</span><br><span class="line"></span><br><span class="line">// 计算读取形参y地址数据</span><br><span class="line">(lldb) p/x 0x00007ffeefbff190-8</span><br><span class="line">(long) $5 = 0x00007ffeefbff188</span><br><span class="line">(lldb) x/4bx 0x00007ffeefbff188</span><br><span class="line">0x7ffeefbff188: 0x02 0x00 0x00 0x00</span><br><span class="line"></span><br><span class="line">// 计算读取局部变量num地址及数据</span><br><span class="line">(lldb) p/x 0x00007ffeefbff190-12</span><br><span class="line">(long) $6 = 0x00007ffeefbff184</span><br><span class="line">(lldb) x/4bx 0x00007ffeefbff184</span><br><span class="line">0x7ffeefbff184: 0x03 0x00 0x00 0x00</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章:"></a>参考文章:</h2><p><a target="_blank" rel="noopener" href="http://www.dwarfstd.org/">The DWARF Debugging Standard</a></p>
+<p><a target="_blank" rel="noopener" href="https://ja.osdn.net/projects/drdeamon64/wiki/TAG%E5%90%8D%28DW_TAG_xxxx%29%E4%B8%80%E8%A6%A7%E3%81%A8%E5%80%A4%E3%80%81%E6%84%8F%E5%91%B3">DW_TAG 一览表</a></p>
+<p><a target="_blank" rel="noopener" href="https://ja.osdn.net/projects/drdeamon64/wiki/Attribute%E5%90%8D%28DW_AT_yyyy%29%E4%B8%80%E8%A6%A7%E3%81%A8%E5%80%A4%E3%80%81%E6%84%8F%E5%91%B3">DW_AT 属性一览表</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ccbb434751a9">lldb常用命令与调试技巧</a></p>
+<p><a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">How debuggers work: Part 3 - Debugging information</a></p>
+<p><a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/01/27/how-debuggers-work-part-2-breakpoints/">How debuggers work: Part 2 - Breakpoints</a></p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86"><span class="toc-text">初探iOS源码调试原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%97%AE%E9%A2%98%E4%BB%8E%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B0%83%E8%AF%95%E5%9C%BA%E6%99%AF%E5%BC%80%E5%A7%8B"><span class="toc-text">一、问题从开发中常见的调试场景开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B0%83%E8%AF%95%E5%99%A8"><span class="toc-text">二、调试器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81-ptrace-%E8%AF%B7%E6%B1%82"><span class="toc-text">常见 ptrace 请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BC%95%E5%85%A5DWARF"><span class="toc-text">三、引入DWARF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AE%A4%E8%AF%86-DWARF"><span class="toc-text">四、认识 DWARF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-GCC-%E7%94%9F%E6%88%90-DWARF-%E4%BF%A1%E6%81%AF"><span class="toc-text">使用 GCC 生成 DWARF 信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-DWARF-%E4%BF%A1%E6%81%AF"><span class="toc-text">查看 DWARF 信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E9%97%AE%E9%A2%98"><span class="toc-text">验证问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">参考文章:</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://sleepearlier.github.io/2021/01/25/初探iOS源码调试原理/">https://sleepearlier.github.io/2021/01/25/初探iOS源码调试原理/</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/" rel="tag">iOS</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2021/05/17/jail-broken-env-build/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          iOS越狱环境搭建
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">使用space管理provisionProfile</div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/17/jail-broken-env-build/">iOS越狱环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/">初探iOS源码调试原理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/">使用space管理provisionProfile</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/First-Blood/">在已有原生工程中集成Flutter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019年10月</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example1.com/">site-name1</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example2.com/">site-name2</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example3.com/">site-name3</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a href="/sitemap.xml">网站地图</a>
+        <span> | </span><a href="/atom.xml">订阅本站</a>
+        <span> | </span><a href="/about/">联系博主</a>
+      </p>
+      
+        <p>
+          <i class="fa fa-visitors"></i>
+          <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>
+          ，
+          <i class="fa fa-views"></i>
+          <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>
+        </p>
+      
+      <p>
+        <span>Copyright &copy; 2021 Usopp.</span>
+        <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span>
+        
+            <span>Count by <a href="http://busuanzi.ibruce.info/" target="_blank">busuanzi.</a></span>
+        
+        <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+  
+<script src="/localshare/js/social-share.js"></script>
+
+  
+<script src="/localshare/js/qrcode.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>

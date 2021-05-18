@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Usopp&#39;s Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="Welcome">
+  
+  
+    <meta name="keywords" content="iOS">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Usopp's Page" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Usopp&#39;s Page</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  <article id="post-jail-broken-env-build" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/17/jail-broken-env-build/">iOS越狱环境搭建</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-05-17T09:54:01.000Z" itemprop="datePublished">2021年05月17日</time>
+</span>
+      
+      
+      
+<a href="/2021/05/17/jail-broken-env-build/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="越狱环境搭建与使用"><a href="#越狱环境搭建与使用" class="headerlink" title="越狱环境搭建与使用"></a>越狱环境搭建与使用</h1><h2 id="一、越狱"><a href="#一、越狱" class="headerlink" title="一、越狱"></a>一、越狱</h2><p>使用 <a target="_blank" rel="noopener" href="https://www.unc0ver.dev/">unc0ver</a> ，目前支持iOS 11.0 - 14.3，将它提供的 IPA 安装到设备上，打开即可进行一键越狱。官网提供了各种安装方式，采用最简单的重签名方式即可。</p>
+<p>二、Cydia源与应用</p>
+<p>越狱完成后就已经有了Cydia，添加各类源、安装各种插件与应用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"># 源</span><br><span class="line">https://apt.binger.com/</span><br><span class="line"></span><br><span class="line">https://build.firda.re/</span><br><span class="line"></span><br><span class="line">https://getdelta.co/</span><br><span class="line"></span><br><span class="line">http://apt.thebigboss.org/reprofiles/cydia/</span><br><span class="line"></span><br><span class="line">Https://repo.dynastic.co/</span><br><span class="line"></span><br><span class="line">Https://cydia.angelxwind.net/</span><br><span class="line"></span><br><span class="line">http://apt.modmyi.com/</span><br><span class="line"></span><br><span class="line">https://repo.chariz.com</span><br><span class="line"></span><br><span class="line">https://repo.incendo.ws/</span><br><span class="line"></span><br><span class="line">https://tigisoftware.com/cydia/</span><br><span class="line"></span><br><span class="line">https://cydia.zodttd.com/repo/cydia/</span><br><span class="line"></span><br><span class="line"># 应用、插件</span><br><span class="line">Flex3、Flexible、OpenSSH、Frida</span><br><span class="line"></span><br><span class="line">AppSync Unified</span><br><span class="line">源：http://cydia.angelxwind.net/</span><br><span class="line">作用：允许安装未签名或破解的App</span><br><span class="line"></span><br><span class="line">Apple File Conduit &quot;2&quot; </span><br><span class="line">源：https://apt.xbsite.cn</span><br><span class="line">作用：允许通过USB访问手机系统目录</span><br><span class="line"></span><br><span class="line">AppList</span><br><span class="line">RocketBootstrap</span><br><span class="line">Preferenceloader</span><br><span class="line">源：https://rpetri.ch/repo/</span><br><span class="line">作用：允许插件访问设置列表及依赖</span><br><span class="line"></span><br><span class="line">Filza</span><br><span class="line">源：http://tigisoftware.com/cydia/</span><br><span class="line">作用：越狱设备必备文件管理器</span><br><span class="line"></span><br><span class="line">Flex</span><br><span class="line">源：http://getdelta.co/</span><br><span class="line">作用：图形化UI调整工具，必备</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ReProvision </span><br><span class="line">源：http://repo.incendo.ws</span><br><span class="line">作用：自动重签名应用工具</span><br><span class="line"></span><br><span class="line">P佬源</span><br><span class="line">源：https://pulandres.me/repo/</span><br><span class="line">作用：提供各种热门和谐版插件</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、连接iPhone与查看信息"><a href="#三、连接iPhone与查看信息" class="headerlink" title="三、连接iPhone与查看信息"></a>三、连接iPhone与查看信息</h2><p>通过SSH连接越狱设备，将iOS设备与电脑置于同一局域网下，默认密码 <code>alpine</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh root@10.252.24.149</span><br><span class="line">root@10.252.24.149&#x27;s password:</span><br><span class="line">Black:~ root#</span><br></pre></td></tr></table></figure>
+
+<p>所有的应用位于 <code>/var/mobile/Containers/Data/Application/</code> 下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Black:~ root# cd /var/mobile/Containers/Data/Application/</span><br><span class="line">Black:/var/mobile/Containers/Data/Application root# ls</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">013FD0C1-6076-4085-BA69-649770327965/  3EF80435-AE63-48A7-854B-1CC5A124FD1D/  7EEA33EE-345E-4F80-919F-C21D294D03C4/  BC003F9B-534F-47CD-AA2A-0CB58767A0ED/</span><br><span class="line">0163D32A-24C6-44C4-BC98-F8E909F69AEF/  3F628105-64BF-4B30-9DD6-D60D6296EF05/</span><br></pre></td></tr></table></figure>
+
+<p>每个应用沙盒都是一个UUID，并不能直接与应用对应上，可以借助Cycript来查看</p>
+<p>cycript使用</p>
+<p>ssh连接iOS设备后，输入cycript启动cycript（出现 <code>cy#</code>提示符）</p>
+<p>ps -e | grep ‘SpringBoard’ 获取进程id，可以将所有进程杀死，仅打开目标进程后执行，减少干扰项</p>
+<p>cycript - p 1184（进程id） 注入进程</p>
+<p>借助cycript在页面中展示一个弹窗</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cy# alertView = [[UIAlertView alloc] initWithTitle:@&quot;test&quot; message:@&quot;Cyrill&quot; delegate:nil cancelButtonTitle:@&quot;OK&quot; otherButtonTitles:nil]</span><br><span class="line">#&quot;&lt;UIAlertView: 0x156f9f0a0; frame = (0 0; 0 0); layer = &lt;CALayer: 0x156f96fc0&gt;&gt;&quot;</span><br><span class="line">cy# [alertView show]</span><br></pre></td></tr></table></figure>
+
+<p>如果知道内存地址，也可以直接调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy# [#0x156f9f0a0 show]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="砸壳"><a href="#砸壳" class="headerlink" title="砸壳"></a>砸壳</h2><h3 id="方式一-dumpdecrypted"><a href="#方式一-dumpdecrypted" class="headerlink" title="方式一: dumpdecrypted"></a>方式一: <a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://github.com/stefanesser/dumpdecrypted">dumpdecrypted</a></h3><ol>
+<li><p>越狱iOS设备安装 [Cycript]<a target="_blank" rel="noopener" href="http://www.cycript.org/">http://www.cycript.org/</a>) 与 [OpenSSH]<a target="_blank" rel="noopener" href="https://www.openssh.com/">https://www.openssh.com/</a>)</p>
+</li>
+<li><p>在Mac上 <code>git clone https://github.com/stefanesser/dumpdecrypted</code> </p>
+</li>
+<li><p>cd并执行 <code>make</code> 得到 <code>dumpdecrypted.dylib</code> </p>
+</li>
+<li><p>ssh连接到iOS设备</p>
+</li>
+<li><p><code>ps -e</code> 找到目前进程路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">root#</span><span class="bash"> ps -e</span></span><br><span class="line">1091 ??         0:03.35 /var/mobile/Containers/Bundle/Application/A5960257-7E26-45EC-A28C-315FCBB15852/WeChat.app/WeChat</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>cycript</code> 找到应用沙盒</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root# cycript -p WeChat</span><br><span class="line">// 将输出WeChat沙盒路径，如</span><br><span class="line">/var/mobile/Containers/Data/Application/05330136-5902-48C1-96A6-3C03F275DC73/Documents</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mac上使用 scp 或 远程文件管理将前面得到的 <code>dylib</code> 拷贝到沙盒中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ./dumpdecrypted.dylib root@192.168.2.2:/var/mobile/Containers/Data/Application/05330136-5902-48C1-96A6-3C03F275DC73/Documents</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入到沙盒，注入动态库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd /var/mobile/Containers/Data/Application/05330136-5902-48C1-96A6-3C03F275DC73/Documents$ DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Containers/Bundle/Application/A5960257-7E26-45EC-A28C-315FCBB15852/WeChat.app/WeChat</span><br></pre></td></tr></table></figure>
+
+<p>执行完成后，会在沙盒 <code>Documents</code> 内生成 <code>WeChat.decrypted</code> 文件</p>
+</li>
+<li><p>将 <code>WeChat.decrypted</code> 拷贝到 mac 中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp root@192.168.2.2:/var/mobile/Containers/Data/Application/05330136-5902-48C1-96A6-3C03F275DC73/Documents/WeChat.decrypted ~/dumpdecrypted</span><br></pre></td></tr></table></figure>
+
+<p><code>WeChat.decrypted</code> 文件可用于 <code>class-dump</code> 或 <code>mach-o view</code> ，但不能用于跑 MonkeyDev。</p>
+</li>
+</ol>
+<h2 id="方式二-Clutch"><a href="#方式二-Clutch" class="headerlink" title="方式二: Clutch"></a>方式二: <a target="_blank" rel="noopener" href="https://github.com/KJCracks/Clutch">Clutch</a></h2><p>不适用所有App，对于有 Extension 的app会失败，考虑使用 <a target="_blank" rel="noopener" href="https://github.com/AloneMonkey/frida-ios-dump">frida-ios-dump</a></p>
+<ol>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/KJCracks/Clutch/releases">release</a> 页下载最新版本，或下载源码自行编译</li>
+<li>将Clutch scp到iOS设备的 <code>/usr/bin</code> 下</li>
+<li>添加可执行权限 <code>chmod +x /usr/bin/Clutch</code></li>
+<li>列出已安装的app <code>Clutch -i</code></li>
+<li>砸壳 <code>Clutch -d 序号或bundleId</code></li>
+<li>结果中会给出ipa路径，将ipa scp到mac上</li>
+</ol>
+<h2 id="方式三：LLDB砸壳"><a href="#方式三：LLDB砸壳" class="headerlink" title="方式三：LLDB砸壳"></a>方式三：LLDB砸壳</h2><p><a target="_blank" rel="noopener" href="http://4ch12dy.site/2020/02/26/lldb-how-to-dump-gracefully/lldb-how-to-dump-gracefully/"><strong>如何优雅的在LLDB里dumpdecrypted</strong></a></p>
+<h2 id="方式三-frida-ios-dump"><a href="#方式三-frida-ios-dump" class="headerlink" title="方式三:  frida-ios-dump"></a>方式三:  <a target="_blank" rel="noopener" href="https://github.com/AloneMonkey/frida-ios-dump">frida-ios-dump</a></h2><ol>
+<li><p>iOS上配置</p>
+<ol>
+<li>Cydia添加源: <a target="_blank" rel="noopener" href="https://build.frida.re">https://build.frida.re</a></li>
+<li>搜索安装 frida</li>
+<li>在手机终端运行 <code>frida-ps -U</code> 检查是否安装成功，检查失败也可砸壳</li>
+</ol>
+</li>
+<li><p>mac端配置</p>
+<ol>
+<li><p>支持 <code>Python 2.x</code> 和 <code>3.x</code> 一般已带有 <code>pip</code> ，如果没有则自行安装 <code>pip</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install wgetwget https://bootstrap.pypa.io/get-pip.pysudo python get-pip.py清理残留: rm ~/get-pip.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>克隆</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/AloneMonkey/frida-ios-dump</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd frida-ios-dumpsudo pip install -r requirements.txt --upgrade</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dump.py 中包含所使用的连接iOS用的用户名、密码、端口，如有需要进行修改，一般默认情况无需改动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User = &#x27;root&#x27;Password = &#x27;alpine&#x27;Host = &#x27;localhost&#x27;Port = 2222</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行 <code>usbmuxd</code> 或 <code>iproxy</code> 等通过 USB 转发 SSH 工具（默认 2222 -&gt; 22），例如: <code>iproxy 2222 22</code></p>
+</li>
+<li><p>列出安装的app <code>./dump.py -l</code> ，找到目标app复制bundleId</p>
+</li>
+<li><p>砸壳 <code>./dump.py bundleId</code>，完成后 IPA 会在 mac 当前目录下（此处也可以忽略上一步，直接使用应用中文名）</p>
+</li>
+<li><p>对于 SSH \ SCP 操作，确保将电脑上的公钥添加到iOS设备的 <code>~/.ssh/authorized_keys</code> 上</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="符号表恢复"><a href="#符号表恢复" class="headerlink" title="符号表恢复"></a>符号表恢复</h2><p><a target="_blank" rel="noopener" href="https://github.com/tobefuturer/restore-symbol">restore-symbol</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/HeiTanBc/restore-symbol">restore-symbol</a> 适配iOS14</p>
+<p><a target="_blank" rel="noopener" href="http://4ch12dy.site/2019/07/02/xia0CallStackSymbols/xia0CallStackSymbols/">Frida调用栈符号恢复</a></p>
+<p>此处以 restore-symbol 为例:</p>
+<ol>
+<li><p>克隆并编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --recursive https://github.com/HeiTanBc/restore-symbol.gitcd restore-symbol &amp;&amp; make ./restore-symbol</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>符号表恢复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./restore-symbol /pathto/origin_mach_o_file -o /pathto/mach_o_with_symbol </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将新的 mach-o 放入 app中重签名，或直接放入 MonkeyDev 的 <code>TargetApp</code> 目录中的 .app 中</p>
+</li>
+</ol>
+<h2 id="Block符号恢复"><a href="#Block符号恢复" class="headerlink" title="Block符号恢复"></a>Block符号恢复</h2><ol>
+<li>下载Python脚本 <a target="_blank" rel="noopener" href="https://github.com/tobefuturer/restore-symbol/blob/master/search_oc_block/ida_search_block.py"><code>search_oc_block/ida_search_block.py</code></a> </li>
+<li>用IDA打开目标mach-o文件，等待分析完成</li>
+<li>菜单栏 <code>File-Script file...</code> 选择前面下载的脚本</li>
+<li>等待脚本运行完成，在mach-o同级目录下会生成 <code>block_symbol.json</code> </li>
+<li>重新运行 <code>restore-symol</code> </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./restore-symbol /pathto/origin_mach_o_file -o /pathto/mach_o_with_symbol -j /pathto/block_symbol.json</span><br></pre></td></tr></table></figure>
+
+
+
+<p>_printHierarchy</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[[UIWindow keyWindow] rootViewController] _printHierarchy]&lt;MMUINavigationController 0x18392800&gt;, state: appeared, view: &lt;UILayoutContainerView 0x17f33790&gt;               | &lt;WCAccountLoginLastUserViewController 0x18b52600&gt;, state: appeared, view: &lt;UIView 0x192740d0&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>[[</strong>UIApp keyWindow<strong>]</strong> recursiveDescription<strong>]</strong></p>
+<p>手机连接Xcode调试后，Xcode会将 debugServer 放到 <code>/Developer/usr/bin/</code> 下，我们将其拷贝到mac下，分离出指定架构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lipo -thin arm64 ~/debugserver -output ~/debugserver</span><br></pre></td></tr></table></figure>
+
+<p>使用指定权限文件重签名</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">plist</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span> <span class="meta-string">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">&quot;1.0&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">dict</span>&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.backboardd.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.backboardd.launchapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.frontboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.frontboard.launchapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.private.cs.debugger<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.private.logging.diagnostic<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.private.memorystatus<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>platform-application<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span>	<span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span>	<span class="tag">&lt;<span class="name">true</span>/&gt;</span><span class="tag">&lt;/<span class="name">dict</span>&gt;</span><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codesign -s - --entitlements ent.plist -f debugserver</span><br></pre></td></tr></table></figure>
+
+<h2 id="DebugServer-lldb-调试"><a href="#DebugServer-lldb-调试" class="headerlink" title="DebugServer + lldb 调试"></a>DebugServer + lldb 调试</h2><p>将<a target="_blank" rel="noopener" href="https://github.com/wstclzy2010/iOS-debugserver">处理好的debugServer </a>scp到手机的 <code>/usr/bin</code> 下，并添加可执行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> iOS设备上chmod +x /usr/bin/debugserver</span></span><br></pre></td></tr></table></figure>
+
+<p>这里之所以把处理过的 <code>debugserver</code> 存放在 iOS 的 <code>/usr/bin/</code> 下，而没有覆盖 <code>/Developer/usr/bin/</code> 下的原版 debugserver，一是因为原版 debugserver 是不可写的，无法覆盖；二是因为 <code>/usr/bin/</code> 下的命令无须输入全路径就可以执行，即在任意目录下运行 <code>debugserver</code> 都可启动处理过的 <code>debugserver</code>。</p>
+<p>在 iOS 上启动想调试的应用后，开启 <code>debugServer</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debugserver *:1234 -a &quot;SpringBoard&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 示例输出Black:~ root<span class="comment"># debugserver *:1234 -a &quot;SpringBoard&quot;debugserver-@(#)PROGRAM:LLDB  PROJECT:lldb-1200.2.12 for arm64.Attaching to process SpringBoard...Listening to port 1234 for a connection from *...</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>1234</code> 是我们指定的端口号，可以自行替换，<code>-a</code> 后接我们想调试的进程名</p>
+<p>切换至mac上，首先进入 <code>lldb</code> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lldb(lldb)</span><br></pre></td></tr></table></figure>
+
+<p>链接到手机的 debugServer</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process connect connect://iOSIP:1234</span><br></pre></td></tr></table></figure>
+
+<p>连接过程可能耗时较长，需要等待一会。</p>
+<p>如果在 <code>connect</code> 时报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: failed to get reply to handshake packet</span><br></pre></td></tr></table></figure>
+
+<p>可以使用 <code>USB</code> 连接，切换到 <code>127.0.0.1</code> 然后使用 <code>iproxy</code> 转发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 手机端debugserver 127.0.0.1:1234 -a &quot;SpringBoard&quot;# mac端1iproxy 1234 1234# mac端2lldbprocess connect connect://127.0.0.1:1234</span><br></pre></td></tr></table></figure>
+
+<h2 id="Theos越狱插件Tweak开发"><a href="#Theos越狱插件Tweak开发" class="headerlink" title="Theos越狱插件Tweak开发"></a>Theos越狱插件Tweak开发</h2><p>参考: <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a5435650e828">iOS 越狱的Tweak开发</a></p>
+<h3 id="1-Theos-安装"><a href="#1-Theos-安装" class="headerlink" title="1. Theos 安装"></a>1. Theos 安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theos/theos.git /opt/theos</span><br></pre></td></tr></table></figure>
+
+<p>一般情况放在 <code>/opt/theos</code> 下，也可以更换到自定义路径。完成后建立环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> THEOS=/opt/theos</span><br></pre></td></tr></table></figure>
+
+<p>为了后续使用方便，可以将环境变量写入到 <code>zshrc</code> 或 <code>bash_profile</code>等文件中，让全局终端都能生效。</p>
+<h3 id="2-其他安装"><a href="#2-其他安装" class="headerlink" title="2. 其他安装"></a>2. 其他安装</h3><p>安装 <code>ldid</code> 和 <code>dpkg</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ldidbrew install dpkg</span><br></pre></td></tr></table></figure>
+
+<p><code>ldid</code> 是用来替代 <code>codesign</code> 进行签名的，让插件 <code>deb</code> 产物能顺利安装到手机上。</p>
+<p><code>dpkg</code> 是 <code>theos</code> 用来把工程打包成 <code>deb</code> 文件用的。</p>
+<h3 id="3-创建新的插件"><a href="#3-创建新的插件" class="headerlink" title="3. 创建新的插件"></a>3. 创建新的插件</h3><p>打开终端执行 <code>$THEOS/bin/nic.pl</code> :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NIC 2.0 - New Instance Creator------------------------------  [1.] iphone/activator_event  [2.] iphone/activator_listener  [3.] iphone/application_modern  [4.] iphone/application_swift  [5.] iphone/cydget  [6.] iphone/flipswitch_switch  [7.] iphone/framework  [8.] iphone/library  [9.] iphone/notification_center_widget  [10.] iphone/notification_center_widget-7up  [11.] iphone/preference_bundle_modern  [12.] iphone/theme  [13.] iphone/tool  [14.] iphone/tool_swift  [15.] iphone/tweak  [16.] iphone/tweak_with_simple_preferences  [17.] iphone/xpc_serviceChoose a Template (required): </span><br></pre></td></tr></table></figure>
+
+<p>输入 15 选择 <code>iPhone/tweak</code> 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Project Name (required):myTweak</span><br></pre></td></tr></table></figure>
+
+<p>输入插件名称。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Package Name [com.yourcompany.mytweak]:</span><br></pre></td></tr></table></figure>
+
+<p>输入包名或输入回车使用提供的默认包名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Author/Maintainer Name [lindubo]:</span><br></pre></td></tr></table></figure>
+
+<p>输入作者名或输入回车使用默认。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[iphone/tweak] MobileSubstrate Bundle filter [com.apple.springboard]:</span><br></pre></td></tr></table></figure>
+
+<p>输入插件要作用的包名（进程名？），如  <code>com.apple.UIKit</code> 可以作用于所有App，如 <code>com.apple.webinspectord</code> 作用于<code>webinspectord</code> 的守护进程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[iphone/tweak] List of applications to terminate upon installation (space-separated, <span class="string">&#x27;-&#x27;</span> <span class="keyword">for</span> none) [SpringBoard]:</span><br></pre></td></tr></table></figure>
+
+<p>输入插件安装完成后需要重新的进程名完成创建，创建完后目录结构为:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.└── mytweak    ├── Makefile    ├── Tweak.x    ├── control    └── myTweak.plist</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>control</code> 文件记录了插件相关的信息:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat controlPackage: com.yourcompany.mytweakName: myTweakVersion: 0.0.1Architecture: iphoneos-armDescription: An awesome MobileSubstrate tweak!Maintainer: linduboAuthor: linduboSection: TweaksDepends: mobilesubstrate (&gt;= 0.9.5000)</span><br></pre></td></tr></table></figure>
+
+<p>而 <code>plist</code> 文件中记录了前面输入的插件作用的目标包名:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; Filter = &#123; Bundles = ( <span class="string">&quot;com.apple.webinspectord&quot;</span> ); &#125;; &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>makefile</code> 用来编译工程:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat MakefileTARGET := iphone:clang:latest:7.0INSTALL_TARGET_PROCESSES = SpringBoardinclude $(THEOS)/makefiles/common.mkTWEAK_NAME = myTweakmyTweak_FILES = Tweak.xmyTweak_CFLAGS = -fobjc-arcinclude $(THEOS_MAKE_PATH)/tweak.mk</span><br></pre></td></tr></table></figure>
+
+<p>里面引用了 <code>$THEOS</code> 环境变量，因此前面需要先设置好环境变量。</p>
+<p><code>tweak.xm</code> 是我们需要编译的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat Tweak.x/* How to Hook with LogosHooks are written with syntax similar to that of an Objective-C @implementation.You don<span class="string">&#x27;t need to #include &lt;substrate.h&gt;, it will be done automatically, as willthe generation of a class list and an automatic constructor.%hook ClassName// Hooking a class method+ (id)sharedInstance &#123;	return %orig;&#125;// Hooking an instance method with an argument.- (void)messageName:(int)argument &#123;	%log; // Write a message about this call, including its class, name and arguments, to the system log.	%orig; // Call through to the original function with its original arguments.	%orig(nil); // Call through to the original function with a custom argument.	// If you use %orig(), you MUST supply all arguments (except for self and _cmd, the automatically generated ones.)&#125;// Hooking an instance method with no arguments.- (id)noArguments &#123;	%log;	id awesome = %orig;	[awesome doSomethingElse];	return awesome;&#125;// Always make sure you clean up after yourself; Not doing so could have grave consequences!%end*/</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>%hook</code> 、 <code>%orig</code> 、<code>%log</code> 都是 <code>theos</code> 对 <code>Cydia Substrate</code> 提供的函数的宏封装，介绍和示例可以参考<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://iphonedevwiki.net/index.php/Cydia_Substrate">Cydia_Substrate</a>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IMP MSHookMessage(Class class, SEL selector, IMP replacement, const char* prefix); &gt; // prefix should be NULL. void MSHookMessageEx(Class class, SEL selector, IMP replacement, IMP *result); void MSHookFunction(void* function, void* replacement, void** p_original);</span><br></pre></td></tr></table></figure>
+
+<p><code>Cydia Substrate</code> 还提供了 <code>MobileLoader</code> ，上面的这些钩子需要在运行时被加载就是由于  <code>MobileLoader</code> 会在适当的时机加载越狱设备上 <code>/Library/MobileSubstrate/DynamicLibraries/</code> 目录里的动态库，我们的 <code>tweak</code> 最终产物就是动态库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...// The attribute forces this function to be called on load.__attribute__((constructor))static void initialize() &#123;  NSLog(@&quot;MyExt: Loaded&quot;);  MSHookFunction(CFShow, replaced_CFShow, &amp;original_CFShow);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外由于 <code>__attribute__((constructor))</code> 的执行时机早于 <code>main</code> 函数，因此钩子得以在较早的时机执行。</p>
+<p><code>tweak</code> 文件的后缀名中，<code>.x</code> 表示支持 <a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://iphonedevwiki.net/index.php/Logos">logos</a> 语法和 C语法；<code>.xm</code> 表示支持 <a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://iphonedevwiki.net/index.php/Logos">logos</a> 语法和 C/C++ 语法。</p>
+<h3 id="编译与安装"><a href="#编译与安装" class="headerlink" title="编译与安装"></a>编译与安装</h3><p>编译deb包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make packages</span><br></pre></td></tr></table></figure>
+
+<p>完成后会多出 <code>.theos</code> 目录，和 <code>packages</code> 目录。动态库产物在 <code>./theos/_/Library/MobileSubstrate/DynamicLibraries/</code> 下，<code>deb</code> 产物在 <code>packages</code> 目录下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tree -a -L 2.├── .theos│   ├── _│   ├── build_session│   ├── fakeroot│   ├── last_package│   ├── obj│   └── packages├── Makefile├── Tweak.x├── control├── myTweak.plist└── packages    └── com.yourcompany.mytweak_0.0.1-1+debug_iphoneos-arm.deb5 directories, 8 files</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用iFile安装"><a href="#使用iFile安装" class="headerlink" title="使用iFile安装"></a>使用iFile安装</h4><ol>
+<li>使用工具将 <code>deb</code> 文件拷贝到手机上，可以通过 <code>ssh</code> 或其他工具</li>
+<li>手机上使用 <code>iFile</code> 打开进行安装</li>
+</ol>
+<h4 id="ssh直接编译-安装"><a href="#ssh直接编译-安装" class="headerlink" title="ssh直接编译+安装"></a>ssh直接编译+安装</h4><p>在 <code>Makefile</code> 最前面加上:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THEOS_DEVICE_IP=IP_Of_iPhone</span><br></pre></td></tr></table></figure>
+
+<p>然后执行 <code>make package install</code> 即可将产物直接安装到设备上。</p>
+<p>如果需要指定端口，也可以再加上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THEOS_DEVICE_PORT=2222</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>安装的插件可以直接在 <code>Cydia</code> 中进行删除。</p>
+<p>如果手机上安装了 <code>dpkg</code> (Debian Package)，可以在手机终端上执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 安装dpkg -i path/to/deb# 安装后重启SpringBoardkillall -HUP SpringBoard# 卸载，参数为插件的packageNamedpkg -r packageName</span><br></pre></td></tr></table></figure>
+
+<p>deb实际上是一个压缩包，如果使用其他压缩软件解压会丢失原有文件的权限信息，因此可以用 <code>dpkg-deb</code> 来解包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加压dpkg-deb -x abc.deb tmp #将abc.deb的程序文件解包到tmp文件夹dpkg-deb -e abc.deb tmp/DEBIAN #将abc.deb的安装控制/识别信息解包到DEBIAN文件夹# 打包# 假设将需要打包的文件放在tmp文件夹中，DEBIAN文件夹也要在放在这个文件夹中，然后输入命令：chmod -R 0755 tmp/DEBIAN #首先设置权限，如果没有包含脚本可以不需要设置权限dpkg-deb -b tmp 1.deb #打包成一个叫做1.deb的包</span></span><br></pre></td></tr></table></figure>
+
+<p>进入DEBIAN目录，可以看到有一个control文件，无后缀名，这个文件就是用来记录deb的安装信息。</p>
+<h3 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frida-ps -U</span><br></pre></td></tr></table></figure>
+
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://sleepearlier.github.io/index.html">https://sleepearlier.github.io/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-初探iOS源码调试原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/">初探iOS源码调试原理</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2021-01-25T07:58:38.000Z" itemprop="datePublished">2021年01月25日</time>
+</span>
+      
+      
+      
+<a href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="初探iOS源码调试原理"><a href="#初探iOS源码调试原理" class="headerlink" title="初探iOS源码调试原理"></a>初探iOS源码调试原理</h1><h2 id="一、问题从开发中常见的调试场景开始"><a href="#一、问题从开发中常见的调试场景开始" class="headerlink" title="一、问题从开发中常见的调试场景开始"></a>一、问题从开发中常见的调试场景开始</h2><ul>
+<li><p>打开IDE在某个方法中设置断点，切换到其他源文件后运行程序</p>
+</li>
+<li><p>运行到断点时，程序停止，IDE显示对应文件的源码</p>
+</li>
+<li><p>能够输出的函数堆栈中变量值</p>
+</li>
+</ul>
+<p>这是日常开发中常见的一幕，但调试器是如何做到这一切的？</p>
+<ul>
+<li><p>调试器是如何找到对应的源码文件？</p>
+</li>
+<li><p>调试器是如何找到文件中对应的函数来设置断点？</p>
+</li>
+<li><p>调试器是如何在函数内找到并输出变量的值？</p>
+</li>
+</ul>
+<h2 id="二、调试器"><a href="#二、调试器" class="headerlink" title="二、调试器"></a>二、调试器</h2><p>大部分类 UnixiOS 上的调试器是基于 <code>ptrace</code> 系统调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/ptrace.h&gt; </span><br><span class="line">int ptrace(int request, int pid, int addr, int data);</span><br><span class="line"></span><br><span class="line">// request: 请求ptrace执行的操作</span><br><span class="line">// pid:     目标进程的id</span><br><span class="line">// addr:    目标进程的地址值</span><br><span class="line">// data:    读取或写入的数据</span><br></pre></td></tr></table></figure>
+
+<h3 id="常见-ptrace-请求"><a href="#常见-ptrace-请求" class="headerlink" title="常见 ptrace 请求"></a>常见 ptrace 请求</h3><table>
+<thead>
+<tr>
+<th>请求</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PTRACE_TRACEME</td>
+<td>该进程被其父进程所跟踪，发送给该进程的信号都将通知其父进程</td>
+</tr>
+<tr>
+<td>PTRACE_KILL</td>
+<td>杀掉子进程，使它退出</td>
+</tr>
+<tr>
+<td>PTRACE_SINGLESTEP</td>
+<td>设置单步执行标志</td>
+</tr>
+<tr>
+<td>PTRACE_ATTACH</td>
+<td>附加到指定pid进程</td>
+</tr>
+<tr>
+<td>PTRACE_GETREGS</td>
+<td>读取寄存器</td>
+</tr>
+<tr>
+<td>PTRACE_PEEKTEXT</td>
+<td>从内存地址中读取一个字节数据，内存地址由addr给出</td>
+</tr>
+<tr>
+<td>PTRACE_POKETEXT</td>
+<td>往内存地址中写入一个字节数据，内存地址由addr给出</td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取寄存器状态</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">user_regs_struct</span> <span class="title">regs</span>;</span></span><br><span class="line">ptrace(PTRACE_GETREGS, child_pid, <span class="number">0</span>, &amp;regs);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取rip寄存器内容</span></span><br><span class="line"><span class="keyword">unsigned</span> instruction = ptrace(PTRACE_PEEKTEXT, child_pid, regs.rip, <span class="number">0</span>);</span><br><span class="line">procmsg(<span class="string">&quot;IP = 0x%08x.  instr = 0x%08x&quot;</span>, regs.rip, instruction);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例输出</span></span><br><span class="line"><span class="comment">// IP = 0x38182743.  instr = 0x0fc08944</span></span><br></pre></td></tr></table></figure>
+
+<p>调试器从 <code>ptrace</code> 获取到的信息有：</p>
+<ul>
+<li><p>regs，部分寄存器信息，如 IP 指令寄存器的地址</p>
+</li>
+<li><p>instruction，当前CPU执行的指令内容</p>
+</li>
+</ul>
+<p>看起来十分有限而且都是十分底层的信息，但我们平时使用的调试器能给我们提供一些更直观和更丰富的信息：</p>
+<ul>
+<li><p>当前指令的源码文件、行号</p>
+</li>
+<li><p>根据函数、行号进行断点</p>
+</li>
+<li><p>读取当前栈帧(stack frame|activation record) 下的布局变量信息</p>
+</li>
+</ul>
+<p>因此，调试器必然需要以某种方式将这些基础信息转化为更友好的信息。</p>
+<p><strong>DWARF 就是调试器与源码之间的桥梁。</strong></p>
+<h2 id="三、引入DWARF"><a href="#三、引入DWARF" class="headerlink" title="三、引入DWARF"></a>三、引入DWARF</h2><p>DWARF（Debugging With Attributed Record Formats）是一种广泛使用的标准化调试数据格式，通常用于源码级别调试，主要服务于调试器。</p>
+<ul>
+<li><p>DWARF 第一版发布于 1992 年,主要是为UNIX下的调试器提供必要的调试信息，例如PC地址对应的文件名及行号等信息，以方便源码级调试。到90年代末期，DWARF取代 stabs 成为 Linux上的默认配置。</p>
+</li>
+<li><p>其包含足够的信息以供调试器完成特定的一些功能, 例如显示当前栈帧(Stack Frame)下的局部变量, 尝试修改一些变量, 直接跳到函数末尾等</p>
+</li>
+<li><p>有足够的可扩展性，可为多种语言提供调试信息: 如: Ada, C, C++, Fortran, Java, Objective C, Go, Python, Haskell …</p>
+</li>
+</ul>
+<p>目前 DWARF 已经在类UNIX系统中逐步替换 stabs(symbol table strings)成为主流的调试信息格式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/88bc5f6c84f44f18b16bf2e6ed29498f">DWARF发展史</a><br><a target="_blank" rel="noopener" href="https://www.notion.so/59422db137d0499084b5dd4e5c1798b1">DWARF竞品</a></p>
+<h2 id="四、认识-DWARF"><a href="#四、认识-DWARF" class="headerlink" title="四、认识 DWARF"></a>四、认识 DWARF</h2><p>借助一段简单的 C++ 程序来探索 DWARF</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foo.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> num = x + y;</span><br><span class="line">  <span class="keyword">return</span> num * multiplier;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ans = foo(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果用一段自己的语言来描述这个源码文件：</p>
+<ul>
+<li><p>这是一个 c++ 源码文件名字叫 foo.cpp</p>
+</li>
+<li><p>定义了一个 <code>foo</code> 函数，接收两个 <code>int</code> 类型参数，返回值为 <code>int</code></p>
+</li>
+<li><p><code>foo</code> 函数内定义了一个 <code>int</code> 类型的变量叫 <code>num</code></p>
+</li>
+<li><p>… …</p>
+</li>
+</ul>
+<h3 id="使用-GCC-生成-DWARF-信息"><a href="#使用-GCC-生成-DWARF-信息" class="headerlink" title="使用 GCC 生成 DWARF 信息"></a>使用 GCC 生成 DWARF 信息</h3><p>先编译源码，看看在没有DWARF信息情况下调试是什么样的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang -O0 foo.c -o foo</span><br></pre></td></tr></table></figure>
+
+<p>生成可执行文件后，使用 <code>lldb</code> 调试器进行调试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ lldb foo</span><br><span class="line">(lldb) target create <span class="string">&quot;foo&quot;</span></span><br><span class="line">Current executable <span class="built_in">set</span> to <span class="string">&#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27;</span> (x86_64).</span><br><span class="line">(lldb) b foo</span><br><span class="line">Breakpoint 1: <span class="built_in">where</span> = foo`foo, address = 0x0000000100000f60</span><br><span class="line">(lldb) run</span><br><span class="line">Process 34037 launched: <span class="string">&#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27;</span> (x86_64)</span><br><span class="line">Process 34037 stopped</span><br><span class="line">* thread <span class="comment">#1, queue = &#x27;com.apple.main-thread&#x27;, stop reason = breakpoint 1.1</span></span><br><span class="line">    frame <span class="comment">#0: 0x0000000100000f60 foo`foo</span></span><br><span class="line">foo`foo:</span><br><span class="line">-&gt;  0x100000f60 &lt;+0&gt;: pushq  %rbp</span><br><span class="line">    0x100000f61 &lt;+1&gt;: movq   %rsp, %rbp</span><br><span class="line">    0x100000f64 &lt;+4&gt;: movl   %edi, -0x4(%rbp)</span><br><span class="line">    0x100000f67 &lt;+7&gt;: movl   %esi, -0x8(%rbp)</span><br><span class="line">Target 0: (foo) stopped.</span><br></pre></td></tr></table></figure>
+
+<p>对于 GCC 及 CLang 编译器, 使用参数 <code>-gdwarf-4</code> 即可生成 DWARF4 调试信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang -O0 -gdwarf-4 foo.c -o foo</span><br></pre></td></tr></table></figure>
+
+<p>编译后目录下可执行文件，还多了 foo.dSYM</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ll</span><br><span class="line">total 24</span><br><span class="line">-rwxr-xr-x  1 lindubo  ECC\Domain Users   4.5K 10 26 21:00 foo</span><br><span class="line">-rw-r--r--@ 1 lindubo  ECC\Domain Users   109B 10 26 21:00 foo.c</span><br><span class="line">drwxr-xr-x  3 lindubo  ECC\Domain Users    96B 10 26 21:00 foo.dSYM</span><br></pre></td></tr></table></figure>
+
+<p>进行调试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ lldb foo</span><br><span class="line">(lldb) target create &quot;foo&quot;</span><br><span class="line">Current executable set to &#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27; (x86_64).</span><br><span class="line">(lldb) b foo</span><br><span class="line">Breakpoint 1: where = foo`foo + 10 at foo.c:2:13, address = 0x0000000100000f6a</span><br><span class="line">(lldb) run</span><br><span class="line">Process 93727 launched: &#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27; (x86_64)</span><br><span class="line">Process 93727 stopped</span><br><span class="line">* thread #1, queue = &#x27;com.apple.main-thread&#x27;, stop reason = breakpoint 1.1</span><br><span class="line">    frame #0: 0x0000000100000f6a foo`foo(x=1, y=2) at foo.c:2:13</span><br><span class="line">   1   	int foo(int x, int y) &#123;</span><br><span class="line">-&gt; 2   	  int num = x + y;</span><br><span class="line">   3   	  return num;</span><br><span class="line">   4   	&#125;</span><br><span class="line">   5   	int main() &#123;</span><br><span class="line">   6   	  int ans = foo(1, 2);</span><br><span class="line">   7   	  return 0;</span><br><span class="line">Target 0: (foo) stopped.</span><br></pre></td></tr></table></figure>
+
+<p>当没有 DWARF 信息时，断点是停留在汇编层面，可读性非常差，而在有 DWARF 信息时将停留在源码层面。</p>
+<h3 id="查看-DWARF-信息"><a href="#查看-DWARF-信息" class="headerlink" title="查看 DWARF 信息"></a>查看 DWARF 信息</h3><p>使用 file 命令查看 DWARF 的文件描述</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd foo.dSYM/Contents/Resources/DWARF</span><br><span class="line">$ file foo</span><br><span class="line">foo: Mach-O 64-bit dSYM companion file x86_64</span><br></pre></td></tr></table></figure>
+
+<p>可以看到它是一个 <code>mach-o</code> 文件，既然是 Mach-O 文件, 可以使用 <code>machOView</code> 或者 <code>size</code> 命令查看可执行文件包含的 Segment 和 Section：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ size -m -l -x foo</span><br><span class="line">Segment __PAGEZERO: 0x100000000 (vmaddr 0x0 fileoff 0)</span><br><span class="line">Segment __TEXT: 0x1000 (vmaddr 0x100000000 fileoff 0)</span><br><span class="line">	Section __text: 0x4b (addr 0x100000f60 offset 0)</span><br><span class="line">	Section __unwind_info: 0x48 (addr 0x100000fac offset 0)</span><br><span class="line">	total 0x93</span><br><span class="line">Segment __LINKEDIT: 0x1000 (vmaddr 0x100001000 fileoff 4096)</span><br><span class="line">Segment __DWARF: 0x1000 (vmaddr 0x100002000 fileoff 8192)</span><br><span class="line">	Section __debug_line: 0x69 (addr 0x100002000 offset 8192)</span><br><span class="line">	Section __debug_pubnames: 0x23 (addr 0x100002069 offset 8297)</span><br><span class="line">	Section __debug_pubtypes: 0x1a (addr 0x10000208c offset 8332)</span><br><span class="line">	Section __debug_aranges: 0x40 (addr 0x1000020a6 offset 8358)</span><br><span class="line">	Section __debug_info: 0x9e (addr 0x1000020e6 offset 8422)</span><br><span class="line">	Section __debug_abbrev: 0x69 (addr 0x100002184 offset 8580)</span><br><span class="line">	Section __debug_str: 0x71 (addr 0x1000021ed offset 8685)</span><br><span class="line">	Section __apple_names: 0x58 (addr 0x10000225e offset 8798)</span><br><span class="line">	Section __apple_namespac: 0x24 (addr 0x1000022b6 offset 8886)</span><br><span class="line">	Section __apple_types: 0x4f (addr 0x1000022da offset 8922)</span><br><span class="line">	Section __apple_objc: 0x24 (addr 0x100002329 offset 9001)</span><br><span class="line">	total 0x34d</span><br><span class="line">total 0x100003000</span><br></pre></td></tr></table></figure>
+
+<p>可以看到有一个名为 <strong>DWARF 的 Segment，下面包含</strong> debug_line、<strong>debug_pubnames、</strong>debug_info … 等Section。调试器所需要的调试信息便存储在这些 Section 中，可以使用 <code>dwarfdump</code> 查看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">$ dwarfdump foo --debug-info</span><br><span class="line">foo:	file format Mach-O 64-bit x86-64</span><br><span class="line"></span><br><span class="line">.debug_info contents:</span><br><span class="line">0x00000000: Compile Unit: length = 0x0000009a version = 0x0004 abbr_offset = 0x0000 addr_size = 0x08 (next unit at 0x0000009e)</span><br><span class="line"></span><br><span class="line">0x0000000b: DW_TAG_compile_unit</span><br><span class="line">              DW_AT_producer	(&quot;Apple clang version 11.0.3 (clang-1103.0.32.62)&quot;)</span><br><span class="line">              DW_AT_language	(DW_LANG_C99)</span><br><span class="line">              DW_AT_name	(&quot;foo.c&quot;)</span><br><span class="line">              DW_AT_stmt_list	(0x00000000)</span><br><span class="line">              DW_AT_comp_dir	(&quot;/Users/lindubo/Desktop/DebugDemo&quot;)</span><br><span class="line">              DW_AT_low_pc	(0x0000000100000f60)</span><br><span class="line">              DW_AT_high_pc	(0x0000000100000fab)</span><br><span class="line"></span><br><span class="line">0x0000002a:   DW_TAG_subprogram</span><br><span class="line">                DW_AT_low_pc	(0x0000000100000f60)</span><br><span class="line">                DW_AT_high_pc	(0x0000000100000f78)</span><br><span class="line">                DW_AT_frame_base	(DW_OP_reg6 RBP)</span><br><span class="line">                DW_AT_name	(&quot;foo&quot;)</span><br><span class="line">                DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                DW_AT_decl_line	(1)</span><br><span class="line">                DW_AT_prototyped	(true)</span><br><span class="line">                DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line">                DW_AT_external	(true)</span><br><span class="line"></span><br><span class="line">0x00000043:     DW_TAG_formal_parameter</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -4)</span><br><span class="line">                  DW_AT_name	(&quot;x&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(1)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x00000051:     DW_TAG_formal_parameter</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -8)</span><br><span class="line">                  DW_AT_name	(&quot;y&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(1)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x0000005f:     DW_TAG_variable</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -12)</span><br><span class="line">                  DW_AT_name	(&quot;num&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(2)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x0000006d:     NULL</span><br><span class="line"></span><br><span class="line">0x0000006e:   DW_TAG_subprogram</span><br><span class="line">                DW_AT_low_pc	(0x0000000100000f80)</span><br><span class="line">                DW_AT_high_pc	(0x0000000100000fab)</span><br><span class="line">                DW_AT_frame_base	(DW_OP_reg6 RBP)</span><br><span class="line">                DW_AT_name	(&quot;main&quot;)</span><br><span class="line">                DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                DW_AT_decl_line	(5)</span><br><span class="line">                DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line">                DW_AT_external	(true)</span><br><span class="line"></span><br><span class="line">0x00000087:     DW_TAG_variable</span><br><span class="line">                  DW_AT_location	(DW_OP_fbreg -8)</span><br><span class="line">                  DW_AT_name	(&quot;ans&quot;)</span><br><span class="line">                  DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                  DW_AT_decl_line	(6)</span><br><span class="line">                  DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line"></span><br><span class="line">0x00000095:     NULL</span><br><span class="line"></span><br><span class="line">0x00000096:   DW_TAG_base_type</span><br><span class="line">                DW_AT_name	(&quot;int&quot;)</span><br><span class="line">                DW_AT_encoding	(DW_ATE_signed)</span><br><span class="line">                DW_AT_byte_size	(0x04)</span><br><span class="line"></span><br><span class="line">0x0000009d:   NULL</span><br></pre></td></tr></table></figure>
+
+<p>可以看到里面包含了关于源码非常细致的描述，从编译器到源码函数、形参、布局变量、声明位置等等。</p>
+<p>DWARF 使用 DIE (The Debugging Information Entry) 的统一形式来描述这些信息，每个 DIE 包括:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0x0000002a:   DW_TAG_subprogram</span><br><span class="line">                DW_AT_low_pc	(0x0000000100000f60)</span><br><span class="line">                DW_AT_high_pc	(0x0000000100000f78)</span><br><span class="line">                DW_AT_frame_base	(DW_OP_reg6 RBP)</span><br><span class="line">                DW_AT_name	(&quot;foo&quot;)</span><br><span class="line">                DW_AT_decl_file	(&quot;/Users/lindubo/Desktop/DebugDemo/foo.c&quot;)</span><br><span class="line">                DW_AT_decl_line	(1)</span><br><span class="line">                DW_AT_prototyped	(true)</span><br><span class="line">                DW_AT_type	(0x00000096 &quot;int&quot;)</span><br><span class="line">                DW_AT_external	(true)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>一个 TAG (DW_TAG_xxx) 表示这是什么类型的信息，如</p>
+<ul>
+<li><p>TAG_subprogram 函数</p>
+</li>
+<li><p>TAG_formal_parameter 形式参数</p>
+</li>
+<li><p>TAG_variable 变量</p>
+</li>
+</ul>
+</li>
+<li><p>多个属性 (DW_AT_xxx) 表示具体的属性信息</p>
+<ul>
+<li><p>AT_low_pc, AT_high_pc 分别代表函数的 起始/结束 PC地址</p>
+</li>
+<li><p>AT_frame_base 表达函数的栈帧基址(frame base) ，示例中为寄存器 rbp 的值，后面的 DW_OP_fbreg 就是这个栈帧基址</p>
+</li>
+<li><p>AT_name 描述名称，如文件、函数、变量的名称</p>
+</li>
+<li><p>AT_decl_file 描述在哪个文件中声明</p>
+</li>
+<li><p>AT_decl_line 描述在哪一行声明</p>
+</li>
+<li><p>AT_prototyped 为一个 Bool 值, 为 True时代表这是一个子程序/函数(subroutine)</p>
+</li>
+<li><p>AT_type 属性描述这个函数返回值的类型是什么, 对于 foo 函数来说, 为int</p>
+</li>
+<li><p>AT_external 表示这个函数是否为全局可访问</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>将多个DIE组合起来就能描述整个程序，DIE内也可以进行嵌套，一个文件有多个函数、一个函数有多个参数等，DIE使用空行进行分割，使用缩进的形式来表达嵌套。</p>
+<ul>
+<li><p>几个常用的寄存器</p>
+<p>sp/esp/rsp（16bit/32bit/64bit）栈寄存器—指向栈顶</p>
+<p>bp/ebp/rbp 栈基址寄存器—指向栈底</p>
+<p>ip/eip/rip 程序指令寄存器—指向下一条待执行指令</p>
+</li>
+</ul>
+<h3 id="验证问题"><a href="#验证问题" class="headerlink" title="验证问题"></a>验证问题</h3><ol>
+<li><p><strong>如何找到设置断点的函数对应的源码文件？</strong></p>
+<p>从上面的 debug_info 信息中已经可以清晰的看到，在函数相关的DIE信息中包含了所在的文件、行数，因此调试器可以根据这些信息找到对应的源码和行数。</p>
+</li>
+<li><p><strong>如何找到对应的函数设置断点？</strong></p>
+<p>调试器与 ptrace 的交互都是基于有限的信息（指令、寄存器、内存地址等信息），因此需要将需要设置断点的函数转化为对应的内存地址信息，在对应的地址设置断点。从上面的调试信息中可以看到 <code>foo</code> 函数的入口地址为 <code>0x0000000100000f60</code> ，我们可以在对应的地址设置断点来测试:</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(lldb) b 0x0000000100000f60</span><br><span class="line">Breakpoint 3: where = foo`foo at foo.c:1, address = 0x0000000100000f60</span><br><span class="line">(lldb) run</span><br><span class="line">There is a running process, kill it and restart?: [Y/n] y</span><br><span class="line">Process 42581 exited with status = 9 (0x00000009)</span><br><span class="line">Process 42689 launched: &#x27;/Users/lindubo/Desktop/DebugDemo/foo&#x27; (x86_64)</span><br><span class="line">Process 42689 stopped</span><br><span class="line">* thread #1, queue = &#x27;com.apple.main-thread&#x27;, stop reason = breakpoint 3.1</span><br><span class="line">    frame #0: 0x0000000100000f60 foo`foo(x=0, y=12325) at foo.c:1</span><br><span class="line">-&gt; 1   	int foo(int x, int y) &#123;</span><br><span class="line">   2   	  int num = x + y;</span><br><span class="line">   3   	  return num;</span><br><span class="line">   4   	&#125;</span><br><span class="line">   5   	int main() &#123;</span><br><span class="line">   6   	  int ans = foo(1, 2);</span><br><span class="line">   7   	  return 0;</span><br><span class="line">Target 0: (foo) stopped.</span><br><span class="line">(lldb)</span><br></pre></td></tr></table></figure>
+
+<p>程序确实在 <code>foo</code> 函数的入口位置停止。</p>
+<ol start="3">
+<li><strong>如何在函数内找到对应的变量？</strong></li>
+</ol>
+<p>当程序停止在对应位置后，比如 <code>foo</code> 函数 <code>return</code> 前，用 <code>p</code> 命令查看几个变量的值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(lldb) p x</span><br><span class="line">(int) $0 = 1</span><br><span class="line">(lldb) p y</span><br><span class="line">(int) $1 = 2</span><br><span class="line">(lldb) p num</span><br><span class="line">(int) $2 = 3</span><br></pre></td></tr></table></figure>
+
+<p>基于前面的调试信息可以看出，x、y、num几个变量的地址分别在 <code>DW_OP_fbreg</code> 往前偏移 4、8、12的位置，而 <code>DW_OP_fbreg</code> 指的就是函数的栈帧基址即 rbp 寄存器地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 读取 rbp 寄存器地址</span><br><span class="line">(lldb) register read rbp</span><br><span class="line">     rbp = 0x00007ffeefbff190</span><br><span class="line">// 计算rbp往前偏移4的地址</span><br><span class="line">(lldb) p/x 0x00007ffeefbff190-4</span><br><span class="line">(long) $4 = 0x00007ffeefbff18c</span><br><span class="line">// 读取4字节内存数据以16进制输出，与形参x值相同为1</span><br><span class="line">(lldb) x/4bx 0x00007ffeefbff18c</span><br><span class="line">0x7ffeefbff18c: 0x01 0x00 0x00 0x00</span><br><span class="line"></span><br><span class="line">// 计算读取形参y地址数据</span><br><span class="line">(lldb) p/x 0x00007ffeefbff190-8</span><br><span class="line">(long) $5 = 0x00007ffeefbff188</span><br><span class="line">(lldb) x/4bx 0x00007ffeefbff188</span><br><span class="line">0x7ffeefbff188: 0x02 0x00 0x00 0x00</span><br><span class="line"></span><br><span class="line">// 计算读取局部变量num地址及数据</span><br><span class="line">(lldb) p/x 0x00007ffeefbff190-12</span><br><span class="line">(long) $6 = 0x00007ffeefbff184</span><br><span class="line">(lldb) x/4bx 0x00007ffeefbff184</span><br><span class="line">0x7ffeefbff184: 0x03 0x00 0x00 0x00</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章:"></a>参考文章:</h2><p><a target="_blank" rel="noopener" href="http://www.dwarfstd.org/">The DWARF Debugging Standard</a></p>
+<p><a target="_blank" rel="noopener" href="https://ja.osdn.net/projects/drdeamon64/wiki/TAG%E5%90%8D%28DW_TAG_xxxx%29%E4%B8%80%E8%A6%A7%E3%81%A8%E5%80%A4%E3%80%81%E6%84%8F%E5%91%B3">DW_TAG 一览表</a></p>
+<p><a target="_blank" rel="noopener" href="https://ja.osdn.net/projects/drdeamon64/wiki/Attribute%E5%90%8D%28DW_AT_yyyy%29%E4%B8%80%E8%A6%A7%E3%81%A8%E5%80%A4%E3%80%81%E6%84%8F%E5%91%B3">DW_AT 属性一览表</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ccbb434751a9">lldb常用命令与调试技巧</a></p>
+<p><a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">How debuggers work: Part 3 - Debugging information</a></p>
+<p><a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/01/27/how-debuggers-work-part-2-breakpoints/">How debuggers work: Part 2 - Breakpoints</a></p>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://sleepearlier.github.io/index.html">https://sleepearlier.github.io/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/" rel="tag">iOS</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-使用space管理provisionProfile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/">使用space管理provisionProfile</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2019-10-25T07:58:38.000Z" itemprop="datePublished">2019年10月25日</time>
+</span>
+      
+      
+      
+<a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="痛点"><a href="#痛点" class="headerlink" title="痛点"></a>痛点</h3><p>日常iOS开发中，描述文件的管理是一个费时的事情。通常开发者账号仅有部分开发者有权限可以操作，当添加一个测试设备时，需要更新所有的<code>development</code>和<code>ADHoc</code>描述文件，下载到本地，并替换本地的描述文件，如果有CI系统还需要更新CI上的描述文件。对于区分内外网的公司，可能中间还需要切换网路等操作。总之，这是一件繁琐的事情。</p>
+<h3 id="spaceship"><a href="#spaceship" class="headerlink" title="spaceship"></a>spaceship</h3><p><a target="_blank" rel="noopener" href="https://github.com/fastlane/fastlane">spaceship</a>作为<code>fastlane</code>中的一个组件，可以帮助我们处理开发者账号相关的功能：创建appid、更新appid属性、添加设备、更新描述文件等等。</p>
+<h5 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Spaceship::Portal.login(<span class="string">&quot;felix@krausefx.com&quot;</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line"></span><br><span class="line">Spaceship::Portal.select_team <span class="comment"># call this method to let the user select a team</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="App"><a href="#App" class="headerlink" title="App"></a>App</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fetch all available apps</span></span><br><span class="line">all_apps = Spaceship::Portal.app.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find a specific app based on the bundle identifier</span></span><br><span class="line">app = Spaceship::Portal.app.find(<span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show the names of all your apps</span></span><br><span class="line">Spaceship::Portal.app.all.collect <span class="keyword">do</span> <span class="params">|app|</span></span><br><span class="line">  app.name</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new app</span></span><br><span class="line">app = Spaceship::Portal.app.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app_name&quot;</span>, <span class="symbol">name:</span> <span class="string">&quot;fastlane App&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h6 id=""><a href="#" class="headerlink" title=""></a></h6><h5 id="-1"><a href="#-1" class="headerlink" title=""></a></h5><h5 id="App-Services"><a href="#App-Services" class="headerlink" title="App Services"></a>App Services</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Find a specific app based on the bundle identifier</span></span><br><span class="line">app = Spaceship::Portal.app.find(<span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get detail informations (e.g. see all enabled app services)</span></span><br><span class="line">app.details</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable HealthKit, but make sure HomeKit is disabled</span></span><br><span class="line">app.update_service(Spaceship::Portal.app_service.health_kit.on)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.home_kit.off)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.vpn_configuration.on)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.passbook.off)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.cloud_kit.cloud_kit)</span><br></pre></td></tr></table></figure>
+
+<h5 id="App-Groups"><a href="#App-Groups" class="headerlink" title="App Groups"></a>App Groups</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fetch all existing app groups</span></span><br><span class="line">all_groups = Spaceship::Portal.app_group.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find a specific app group, based on the identifier</span></span><br><span class="line">group = Spaceship::Portal.app_group.find(<span class="string">&quot;group.com.example.application&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show the names of all the groups</span></span><br><span class="line">Spaceship::Portal.app_group.all.collect <span class="keyword">do</span> <span class="params">|group|</span></span><br><span class="line">  group.name</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new group</span></span><br><span class="line">group = Spaceship::Portal.app_group.create!(<span class="symbol">group_id:</span> <span class="string">&quot;group.com.example.another&quot;</span>,</span><br><span class="line">                                        <span class="symbol">name:</span> <span class="string">&quot;Another group&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Associate an app with this group (overwrites any previous associations)</span></span><br><span class="line"><span class="comment"># Assumes app contains a fetched app, as described above</span></span><br><span class="line">app = app.associate_groups([group])</span><br></pre></td></tr></table></figure>
+
+<h5 id="Certificates"><a href="#Certificates" class="headerlink" title="Certificates"></a>Certificates</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fetch all available certificates (includes signing and push profiles)</span></span><br><span class="line">certificates = Spaceship::Portal.certificate.all</span><br></pre></td></tr></table></figure>
+
+<h6 id="Code-Signing-Certificates"><a href="#Code-Signing-Certificates" class="headerlink" title="Code Signing Certificates"></a>Code Signing Certificates</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Production identities</span></span><br><span class="line">prod_certs = Spaceship::Portal.certificate.production.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Development identities</span></span><br><span class="line">dev_certs = Spaceship::Portal.certificate.development.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a certificate</span></span><br><span class="line">cert_content = prod_certs.first.download</span><br></pre></td></tr></table></figure>
+
+<h6 id="Push-Certificates"><a href="#Push-Certificates" class="headerlink" title="Push Certificates"></a>Push Certificates</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Production push profiles</span></span><br><span class="line">prod_push_certs = Spaceship::Portal.certificate.production_push.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Development push profiles</span></span><br><span class="line">dev_push_certs = Spaceship::Portal.certificate.development_push.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a push profile</span></span><br><span class="line">cert_content = dev_push_certs.first.download</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating a push certificate</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new certificate signing request</span></span><br><span class="line">csr, pkey = Spaceship::Portal.certificate.create_certificate_signing_request</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the signing request to create a new push certificate</span></span><br><span class="line">Spaceship::Portal.certificate.production_push.create!(<span class="symbol">csr:</span> csr, <span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Create-a-Certificate"><a href="#Create-a-Certificate" class="headerlink" title="Create a Certificate"></a>Create a Certificate</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a new certificate signing request</span></span><br><span class="line">csr, pkey = Spaceship::Portal.certificate.create_certificate_signing_request</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the signing request to create a new distribution certificate</span></span><br><span class="line">Spaceship::Portal.certificate.production.create!(<span class="symbol">csr:</span> csr)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Provisioning-Profiles"><a href="#Provisioning-Profiles" class="headerlink" title="Provisioning Profiles"></a>Provisioning Profiles</h5><h6 id="Receiving-profiles"><a href="#Receiving-profiles" class="headerlink" title="Receiving profiles"></a>Receiving profiles</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### Finding #####</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get all available provisioning profiles</span></span><br><span class="line">profiles = Spaceship::Portal.provisioning_profile.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get all App Store and Ad Hoc profiles</span></span><br><span class="line"><span class="comment"># Both app_store.all and ad_hoc.all return the same</span></span><br><span class="line"><span class="comment"># This is the case since September 2016, since the API has changed</span></span><br><span class="line"><span class="comment"># and there is no fast way to get the type when fetching the profiles</span></span><br><span class="line">profiles_appstore_adhoc = Spaceship::Portal.provisioning_profile.app_store.all</span><br><span class="line">profiles_appstore_adhoc = Spaceship::Portal.provisioning_profile.ad_hoc.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get all Development profiles</span></span><br><span class="line">profiles_dev = Spaceship::Portal.provisioning_profile.development.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch all profiles for a specific app identifier for the App Store (Array of profiles)</span></span><br><span class="line">filtered_profiles = Spaceship::Portal.provisioning_profile.app_store.find_by_bundle_id(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check if a provisioning profile is valid</span></span><br><span class="line">profile.valid?</span><br><span class="line"></span><br><span class="line"><span class="comment"># Verify that the certificate of the provisioning profile is valid</span></span><br><span class="line">profile.certificate_valid?</span><br><span class="line"></span><br><span class="line"><span class="comment">##### Downloading #####</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a profile</span></span><br><span class="line">profile_content = profiles.first.download</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a specific profile as file</span></span><br><span class="line">matching_profiles = Spaceship::Portal.provisioning_profile.app_store.find_by_bundle_id(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line">first_profile = matching_profiles.first</span><br><span class="line"></span><br><span class="line">File.write(<span class="string">&quot;output.mobileprovision&quot;</span>, first_profile.download)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Create-a-Provisioning-Profile"><a href="#Create-a-Provisioning-Profile" class="headerlink" title="Create a Provisioning Profile"></a>Create a Provisioning Profile</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Choose the certificate to use</span></span><br><span class="line">cert = Spaceship::Portal.certificate.production.all.first</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new provisioning profile with a default name</span></span><br><span class="line"><span class="comment"># The name of the new profile is &quot;com.krausefx.app AppStore&quot;</span></span><br><span class="line">profile = Spaceship::Portal.provisioning_profile.app_store.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>,</span><br><span class="line">                                                         <span class="symbol">certificate:</span> cert)</span><br><span class="line"></span><br><span class="line"><span class="comment"># AdHoc Profiles will add all devices by default</span></span><br><span class="line">profile = Spaceship::Portal.provisioning_profile.ad_hoc.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>,</span><br><span class="line">                                                      <span class="symbol">certificate:</span> cert,</span><br><span class="line">                                                             <span class="symbol">name:</span> <span class="string">&quot;Profile Name&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Store the new profile on the filesystem</span></span><br><span class="line">File.write(<span class="string">&quot;NewProfile.mobileprovision&quot;</span>, profile.download)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Repair-all-broken-provisioning-profiles"><a href="#Repair-all-broken-provisioning-profiles" class="headerlink" title="Repair all broken provisioning profiles"></a>Repair all broken provisioning profiles</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select all &#x27;Invalid&#x27; or &#x27;Expired&#x27; provisioning profiles</span></span><br><span class="line">broken_profiles = Spaceship::Portal.provisioning_profile.all.find_all <span class="keyword">do</span> <span class="params">|profile|</span></span><br><span class="line">  <span class="comment"># the below could be replaced with `!profile.valid? || !profile.certificate_valid?`, which takes longer but also verifies the code signing identity</span></span><br><span class="line">  (profile.status == <span class="string">&quot;Invalid&quot;</span> <span class="keyword">or</span> profile.status == <span class="string">&quot;Expired&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterate over all broken profiles and repair them</span></span><br><span class="line">broken_profiles.each <span class="keyword">do</span> <span class="params">|profile|</span></span><br><span class="line">  profile.repair! <span class="comment"># yes, that&#x27;s all you need to repair a profile</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># or to do the same thing, just more Ruby like</span></span><br><span class="line">Spaceship::Portal.provisioning_profile.all.find_all &#123; <span class="params">|p|</span> !p.valid? <span class="params">||</span> !p.certificate_valid? &#125;.map(&amp;<span class="symbol">:repair!</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Devices"><a href="#Devices" class="headerlink" title="Devices"></a>Devices</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get all enabled devices</span></span><br><span class="line">all_devices = Spaceship::Portal.device.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable first device</span></span><br><span class="line">all_devices.first.disable!</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find disabled device and enable it</span></span><br><span class="line">Spaceship::Portal.device.find_by_udid(<span class="string">&quot;44ee59893cb...&quot;</span>, <span class="symbol">include_disabled:</span> <span class="literal">true</span>).enable!</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get list of all devices, including disabled ones, and filter the result to only include disabled devices use enabled? or disabled? methods</span></span><br><span class="line">disabled_devices = Spaceship::Portal.device.all(<span class="symbol">include_disabled:</span> <span class="literal">true</span>).select <span class="keyword">do</span> <span class="params">|device|</span></span><br><span class="line">  !device.enabled?</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># or to do the same thing, just more Ruby like with disabled? method</span></span><br><span class="line">disabled_devices = Spaceship::Portal.device.all(<span class="symbol">include_disabled:</span> <span class="literal">true</span>).select(&amp;<span class="symbol">:disabled?</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Register a new device</span></span><br><span class="line">Spaceship::Portal.device.create!(<span class="symbol">name:</span> <span class="string">&quot;Private iPhone 6&quot;</span>, <span class="symbol">udid:</span> <span class="string">&quot;5814abb3...&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Enterprise"><a href="#Enterprise" class="headerlink" title="Enterprise"></a>Enterprise</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use the InHouse class to get all enterprise certificates</span></span><br><span class="line">cert = Spaceship::Portal.certificate.in_house.all.first</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new InHouse Enterprise distribution profile</span></span><br><span class="line">profile = Spaceship::Portal.provisioning_profile.in_house.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.*&quot;</span>,</span><br><span class="line">                                                        <span class="symbol">certificate:</span> cert)</span><br><span class="line"></span><br><span class="line"><span class="comment"># List all In-House Provisioning Profiles</span></span><br><span class="line">profiles = Spaceship::Portal.provisioning_profile.in_house.all</span><br></pre></td></tr></table></figure>
+
+<h5 id="Multiple-Spaceships"><a href="#Multiple-Spaceships" class="headerlink" title="Multiple Spaceships"></a>Multiple Spaceships</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Launch 2 spaceships</span></span><br><span class="line">spaceship1 = Spaceship::Launcher.new(<span class="string">&quot;felix@krausefx.com&quot;</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line">spaceship2 = Spaceship::Launcher.new(<span class="string">&quot;stefan@spaceship.airforce&quot;</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch all registered devices from spaceship1</span></span><br><span class="line">devices = spaceship1.device.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterate over the list of available devices</span></span><br><span class="line"><span class="comment"># and register each device from the first account also on the second one</span></span><br><span class="line">devices.each <span class="keyword">do</span> <span class="params">|device|</span></span><br><span class="line">  spaceship2.device.create!(<span class="symbol">name:</span> device.name, <span class="symbol">udid:</span> device.udid)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><p>从上面可以看到，<code>spaceship</code>可以帮我们处理几乎所有需要在苹果开发者中心中操作的所有事项，因此完全可以基于<code>spaceship</code>编写一个注册新设备并自动更新、下载、同步描述文件的脚本来解决我们的问题。<code>spaceship</code>是使用<code>Ruby</code>写的，因此我们可以使用<code>Ruby</code>来编写这个脚本。</p>
+<p>由于脚本可能会分享给内部或外部人员，可以将脚本编写得更通用、安全一些：</p>
+<ul>
+<li><p>通用性，其他人员拿到脚本即可使用无需修改</p>
+</li>
+<li><p>安全性，无需将账号、密码等信息硬编码在脚本中</p>
+</li>
+<li><p>便捷性，能较安全地记住密码（比如借助keychain）</p>
+</li>
+</ul>
+<p>由于对<code>Ruby</code>相对陌生，可以借助<code>Dash</code>查询相应的API，在<code>Dash</code>中下载相应的文档即可。</p>
+<p><code>Ruby</code>的断点调试可以使用<code>pry</code>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install pry</span><br></pre></td></tr></table></figure>
+
+<p>安装完毕后，在需要断点的地方使用:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;pry&#x27;</span></span><br><span class="line"></span><br><span class="line">name = <span class="string">&#x27;jack&#x27;</span></span><br><span class="line">binding.pry</span><br><span class="line">name += <span class="string">&#x27; jones&#x27;</span></span><br><span class="line">puts <span class="string">&quot;name:$&#123;name&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>代码运行后，会在设置了binding的地方暂停，即可进行调试。</p>
+<p>最终<a target="_blank" rel="noopener" href="https://github.com/sleepEarlier/spaceshipUpdateProfile">示例代码</a>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&quot;spaceship&quot;</span></span><br><span class="line"><span class="comment"># require &#x27;io/console&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;Open3&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;fileutils&#x27;</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;Enter Your Account:&quot;</span></span><br><span class="line">account = gets.chomp</span><br><span class="line"></span><br><span class="line"><span class="comment"># get password from keychain</span></span><br><span class="line">service = account + <span class="string">&quot;_DeveloperService&quot;</span></span><br><span class="line">cmd = <span class="string">&quot;security find-generic-password -a $USER -s <span class="subst">#&#123;service&#125;</span> -w&quot;</span></span><br><span class="line"><span class="comment"># puts cmd</span></span><br><span class="line"><span class="variable">$pwd</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># puts $pwd</span></span><br><span class="line">Open3.popen3(cmd) <span class="keyword">do</span> <span class="params">|stdin, stdout, stderr, wait_thr|</span></span><br><span class="line">    <span class="keyword">while</span> line = stdout.gets</span><br><span class="line">        line = line.strip</span><br><span class="line">        <span class="keyword">if</span> line &amp;&amp; line.length &gt; <span class="number">0</span></span><br><span class="line">            <span class="comment"># puts &quot;line: #&#123;line&#125;&quot;</span></span><br><span class="line">            <span class="variable">$pwd</span> = line</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">$pwd</span></span><br><span class="line">    <span class="variable">$pwd</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$pwd</span>.length &gt; <span class="number">0</span></span><br><span class="line">    puts <span class="string">&quot;Use Keychain Password?(y/n)&quot;</span></span><br><span class="line">    use = gets.chomp</span><br><span class="line">    <span class="keyword">if</span> use.downcase != <span class="string">&#x27;y&#x27;</span> <span class="keyword">and</span> use.downcase != <span class="string">&#x27;yes&#x27;</span></span><br><span class="line">        <span class="variable">$pwd</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$pwd</span>.length == <span class="number">0</span></span><br><span class="line">    puts <span class="string">&quot;Enter Your Password:&quot;</span></span><br><span class="line">    <span class="variable">$pwd</span> = STDIN.noecho(&amp;<span class="symbol">:gets</span>).chomp</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Spaceship.login(account, <span class="variable">$pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># save password to keychain</span></span><br><span class="line"><span class="comment"># puts &quot;Updating Keychain&quot;</span></span><br><span class="line">cmd = <span class="string">&quot;security add-generic-password -U -a $USER -s <span class="subst">#&#123;service&#125;</span> -w #$pwd&quot;</span></span><br><span class="line"><span class="comment"># puts cmd</span></span><br><span class="line">system(cmd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新设备</span></span><br><span class="line">fileDir = File.dirname(<span class="keyword">__FILE__</span>)</span><br><span class="line">deviceFile = File.join(fileDir, <span class="string">&quot;multiple-device-upload-ios.txt&quot;</span>)</span><br><span class="line">file = File.open(deviceFile) <span class="comment">#文本文件里录入的udid和设备名用tab分隔</span></span><br><span class="line">puts <span class="string">&quot;\n-ADDING DEVICES&quot;</span></span><br><span class="line">file.each <span class="keyword">do</span> <span class="params">|line|</span></span><br><span class="line">    <span class="comment"># puts &quot;line:#&#123;line&#125;&quot;</span></span><br><span class="line">    arr = line.strip.split(<span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="comment"># puts &quot;arr=#&#123;arr&#125;&quot;</span></span><br><span class="line">    udid = arr[<span class="number">0</span>]</span><br><span class="line">    name = arr[<span class="number">1</span>]</span><br><span class="line">    puts <span class="string">&quot;\t-DeviceName:<span class="subst">#&#123;name&#125;</span>, udid:<span class="subst">#&#123;udid&#125;</span>&quot;</span></span><br><span class="line">    device = Spaceship.device.create!(<span class="symbol">name:</span> arr[<span class="number">1</span>], <span class="symbol">udid:</span> arr[<span class="number">0</span>])</span><br><span class="line">    puts <span class="string">&quot;\t-add device: <span class="subst">#&#123;device.name&#125;</span> <span class="subst">#&#123;device.udid&#125;</span> <span class="subst">#&#123;device.model&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">devices = Spaceship.device.all</span><br><span class="line"></span><br><span class="line">profiles = Array.new</span><br><span class="line">profiles += Spaceship.provisioning_profile.development.all </span><br><span class="line">profiles += Spaceship.provisioning_profile.ad_hoc.all</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;\n-UPDATING PROFILES&quot;</span></span><br><span class="line">profiles.each <span class="keyword">do</span> <span class="params">|p|</span></span><br><span class="line">    puts <span class="string">&quot;\t-Updating <span class="subst">#&#123;p.name&#125;</span>&quot;</span></span><br><span class="line">    p.devices = devices</span><br><span class="line">    p.update!</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">downloadProfiles = Array.new</span><br><span class="line">downloadProfiles += Spaceship.provisioning_profile.development.all </span><br><span class="line">downloadProfiles += Spaceship.provisioning_profile.ad_hoc.all</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;\n-DOWNLOADING PROFILES&quot;</span></span><br><span class="line">downloadProfiles.each <span class="keyword">do</span> <span class="params">|p|</span></span><br><span class="line">    puts <span class="string">&quot;\t-Downloading <span class="subst">#&#123;p.name&#125;</span>&quot;</span></span><br><span class="line">    fileName = p.name</span><br><span class="line">    <span class="comment"># save to Downloads floder</span></span><br><span class="line">    downloadPath = File.expand_path(<span class="string">&quot;~/Downloads/<span class="subst">#&#123;fileName&#125;</span>.mobileprovision&quot;</span>)</span><br><span class="line">    File.write(downloadPath, p.download)</span><br><span class="line">    puts <span class="string">&quot;\t-File at: <span class="subst">#&#123;downloadPath&#125;</span>&quot;</span></span><br><span class="line">    <span class="comment"># rename and copy to Provisioning Profiles floder</span></span><br><span class="line">    dest = File.expand_path(<span class="string">&quot;~/Library/MobileDevice/Provisioning Profiles/<span class="subst">#&#123;p.uuid&#125;</span>.mobileprovision&quot;</span>)</span><br><span class="line">    FileUtils.copy(downloadPath, dest)</span><br><span class="line">    puts <span class="string">&quot;\t-Replace <span class="subst">#&#123;p.name&#125;</span> in Provisioning Profiles&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://sleepearlier.github.io/index.html">https://sleepearlier.github.io/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+  <article id="post-First-Blood" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/10/First-Blood/">在已有原生工程中集成Flutter</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2019-10-10T05:37:24.000Z" itemprop="datePublished">2019年10月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/flutter/">flutter</a>
+  </div>
+
+      
+      
+<a href="/2019/10/10/First-Blood/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h5 id="创建Flutter模块"><a href="#创建Flutter模块" class="headerlink" title="创建Flutter模块"></a>创建Flutter模块</h5><p>与纯Flutter工程不同，在原生工程中接入Flutter，是以 <code>Flutter Module</code> 的形式接入的。</p>
+<p>假设我们已有一个iOS工程在 <code>some/path/MyApp</code> 路径下，使用如下命令创建Flutter模块:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> some/path/</span><br><span class="line">$ flutter create -t module my_flutter</span><br></pre></td></tr></table></figure>
+
+<p>命令完成后，会在<code>some/path/my_flutter</code>下生成Flutter模块，目录下有隐藏的<code>.ios</code>包含了此模块的iOS Flutter工程。创建时要求Module名称为全小写，否则将创建失败。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">my_flutter</span><br><span class="line">├── .android</span><br><span class="line">│   ├── Flutter</span><br><span class="line">│   ├── app</span><br><span class="line">│   ├── build.gradle</span><br><span class="line">│   ├── gradle</span><br><span class="line">│   ├── gradle.properties</span><br><span class="line">│   ├── gradlew</span><br><span class="line">│   ├── gradlew.bat</span><br><span class="line">│   ├── include_flutter.groovy</span><br><span class="line">│   ├── local.properties</span><br><span class="line">│   └── settings.gradle</span><br><span class="line">│</span><br><span class="line">├── .ios <span class="comment"># 该module的Flutter工程</span></span><br><span class="line">│   ├── Config</span><br><span class="line">│   ├── Flutter <span class="comment"># 插件、App.framework、Flutter.framework生成的目录</span></span><br><span class="line">│   ├── Runner</span><br><span class="line">│   ├── Runner.xcodeproj</span><br><span class="line">│   └── Runner.xcworkspace</span><br><span class="line">│</span><br><span class="line">├── README.md</span><br><span class="line">│</span><br><span class="line">├── lib</span><br><span class="line">│   └── main.dart <span class="comment"># 默认创建的带main函数入口的Dart文件</span></span><br><span class="line">├── pubspec.lock <span class="comment"># 完整依赖链和版本信息，类似Podfile.lock</span></span><br><span class="line">└── pubspec.yaml <span class="comment"># 依赖库管理，类似Podfile</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="让宿主工程依赖Flutter模块"><a href="#让宿主工程依赖Flutter模块" class="headerlink" title="让宿主工程依赖Flutter模块"></a>让宿主工程依赖Flutter模块</h5><ol start="2">
+<li><p>在<code>Podfile</code>中添加如下内容:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flutter_application_path = <span class="string">&#x27;path/to/my_flutter/&#x27;</span></span><br><span class="line">eval(File.read(File.join(flutter_application_path, <span class="string">&#x27;.ios&#x27;</span>, <span class="string">&#x27;Flutter&#x27;</span>, <span class="string">&#x27;podhelper.rb&#x27;</span>)), binding)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>pod install</code></p>
+<p><code>podHelp.rb</code> 这个ruby脚本会关闭Pod工程内Flutter target的bitcode，并将<code>Flutter.framework</code>和Plugin相关的pod集成到工程中。</p>
+<p>当我们在<code>some/path/my_flutter/pubspec.yaml</code>改变Flutter插件依赖时，都需要运行<code>flutter packages get</code>来刷新<code>podhelper.rb</code>中的插件列表，然后再运行<code>pod install</code>来更新宿主工程。</p>
+</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ensure that ENABLE_BITCODE is set to NO, add a #include to Generated.xcconfig, and</span></span><br><span class="line"><span class="comment"># add a run script to the Build Phases.</span></span><br><span class="line">post_install <span class="keyword">do</span> <span class="params">|installer|</span></span><br><span class="line">    installer.pods_project.targets.each <span class="keyword">do</span> <span class="params">|target|</span></span><br><span class="line">        target.build_configurations.each <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">            <span class="comment"># 关闭pod工程的bitcode</span></span><br><span class="line">            config.build_settings[<span class="string">&#x27;ENABLE_BITCODE&#x27;</span>] = <span class="string">&#x27;NO&#x27;</span></span><br><span class="line">            <span class="keyword">next</span> <span class="keyword">if</span>  config.base_configuration_reference == <span class="literal">nil</span></span><br><span class="line">            xcconfig_path = config.base_configuration_reference.real_path</span><br><span class="line">            File.open(xcconfig_path, <span class="string">&#x27;a+&#x27;</span>) <span class="keyword">do</span> <span class="params">|file|</span></span><br><span class="line">                <span class="comment"># 在xcconfig中导入Flutter的xcconfig</span></span><br><span class="line">                file.puts <span class="string">&quot;#include \&quot;<span class="subst">#&#123;File.realpath(File.join(framework_dir, <span class="string">&#x27;Generated.xcconfig&#x27;</span>))&#125;</span>\&quot;&quot;</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>另外由于<code>podHelp.rb</code>是通过 <code>post_install hook</code> 来关闭pod工程的bitcode和引入<code>Generated.xcconfig</code> ，如果原生工程的 <code>Podfile</code> 中也使用了 <code>post_install</code> 则两者会冲突，解决方式可以将 <code>podHelp.rb</code> 中<code>post_install</code> 所处理的逻辑封装成一个方法，在工程的 <code>Podfile</code> 中调用。</p>
+<ol start="4">
+<li>关闭原生工程的bitcode。由于Flutter并不支持bitcode，且脚本只是关闭了pod工程的bitcode，因此需要再将原生工程的bitcode关闭。</li>
+</ol>
+<h5 id="添加build-phase来构建Dart代码"><a href="#添加build-phase来构建Dart代码" class="headerlink" title="添加build phase来构建Dart代码"></a>添加build phase来构建Dart代码</h5><p>在原生宿主工程的<code>Build Phase</code>中，添加<code>New Run Script Phase</code>，输入脚本内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build模式 会构建App.framework，将Flutter.framework放置到engine目录中</span></span><br><span class="line"><span class="comment"># embed模式 会将两个framework拷贝到.app内的Frameworks目录中</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> build</span><br><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> embed</span><br></pre></td></tr></table></figure>
+
+<p>确保新添加的<code>Run Script</code>在<code>Target Denpendenies</code>之后，现在我们可以编译集成Flutter之后的工程了。脚本会将Dart代码编译成<code>App.framework</code>嵌入工程中。</p>
+<h5 id="在原生工程中年使用FlutterViewController"><a href="#在原生工程中年使用FlutterViewController" class="headerlink" title="在原生工程中年使用FlutterViewController"></a>在原生工程中年使用<code>FlutterViewController</code></h5><p>在 <code>AppDelegate.h</code> 中，修改继承关系，让它继承自<code>FlutterAppDelegate</code> ，添加 <code>FlutterEngine</code>类型的属性：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"><span class="meta">#import </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> : <span class="title">FlutterAppDelegate</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) FlutterEngine *flutterEngine;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>重写<code>application:didFinishLaunchingWithOptions:</code>方法：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import  <span class="comment">// Only if you have Flutter Plugins</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;AppDelegate.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// This override can be omitted if you do not have any Flutter Plugins.</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application</span><br><span class="line">    didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="comment">// 初始化Flutter引擎</span></span><br><span class="line">  <span class="keyword">self</span>.flutterEngine = [[FlutterEngine alloc] initWithName:<span class="string">@&quot;io.flutter&quot;</span> project:<span class="literal">nil</span>];</span><br><span class="line">  [<span class="keyword">self</span>.flutterEngine runWithEntrypoint:<span class="literal">nil</span>];</span><br><span class="line">  <span class="comment">// 注册插件</span></span><br><span class="line">  [GeneratedPluginRegistrant registerWithRegistry:<span class="keyword">self</span>.flutterEngine];</span><br><span class="line">  <span class="keyword">return</span> [<span class="keyword">super</span> application:application didFinishLaunchingWithOptions:launchOptions];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>FlutterViewController</code>：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&quot;AppDelegate.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&quot;ViewController.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UIButton</span> *button = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</span><br><span class="line">    [button addTarget:<span class="keyword">self</span></span><br><span class="line">               action:<span class="keyword">@selector</span>(handleButtonAction)</span><br><span class="line">     forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</span><br><span class="line">    [button setTitle:<span class="string">@&quot;Press me&quot;</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    [button setBackgroundColor:[<span class="built_in">UIColor</span> blueColor]];</span><br><span class="line">    button.frame = <span class="built_in">CGRectMake</span>(<span class="number">80.0</span>, <span class="number">210.0</span>, <span class="number">160.0</span>, <span class="number">40.0</span>);</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:button];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)handleButtonAction &#123;</span><br><span class="line">    FlutterEngine *flutterEngine = [(AppDelegate *)[[<span class="built_in">UIApplication</span> sharedApplication] delegate] flutterEngine];</span><br><span class="line">    FlutterViewController *flutterViewController = [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:<span class="literal">nil</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">    [<span class="keyword">self</span> presentViewController:flutterViewController animated:<span class="literal">false</span> completion:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>到这里，一个集成Flutter的原生工程就能正常运行了，点击VC上的按钮将进入一个Flutter的页面中。</p>
+<p>当编写了多个widget时，我们也可以使用路由来展示不同的widgets：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[flutterViewController setInitialRoute:<span class="string">@&quot;route1&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<p>如果应用的<code>AppDelegate</code>已经继承自某个基类，且不方便直接修改继承关系，则需要自己去实现<code>FlutterAppLifeCycleProvider</code>协议。</p>
+<h5 id="热加载"><a href="#热加载" class="headerlink" title="热加载"></a>热加载</h5><p>在混编工程中，也可以使用热加载。区别于纯Flutter工程的完善的热加载支持，混编工程的热加载需要通过命令行工具和Dart Observatory的web页面。</p>
+<p>首先使用 <code>flutter attach</code> 让flutter等待连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> path/to/flutter_module</span><br><span class="line">flutter attach -d device-uuid</span><br><span class="line">Waiting <span class="keyword">for</span> a connection from Flutter on iPhone 7...</span><br></pre></td></tr></table></figure>
+
+<p>然后在原生工程中Run起工程，然后让flutter附加到进程上。</p>
+<p>attach成功后，就可以编辑flutter module中的Dart代码，在命令行中输入<code>r</code>即可热加载。</p>
+<p>并且热加载需要管理员权限来执行 <code>stream</code> 操作，当没有管理员权限时在终端执行<code>flutter attach</code> 会在等待一段时间后自动断开，容易让人不知所以。而在VS Code中对纯Flutter工程进行热加载调试时，会有相应的提示。这也体现了千面所说的两种混编工程热加载支持还所有不足。</p>
+<h2 id="Flutter与原生相互调用"><a href="#Flutter与原生相互调用" class="headerlink" title="Flutter与原生相互调用"></a>Flutter与原生相互调用</h2><h5 id="Flutter调用原生方法"><a href="#Flutter调用原生方法" class="headerlink" title="Flutter调用原生方法"></a>Flutter调用原生方法</h5><p>Flutter与原生之间的调用是以<code>MethodChannel</code>为桥梁来完成的 ，在Native中通过<code>FlutterMethodChannel</code>设置代码调用逻辑<code>callHandler</code>，在Flutter中通过<code>MethodChannel</code>来触发原生代码。</p>
+<p>原生代码：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"></span><br><span class="line">FlutterEngine *flutterEngine = [(AppDelegate *)[[<span class="built_in">UIApplication</span> sharedApplication] delegate] engine];</span><br><span class="line">    <span class="built_in">NSString</span> *channelName = <span class="string">@&quot;callNative&quot;</span>;</span><br><span class="line">    FlutterMethodChannel *methodChannel = [FlutterMethodChannel methodChannelWithName:channelName binaryMessenger:flutterEngine];</span><br><span class="line">    <span class="comment">// 处理fullter调用</span></span><br><span class="line">    [methodChannel setMethodCallHandler:^(FlutterMethodCall * _Nonnull call, FlutterResult _Nonnull result) &#123;</span><br><span class="line">        <span class="keyword">if</span> ([call.method isEqualToString:<span class="string">@&quot;changeColor&quot;</span>]) &#123;</span><br><span class="line">            <span class="built_in">UIColor</span> *randomColor = [<span class="built_in">UIColor</span> colorWithRed:arc4random_uniform(<span class="number">255</span>) / <span class="number">255.</span> green:arc4random_uniform(<span class="number">255</span>) / <span class="number">255.</span> blue:arc4random_uniform(<span class="number">255</span>) / <span class="number">255.</span> alpha:<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">self</span>.view.backgroundColor = randomColor;</span><br><span class="line">            result(<span class="string">@&quot;Native color did changed!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            result(FlutterMethodNotImplemented);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+
+<p>Flutter侧代码：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line">MaterialButton(</span><br><span class="line">  color: Colors.blue,</span><br><span class="line">  textColor: Colors.white,</span><br><span class="line">  child: Text(<span class="string">&quot;call native&quot;</span>),</span><br><span class="line">  onPressed: () <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> methodChannel = MethodChannel(<span class="string">&#x27;callNative&#x27;</span>);</span><br><span class="line">    <span class="built_in">String</span> res =  <span class="keyword">await</span> methodChannel.invokeMethod(<span class="string">&#x27;changeColor&#x27;</span>);</span><br><span class="line">    Toast.<span class="keyword">show</span>(res, context, duration: Toast.LENGTH_LONG);</span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h5 id="原生调用Flutter"><a href="#原生调用Flutter" class="headerlink" title="原生调用Flutter"></a>原生调用Flutter</h5><p>原生调用Flutter的方式与上面一致，双方互换，在Flutter侧设置<code>callHandler</code>，在原生通过<code>FlutterMethodChannel</code>调用相关方法。</p>
+<p>Flutter代码:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Future changeCount (MethodCall call) &#123;</span><br><span class="line">  <span class="keyword">if</span> (call.method == <span class="string">&#x27;changeCount&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> args = call.arguments;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _counter = args[<span class="number">0</span>];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> Future.value(<span class="string">&quot;Flutter count did change!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">throw</span> MissingPluginException();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> channel = MethodChannel(<span class="string">&#x27;callFlutter&#x27;</span>);</span><br><span class="line">channel.setMethodCallHandler(changeCount);</span><br></pre></td></tr></table></figure>
+
+<p>原生代码:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"></span><br><span class="line">FlutterEngine *flutterEngine = [(AppDelegate *)[[<span class="built_in">UIApplication</span> sharedApplication] delegate] engine];</span><br><span class="line"><span class="built_in">NSString</span> *channelName = <span class="string">@&quot;callFlutter&quot;</span>;</span><br><span class="line">FlutterMethodChannel *methodChannel = [FlutterMethodChannel methodChannelWithName:channelName binaryMessenger:flutterEngine];</span><br><span class="line">[methodChannel invokeMethod:<span class="string">@&quot;changeCount&quot;</span> arguments:@[@(arc4random_uniform(<span class="number">255</span>))] result:^(<span class="keyword">id</span>  _Nullable result) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *message;</span><br><span class="line">    <span class="keyword">if</span> ([result isKindOfClass:[FlutterError <span class="keyword">class</span>]]) &#123;</span><br><span class="line">        message = <span class="string">@&quot;Flutter运行失败&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([result isEqual:FlutterMethodNotImplemented]) &#123;</span><br><span class="line">        message = <span class="string">@&quot;Flutter 未实现此方法&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        message = result ? : <span class="string">@&quot;Flutter调用成功&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="keyword">self</span>.view makeToast:message];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<p>Flutter调用原生方法时，可以获取到原生<code>callHandler</code>中设置的结果作为返回值。</p>
+<p>原生调用Flutter时，在<code>invokeMethod:arguments:result:</code>方法中的<code>result</code> 获取返回值。当Flutter运行失败时，<code>result</code>回调中会是一个<code>FlutterError</code>实例，如果Flutter侧未实现该方法，则会是一个<code>FlutterMethodNotImplemented</code>对象，其他值包括<code>nil</code>均表示调用成功。</p>
+<h2 id="隔离开发环境"><a href="#隔离开发环境" class="headerlink" title="隔离开发环境"></a>隔离开发环境</h2><p>假设团队中有一部分负责Flutter开发，其他人还是在原生环境下开发，按上面的方式把Flutter接入到一个工程中后，如果要团队的所有人员都能正常运行这个工程，则需要所有人都配置Flutter环境。</p>
+<p>因此，需要将Flutter的开发环境与原生的开发环境通隔离，过Pod的方式将Flutter的所有产物导入到原生工程中。</p>
+<p>Flutter产物主要有如下几个：</p>
+<ul>
+<li><p>Flutter引擎相关的 <code>Flutter.framework</code></p>
+</li>
+<li><p>Dart 代码相关的 <code>App.framework</code></p>
+</li>
+<li><p>插件注册入口 <code>FlutterPluginRegistrant</code></p>
+</li>
+<li><p>原生相关插件 plugins</p>
+</li>
+</ul>
+<p>通过接入了Flutter的混编工程可以看到，<code>Flutter.framework</code> 、<code>FlutterPluginRegistrant</code> 和各个插件都是以pod的形式接入，而 <code>App.framework</code> 是通过 <code>xcode_backend.sh</code> 脚本从Flutter Module中拷贝到App内的。</p>
+<p>因此我们主要处理收集 <code>App.framework</code> 并提供podspec文件即可。</p>
+<p>这里示例脚本收集了<code>App.framework</code> 、 <code>Flutter.framework</code> ，并将插件相关的产物编译为静态库。收集完成后将podspec修改为本地pod的方式方便验证。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> FLUTTER_ROOT=/Users/lindubo505/Documents/flutter</span><br><span class="line"><span class="built_in">export</span> PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line"><span class="built_in">export</span> FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$PATH</span>:/Users/lindubo505/Documents/flutter/bin&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">&quot;./product&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">mkdir ./product</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;文件夹已经存在&quot;</span></span><br><span class="line">rm -rf ./product/*</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">config=<span class="string">&#x27;Debug&#x27;</span></span><br><span class="line">appConfig=<span class="string">&quot;<span class="subst">$(echo $config | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27;)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===清理Flutter历史编译===&quot;</span></span><br><span class="line">flutter clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===重新生成plugin索引===&quot;</span></span><br><span class="line">flutter packages get</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原生成的App.framework</span></span><br><span class="line">rm -rf ./.ios/Flutter/App.framework</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===生成App.framework===&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;flutter build ios --<span class="variable">$&#123;appConfig&#125;</span>&quot;</span></span><br><span class="line">flutter build ios --<span class="variable">$&#123;appConfig&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建放置产物的目录</span></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">&quot;./product/app&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">mkdir ./product/app</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集App.framework，生成podspec</span></span><br><span class="line">cp -fr ./.ios/Flutter/App.framework ./product/app</span><br><span class="line">cp -f <span class="variable">$FLUTTER_ROOT</span>/App.podspec ./product/app</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集Flutter.framework与podspec</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===拷贝Flutter.framework===&quot;</span></span><br><span class="line">cp -fr ./.ios/Flutter/engine ./product/engine</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===生成plugin的静态库===&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> -r line</span><br><span class="line"><span class="keyword">do</span> </span><br><span class="line">    <span class="keyword">if</span> [[ ! <span class="string">&quot;<span class="variable">$line</span>&quot;</span> =~ ^// ]]; <span class="keyword">then</span></span><br><span class="line">        array=(<span class="variable">$&#123;line//=/ &#125;</span>)</span><br><span class="line">        plugin_name=<span class="variable">$&#123;array[0]&#125;</span></span><br><span class="line">        <span class="built_in">cd</span> .ios/Pods</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;生成lib<span class="variable">$&#123;plugin_name&#125;</span>.a...&quot;</span></span><br><span class="line">        /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;arm64 armv7&#x27;</span> -target <span class="variable">$&#123;plugin_name&#125;</span> BUILD_DIR=../../build/ios -sdk iphoneos -quiet</span><br><span class="line">        /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;x86_64&#x27;</span> -target <span class="variable">$&#123;plugin_name&#125;</span> BUILD_DIR=../../build/ios -sdk iphonesimulator -quiet</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;合并lib<span class="variable">$&#123;plugin_name&#125;</span>.a...&quot;</span></span><br><span class="line">        <span class="keyword">if</span> [[ ! -d <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">            mkdir <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        lipo -create <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphonesimulator/<span class="variable">$&#123;plugin_name&#125;</span>/lib<span class="variable">$&#123;plugin_name&#125;</span>.a&quot;</span> <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphoneos/<span class="variable">$&#123;plugin_name&#125;</span>/lib<span class="variable">$&#123;plugin_name&#125;</span>.a&quot;</span> -o <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>/lib<span class="variable">$&#123;plugin_name&#125;</span>.a&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;复制头文件&quot;</span></span><br><span class="line">        classes=<span class="variable">$&#123;array[1]&#125;</span>ios/Classes</span><br><span class="line">        <span class="keyword">for</span> header <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$classes</span>&quot;</span> -name *.h`; <span class="keyword">do</span></span><br><span class="line">            cp -f <span class="variable">$header</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>/&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;复制podspec文件&quot;</span></span><br><span class="line">        specDir=<span class="variable">$&#123;array[1]&#125;</span>ios</span><br><span class="line">        <span class="keyword">for</span> spec <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$specDir</span>&quot;</span> -name *.podspec`; <span class="keyword">do</span></span><br><span class="line">            cp -f <span class="variable">$spec</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>/&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;读取文件出错&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span> &lt; .flutter-plugins</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===生成注册入口的二进制库文件===&quot;</span></span><br><span class="line"><span class="keyword">for</span> reg_enter_name <span class="keyword">in</span> <span class="string">&quot;FlutterPluginRegistrant&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;生成libFlutterPluginRegistrant.a...&quot;</span></span><br><span class="line">    /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;arm64 armv7&#x27;</span> -target FlutterPluginRegistrant BUILD_DIR=../../build/ios -sdk iphoneos -quiet</span><br><span class="line">    /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;x86_64&#x27;</span> -target FlutterPluginRegistrant BUILD_DIR=../../build/ios -sdk iphonesimulator -quiet</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [[ ! -d <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">        mkdir <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;合并lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a...&quot;</span></span><br><span class="line">    lipo -create <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphonesimulator/<span class="variable">$reg_enter_name</span>/lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a&quot;</span> <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphoneos/<span class="variable">$&#123;reg_enter_name&#125;</span>/lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a&quot;</span> -o <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>/lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;复制头文件&quot;</span></span><br><span class="line">    classes=<span class="string">&quot;../Flutter/<span class="variable">$&#123;reg_enter_name&#125;</span>/Classes&quot;</span></span><br><span class="line">    <span class="keyword">for</span> header <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$classes</span>&quot;</span> -name *.h`; <span class="keyword">do</span></span><br><span class="line">        cp -f <span class="variable">$header</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>/&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;复制podspec文件&quot;</span></span><br><span class="line">    specDir=<span class="string">&quot;../Flutter/<span class="variable">$&#123;reg_enter_name&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">for</span> spec <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$specDir</span>&quot;</span> -name *.podspec`; <span class="keyword">do</span></span><br><span class="line">        cp -f <span class="variable">$spec</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>/&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改podspec为本地pod</span></span><br><span class="line">python ../../changePodSpec.py ../../product</span><br><span class="line"></span><br><span class="line"><span class="comment"># podspec</span></span><br><span class="line"><span class="comment"># 替换原s.source  =&gt; s.source           = &#123; :path =&gt; &#x27;.&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加s.vendored_libraries = &#x27;./*.a&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换s.source_files = &#x27;Classes/**/*&#x27;,为 s.source_files = &#x27;./*.&#123;h&#125;&#x27;</span></span><br><span class="line"><span class="comment"># 删除s.public_header_files = &#x27;Classes/**/*.h&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sed  -n ‘s/^jcdd/ganji/p’ device_info.podspec</span></span><br><span class="line"><span class="comment"># sed -n &#x27;/^[\s]*s.source[\s]+[\d\D]*&#125;/d&#x27; device_info.podspec</span></span><br><span class="line"><span class="comment"># sed &#x27;s/^[\s]*s.source[\s]+[\d\D]*&#125;/replace/g&#x27; device_info.podspec</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>changePodSpec.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os,sys,re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replaceOrAdd</span>(<span class="params">content, pattern, mark, new_desc</span>):</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;pattern: %s&quot;</span> % pattern)</span><br><span class="line">	match = re.search(pattern, content, flags=re.MULTILINE)</span><br><span class="line">	<span class="keyword">if</span> match:</span><br><span class="line">		res = match.group()</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;match: %s&quot;</span> % res)</span><br><span class="line">		content = content.replace(res, new_desc)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;unmatch: %s&quot;</span> % pattern)</span><br><span class="line">		content = content.replace(mark, mark + <span class="string">&#x27;\n  &#x27;</span> + new_desc)</span><br><span class="line">	<span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">modifyspecsInDir</span>(<span class="params">floder</span>):</span></span><br><span class="line">	output = os.popen(<span class="string">&#x27;find %s -name &quot;*.podspec&quot;&#x27;</span> % floder)</span><br><span class="line">	allLines = output.readlines()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> allLines:</span><br><span class="line">		specPath = line.strip()</span><br><span class="line">		<span class="keyword">with</span> <span class="built_in">open</span>(specPath, <span class="string">&#x27;r+&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">			content = f.read()</span><br><span class="line">			<span class="comment"># 替换原s.source  =&gt; s.source           = &#123; :path =&gt; &#x27;.&#x27; &#125;</span></span><br><span class="line">			<span class="comment"># 替换s.source_files = &#x27;Classes/**/*&#x27;,为 s.source_files = &#x27;*.&#123;h&#125;&#x27;</span></span><br><span class="line">			<span class="comment"># 增加s.vendored_libraries = &#x27;*.a&#x27;</span></span><br><span class="line">			<span class="comment"># 删除s.public_header_files = &#x27;Classes/**/*.h&#x27;</span></span><br><span class="line">			<span class="comment"># re.sub(pattern,repl,string,count,flags)</span></span><br><span class="line"></span><br><span class="line">			<span class="comment"># re.compile(r&#x27;%s = [-\\.$()/\w]+?;&#x27; % childrenNodeName)</span></span><br><span class="line">			<span class="comment"># version_pattern = &quot;s\\.version[\\s]+[\\d\\D]+?[&#125;&#x27;\&quot;]&#123;1&#125;$&quot;</span></span><br><span class="line">			version_pattern = <span class="string">r&quot;s\.version[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			match = re.search(version_pattern, content, flags=re.MULTILINE)</span><br><span class="line">			<span class="keyword">try</span>:</span><br><span class="line">				version_des = match.group()</span><br><span class="line">			<span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">				<span class="keyword">raise</span> e</span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">			source_pattern = <span class="string">r&quot;s\.source[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			source_desc = <span class="string">r&quot;s.source = &#123; :path =&gt; &#x27;.&#x27; &#125;&quot;</span></span><br><span class="line"></span><br><span class="line">			source_files_pattern = <span class="string">r&quot;s\.source_files[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			source_files_desc = <span class="string">r&quot;s.source_files = &#x27;*.&#123;h&#125;&#x27;&quot;</span></span><br><span class="line"></span><br><span class="line">			public_header_files_pattern = <span class="string">r&quot;s\.public_header_files[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line"></span><br><span class="line">			vendored_libraries_pattern = <span class="string">r&quot;s\.vendored_libraries[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			vendored_libraries_desc = <span class="string">r&quot;s.vendored_libraries = &#x27;*.a&#x27;&quot;</span></span><br><span class="line"></span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">			content = replaceOrAdd(content, source_pattern,version_des, source_desc)</span><br><span class="line"></span><br><span class="line">			index = content.find(<span class="string">&quot;s.vendored_frameworks&quot;</span>)</span><br><span class="line">			<span class="keyword">if</span> index &lt; <span class="number">0</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="string">&quot;not framework podspec&quot;</span>)</span><br><span class="line">				content = replaceOrAdd(content, source_files_pattern, version_des, source_files_desc)</span><br><span class="line">				content = replaceOrAdd(content, vendored_libraries_pattern, version_des, vendored_libraries_desc)</span><br><span class="line">				content = replaceOrAdd(content, public_header_files_pattern, version_des, <span class="string">&#x27;&#x27;</span>)					</span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="string">&#x27;skip framework podspec&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			f.seek(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">			f.truncate()</span><br><span class="line">			f.write(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		floder = sys.argv[<span class="number">1</span>]</span><br><span class="line">		<span class="comment"># floder = &#x27;/Users/lindubo505/Desktop/NativeApp/flutter_module/product&#x27;</span></span><br><span class="line">		modifyspecsInDir(os.path.abspath(floder))</span><br><span class="line">	<span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">		<span class="keyword">raise</span> e</span><br></pre></td></tr></table></figure>
+
+<p>收集完成后，修改工程的Podfile</p>
+<p>删除:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flutter_application_path = <span class="string">&#x27;/Users/lindubo505/Desktop/NativeApp/flutter_module&#x27;</span></span><br><span class="line">eval(File.read(File.join(flutter_application_path, <span class="string">&#x27;.ios&#x27;</span>, <span class="string">&#x27;Flutter&#x27;</span>, <span class="string">&#x27;podhelper.rb&#x27;</span>)), binding)</span><br></pre></td></tr></table></figure>
+
+<p>改为依赖本地pod</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="string">&#x27;Flutter&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/engine&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;App&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/app&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;device_info&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/libdevice_info&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;FlutterPluginRegistrant&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/libFlutterPluginRegistrant&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;image_picker&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/libimage_picker&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后删除工程<code>Build Phase</code> 中添加的 <code>Run Script</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> build</span><br><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> embed</span><br></pre></td></tr></table></figure>
+
+<h2 id="接入成本"><a href="#接入成本" class="headerlink" title="接入成本"></a>接入成本</h2><h5 id="包体积变大"><a href="#包体积变大" class="headerlink" title="包体积变大"></a>包体积变大</h5><table>
+<thead>
+<tr>
+<th>IPA包体积</th>
+<th>大小</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初始化原生工程，无Flutter</td>
+<td>25 KB</td>
+<td></td>
+</tr>
+<tr>
+<td>接入Flutter</td>
+<td>17.6 MB</td>
+<td>主要差异为：<br/></td>
+</tr>
+<tr>
+<td>1. App.framework 6.1MB<br/></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. Flutter.framework 37.9 MB</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="内存增长"><a href="#内存增长" class="headerlink" title="内存增长"></a>内存增长</h5><table>
+<thead>
+<tr>
+<th>内存</th>
+<th>使用情况</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原生页面</td>
+<td>12.7 M</td>
+<td>iPhone 7 12.3.1</td>
+</tr>
+<tr>
+<td>原生页面+Flutter页面</td>
+<td>83.2 M</td>
+<td>iPhone 7 12.3.1</td>
+</tr>
+</tbody></table>
+<h5 id="无法跨越原生代码"><a href="#无法跨越原生代码" class="headerlink" title="无法跨越原生代码"></a>无法跨越原生代码</h5><p><code>Flutter</code>虽然具有跨平台能力，但实际开发中并躲不开原生代码，这反而对<code>Flutter</code>开发者提出了更高的要求，需要去了解两个平台的知识，理想中一个<code>Flutter</code>开发顶替两个终端开发并不存在。</p>
+<p>即使官方提供的Dart UI组件也区分了Google的<code>Material</code>和苹果的<code>Cuprtino</code>两种风格，如果想在两端展示各自风格的UI特点，会让开发者十分头痛。</p>
+<h5 id="组合而非继承"><a href="#组合而非继承" class="headerlink" title="组合而非继承"></a>组合而非继承</h5><p><code>Flutter</code>提倡“组合”，而不是“继承”。在iOS开发中，我们经常会继承UIView，重写UIView的某个生命周期函数，再添加一些方法和属性，来完成一个自定义的View。但是在<code>Flutter</code>中这些都是不可能的——属性都是<code>final</code>的，例如你继承了了一个<code>Container</code>，你是不能在它的生命周期中修改他的属性的。你始终需要嵌套组合几种<code>Widget</code>，例如<code>Row</code>，<code>Container</code>，<code>ListView</code>等<code>Widget</code>。这种方法非常不符合直觉，初学时很难想明白如何构建一个完整的组件。</p>
+<p>并且这样组合模式让Dart内的UI代码显得非常不简洁，层层的括号嵌套让人眼花缭乱，尤其是在对比SwiftUI后更加明显。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">SliverList(</span><br><span class="line">  delegate: SliverChildBuilderDelegate(</span><br><span class="line">    (context, index) &#123;</span><br><span class="line">      <span class="keyword">final</span> landmark = landmarks[index];</span><br><span class="line">      <span class="keyword">return</span> LandmarkCell(</span><br><span class="line">        landmark: landmark,</span><br><span class="line">        onTap: () &#123;</span><br><span class="line">          Navigator.push(</span><br><span class="line">            context,</span><br><span class="line">            CupertinoPageRoute(</span><br><span class="line">              builder: (context) =&gt; LandmarkDetail(</span><br><span class="line">                landmark: landmark,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          );</span><br><span class="line">        &#125;,</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">    childCount: landmarks.length,</span><br><span class="line">  ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ForEach</span>(userData.landmarks) &#123; landmark <span class="keyword">in</span></span><br><span class="line">  <span class="type">NavigationButton</span>( destination: <span class="type">LandmarkDetail</span>(landmark: landmark))</span><br><span class="line"> &#123;</span><br><span class="line">    <span class="type">LandmarkRow</span>(landmark: landmark)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两者都实现了一个可以点击的列表页，都调用了一个自定义 Cell 。</p>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><p>官方在<a target="_blank" rel="noopener" href="https://github.com/flutter/flutter/wiki/Roadmap">Flutter 2019 RoadMap</a>中也提出了2019年的计划：</p>
+<ul>
+<li><p>基础优化，包括bug修复、性能表现、错误信息、API文档等方面。</p>
+</li>
+<li><p>易于接入，提供新的module模板、更友好的文档页面、提供最佳实践、丰富iOS风格组件</p>
+</li>
+<li><p>生态系统，更好的C/C++支持、更多官方插件包、map/WebView组件完善、Google service接入、本地数据存储等。</p>
+</li>
+<li><p>工具完善，编辑器支持的完善、支持 <strong><a target="_blank" rel="noopener" href="https://langserver.org/">Language Server Protocol</a></strong> 、<a target="_blank" rel="noopener" href="https://flutter.github.io/devtools/">Dart DevTools</a>完善等。</p>
+</li>
+</ul>
+<p>参考:</p>
+<p><a href="[https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps](https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps">Add-Flutter-to-existing-apps</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1415221">Flutter Platform Channels</a></p>
+<p><a href="[https://tech.youzan.com/you-zan-flutter-hun-bian-fang-an/](https://tech.youzan.com/you-zan-flutter-hun-bian-fang-an/">有赞 Flutter 混编方案</a></p>
+<p><a href="[https://juejin.im/post/5b5811f3e51d4519700f6979](https://juejin.im/post/5b5811f3e51d4519700f6979">闲鱼Flutter混合工程持续集成的最佳实践</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5d05b45bf265da1bcc193ff4">SwiftUI vs Flutter</a></p>
+<p><a href="[https://segmentfault.com/a/1190000017164263](https://segmentfault.com/a/1190000017164263">浅谈Flutter的优缺点</a></p>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://sleepearlier.github.io/index.html">https://sleepearlier.github.io/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/" rel="tag">iOS</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/17/jail-broken-env-build/">iOS越狱环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/">初探iOS源码调试原理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/">使用space管理provisionProfile</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/First-Blood/">在已有原生工程中集成Flutter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019年10月</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example1.com/">site-name1</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example2.com/">site-name2</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example3.com/">site-name3</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a href="/sitemap.xml">网站地图</a>
+        <span> | </span><a href="/atom.xml">订阅本站</a>
+        <span> | </span><a href="/about/">联系博主</a>
+      </p>
+      
+        <p>
+          <i class="fa fa-visitors"></i>
+          <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>
+          ，
+          <i class="fa fa-views"></i>
+          <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>
+        </p>
+      
+      <p>
+        <span>Copyright &copy; 2021 Usopp.</span>
+        <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span>
+        
+            <span>Count by <a href="http://busuanzi.ibruce.info/" target="_blank">busuanzi.</a></span>
+        
+        <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+  
+<script src="/localshare/js/social-share.js"></script>
+
+  
+<script src="/localshare/js/qrcode.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>使用space管理provisionProfile | Usopp&#39;s Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="Welcome">
+  
+  
+    <meta name="keywords" content="iOS">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Usopp's Page" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Usopp&#39;s Page</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-使用space管理provisionProfile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用space管理provisionProfile
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2019-10-25T07:58:38.000Z" itemprop="datePublished">2019年10月25日</time>
+</span>
+      
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="痛点"><a href="#痛点" class="headerlink" title="痛点"></a>痛点</h3><p>日常iOS开发中，描述文件的管理是一个费时的事情。通常开发者账号仅有部分开发者有权限可以操作，当添加一个测试设备时，需要更新所有的<code>development</code>和<code>ADHoc</code>描述文件，下载到本地，并替换本地的描述文件，如果有CI系统还需要更新CI上的描述文件。对于区分内外网的公司，可能中间还需要切换网路等操作。总之，这是一件繁琐的事情。</p>
+<h3 id="spaceship"><a href="#spaceship" class="headerlink" title="spaceship"></a>spaceship</h3><p><a target="_blank" rel="noopener" href="https://github.com/fastlane/fastlane">spaceship</a>作为<code>fastlane</code>中的一个组件，可以帮助我们处理开发者账号相关的功能：创建appid、更新appid属性、添加设备、更新描述文件等等。</p>
+<h5 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Spaceship::Portal.login(<span class="string">&quot;felix@krausefx.com&quot;</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line"></span><br><span class="line">Spaceship::Portal.select_team <span class="comment"># call this method to let the user select a team</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="App"><a href="#App" class="headerlink" title="App"></a>App</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fetch all available apps</span></span><br><span class="line">all_apps = Spaceship::Portal.app.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find a specific app based on the bundle identifier</span></span><br><span class="line">app = Spaceship::Portal.app.find(<span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show the names of all your apps</span></span><br><span class="line">Spaceship::Portal.app.all.collect <span class="keyword">do</span> <span class="params">|app|</span></span><br><span class="line">  app.name</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new app</span></span><br><span class="line">app = Spaceship::Portal.app.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app_name&quot;</span>, <span class="symbol">name:</span> <span class="string">&quot;fastlane App&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h6 id=""><a href="#" class="headerlink" title=""></a></h6><h5 id="-1"><a href="#-1" class="headerlink" title=""></a></h5><h5 id="App-Services"><a href="#App-Services" class="headerlink" title="App Services"></a>App Services</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Find a specific app based on the bundle identifier</span></span><br><span class="line">app = Spaceship::Portal.app.find(<span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get detail informations (e.g. see all enabled app services)</span></span><br><span class="line">app.details</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable HealthKit, but make sure HomeKit is disabled</span></span><br><span class="line">app.update_service(Spaceship::Portal.app_service.health_kit.on)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.home_kit.off)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.vpn_configuration.on)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.passbook.off)</span><br><span class="line">app.update_service(Spaceship::Portal.app_service.cloud_kit.cloud_kit)</span><br></pre></td></tr></table></figure>
+
+<h5 id="App-Groups"><a href="#App-Groups" class="headerlink" title="App Groups"></a>App Groups</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fetch all existing app groups</span></span><br><span class="line">all_groups = Spaceship::Portal.app_group.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find a specific app group, based on the identifier</span></span><br><span class="line">group = Spaceship::Portal.app_group.find(<span class="string">&quot;group.com.example.application&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show the names of all the groups</span></span><br><span class="line">Spaceship::Portal.app_group.all.collect <span class="keyword">do</span> <span class="params">|group|</span></span><br><span class="line">  group.name</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new group</span></span><br><span class="line">group = Spaceship::Portal.app_group.create!(<span class="symbol">group_id:</span> <span class="string">&quot;group.com.example.another&quot;</span>,</span><br><span class="line">                                        <span class="symbol">name:</span> <span class="string">&quot;Another group&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Associate an app with this group (overwrites any previous associations)</span></span><br><span class="line"><span class="comment"># Assumes app contains a fetched app, as described above</span></span><br><span class="line">app = app.associate_groups([group])</span><br></pre></td></tr></table></figure>
+
+<h5 id="Certificates"><a href="#Certificates" class="headerlink" title="Certificates"></a>Certificates</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fetch all available certificates (includes signing and push profiles)</span></span><br><span class="line">certificates = Spaceship::Portal.certificate.all</span><br></pre></td></tr></table></figure>
+
+<h6 id="Code-Signing-Certificates"><a href="#Code-Signing-Certificates" class="headerlink" title="Code Signing Certificates"></a>Code Signing Certificates</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Production identities</span></span><br><span class="line">prod_certs = Spaceship::Portal.certificate.production.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Development identities</span></span><br><span class="line">dev_certs = Spaceship::Portal.certificate.development.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a certificate</span></span><br><span class="line">cert_content = prod_certs.first.download</span><br></pre></td></tr></table></figure>
+
+<h6 id="Push-Certificates"><a href="#Push-Certificates" class="headerlink" title="Push Certificates"></a>Push Certificates</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Production push profiles</span></span><br><span class="line">prod_push_certs = Spaceship::Portal.certificate.production_push.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Development push profiles</span></span><br><span class="line">dev_push_certs = Spaceship::Portal.certificate.development_push.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a push profile</span></span><br><span class="line">cert_content = dev_push_certs.first.download</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating a push certificate</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new certificate signing request</span></span><br><span class="line">csr, pkey = Spaceship::Portal.certificate.create_certificate_signing_request</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the signing request to create a new push certificate</span></span><br><span class="line">Spaceship::Portal.certificate.production_push.create!(<span class="symbol">csr:</span> csr, <span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Create-a-Certificate"><a href="#Create-a-Certificate" class="headerlink" title="Create a Certificate"></a>Create a Certificate</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a new certificate signing request</span></span><br><span class="line">csr, pkey = Spaceship::Portal.certificate.create_certificate_signing_request</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the signing request to create a new distribution certificate</span></span><br><span class="line">Spaceship::Portal.certificate.production.create!(<span class="symbol">csr:</span> csr)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Provisioning-Profiles"><a href="#Provisioning-Profiles" class="headerlink" title="Provisioning Profiles"></a>Provisioning Profiles</h5><h6 id="Receiving-profiles"><a href="#Receiving-profiles" class="headerlink" title="Receiving profiles"></a>Receiving profiles</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### Finding #####</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get all available provisioning profiles</span></span><br><span class="line">profiles = Spaceship::Portal.provisioning_profile.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get all App Store and Ad Hoc profiles</span></span><br><span class="line"><span class="comment"># Both app_store.all and ad_hoc.all return the same</span></span><br><span class="line"><span class="comment"># This is the case since September 2016, since the API has changed</span></span><br><span class="line"><span class="comment"># and there is no fast way to get the type when fetching the profiles</span></span><br><span class="line">profiles_appstore_adhoc = Spaceship::Portal.provisioning_profile.app_store.all</span><br><span class="line">profiles_appstore_adhoc = Spaceship::Portal.provisioning_profile.ad_hoc.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get all Development profiles</span></span><br><span class="line">profiles_dev = Spaceship::Portal.provisioning_profile.development.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch all profiles for a specific app identifier for the App Store (Array of profiles)</span></span><br><span class="line">filtered_profiles = Spaceship::Portal.provisioning_profile.app_store.find_by_bundle_id(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check if a provisioning profile is valid</span></span><br><span class="line">profile.valid?</span><br><span class="line"></span><br><span class="line"><span class="comment"># Verify that the certificate of the provisioning profile is valid</span></span><br><span class="line">profile.certificate_valid?</span><br><span class="line"></span><br><span class="line"><span class="comment">##### Downloading #####</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a profile</span></span><br><span class="line">profile_content = profiles.first.download</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download a specific profile as file</span></span><br><span class="line">matching_profiles = Spaceship::Portal.provisioning_profile.app_store.find_by_bundle_id(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>)</span><br><span class="line">first_profile = matching_profiles.first</span><br><span class="line"></span><br><span class="line">File.write(<span class="string">&quot;output.mobileprovision&quot;</span>, first_profile.download)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Create-a-Provisioning-Profile"><a href="#Create-a-Provisioning-Profile" class="headerlink" title="Create a Provisioning Profile"></a>Create a Provisioning Profile</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Choose the certificate to use</span></span><br><span class="line">cert = Spaceship::Portal.certificate.production.all.first</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new provisioning profile with a default name</span></span><br><span class="line"><span class="comment"># The name of the new profile is &quot;com.krausefx.app AppStore&quot;</span></span><br><span class="line">profile = Spaceship::Portal.provisioning_profile.app_store.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>,</span><br><span class="line">                                                         <span class="symbol">certificate:</span> cert)</span><br><span class="line"></span><br><span class="line"><span class="comment"># AdHoc Profiles will add all devices by default</span></span><br><span class="line">profile = Spaceship::Portal.provisioning_profile.ad_hoc.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.app&quot;</span>,</span><br><span class="line">                                                      <span class="symbol">certificate:</span> cert,</span><br><span class="line">                                                             <span class="symbol">name:</span> <span class="string">&quot;Profile Name&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Store the new profile on the filesystem</span></span><br><span class="line">File.write(<span class="string">&quot;NewProfile.mobileprovision&quot;</span>, profile.download)</span><br></pre></td></tr></table></figure>
+
+<h6 id="Repair-all-broken-provisioning-profiles"><a href="#Repair-all-broken-provisioning-profiles" class="headerlink" title="Repair all broken provisioning profiles"></a>Repair all broken provisioning profiles</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select all &#x27;Invalid&#x27; or &#x27;Expired&#x27; provisioning profiles</span></span><br><span class="line">broken_profiles = Spaceship::Portal.provisioning_profile.all.find_all <span class="keyword">do</span> <span class="params">|profile|</span></span><br><span class="line">  <span class="comment"># the below could be replaced with `!profile.valid? || !profile.certificate_valid?`, which takes longer but also verifies the code signing identity</span></span><br><span class="line">  (profile.status == <span class="string">&quot;Invalid&quot;</span> <span class="keyword">or</span> profile.status == <span class="string">&quot;Expired&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterate over all broken profiles and repair them</span></span><br><span class="line">broken_profiles.each <span class="keyword">do</span> <span class="params">|profile|</span></span><br><span class="line">  profile.repair! <span class="comment"># yes, that&#x27;s all you need to repair a profile</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># or to do the same thing, just more Ruby like</span></span><br><span class="line">Spaceship::Portal.provisioning_profile.all.find_all &#123; <span class="params">|p|</span> !p.valid? <span class="params">||</span> !p.certificate_valid? &#125;.map(&amp;<span class="symbol">:repair!</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Devices"><a href="#Devices" class="headerlink" title="Devices"></a>Devices</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get all enabled devices</span></span><br><span class="line">all_devices = Spaceship::Portal.device.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable first device</span></span><br><span class="line">all_devices.first.disable!</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find disabled device and enable it</span></span><br><span class="line">Spaceship::Portal.device.find_by_udid(<span class="string">&quot;44ee59893cb...&quot;</span>, <span class="symbol">include_disabled:</span> <span class="literal">true</span>).enable!</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get list of all devices, including disabled ones, and filter the result to only include disabled devices use enabled? or disabled? methods</span></span><br><span class="line">disabled_devices = Spaceship::Portal.device.all(<span class="symbol">include_disabled:</span> <span class="literal">true</span>).select <span class="keyword">do</span> <span class="params">|device|</span></span><br><span class="line">  !device.enabled?</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># or to do the same thing, just more Ruby like with disabled? method</span></span><br><span class="line">disabled_devices = Spaceship::Portal.device.all(<span class="symbol">include_disabled:</span> <span class="literal">true</span>).select(&amp;<span class="symbol">:disabled?</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Register a new device</span></span><br><span class="line">Spaceship::Portal.device.create!(<span class="symbol">name:</span> <span class="string">&quot;Private iPhone 6&quot;</span>, <span class="symbol">udid:</span> <span class="string">&quot;5814abb3...&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Enterprise"><a href="#Enterprise" class="headerlink" title="Enterprise"></a>Enterprise</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use the InHouse class to get all enterprise certificates</span></span><br><span class="line">cert = Spaceship::Portal.certificate.in_house.all.first</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a new InHouse Enterprise distribution profile</span></span><br><span class="line">profile = Spaceship::Portal.provisioning_profile.in_house.create!(<span class="symbol">bundle_id:</span> <span class="string">&quot;com.krausefx.*&quot;</span>,</span><br><span class="line">                                                        <span class="symbol">certificate:</span> cert)</span><br><span class="line"></span><br><span class="line"><span class="comment"># List all In-House Provisioning Profiles</span></span><br><span class="line">profiles = Spaceship::Portal.provisioning_profile.in_house.all</span><br></pre></td></tr></table></figure>
+
+<h5 id="Multiple-Spaceships"><a href="#Multiple-Spaceships" class="headerlink" title="Multiple Spaceships"></a>Multiple Spaceships</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Launch 2 spaceships</span></span><br><span class="line">spaceship1 = Spaceship::Launcher.new(<span class="string">&quot;felix@krausefx.com&quot;</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line">spaceship2 = Spaceship::Launcher.new(<span class="string">&quot;stefan@spaceship.airforce&quot;</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fetch all registered devices from spaceship1</span></span><br><span class="line">devices = spaceship1.device.all</span><br><span class="line"></span><br><span class="line"><span class="comment"># Iterate over the list of available devices</span></span><br><span class="line"><span class="comment"># and register each device from the first account also on the second one</span></span><br><span class="line">devices.each <span class="keyword">do</span> <span class="params">|device|</span></span><br><span class="line">  spaceship2.device.create!(<span class="symbol">name:</span> device.name, <span class="symbol">udid:</span> device.udid)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><p>从上面可以看到，<code>spaceship</code>可以帮我们处理几乎所有需要在苹果开发者中心中操作的所有事项，因此完全可以基于<code>spaceship</code>编写一个注册新设备并自动更新、下载、同步描述文件的脚本来解决我们的问题。<code>spaceship</code>是使用<code>Ruby</code>写的，因此我们可以使用<code>Ruby</code>来编写这个脚本。</p>
+<p>由于脚本可能会分享给内部或外部人员，可以将脚本编写得更通用、安全一些：</p>
+<ul>
+<li><p>通用性，其他人员拿到脚本即可使用无需修改</p>
+</li>
+<li><p>安全性，无需将账号、密码等信息硬编码在脚本中</p>
+</li>
+<li><p>便捷性，能较安全地记住密码（比如借助keychain）</p>
+</li>
+</ul>
+<p>由于对<code>Ruby</code>相对陌生，可以借助<code>Dash</code>查询相应的API，在<code>Dash</code>中下载相应的文档即可。</p>
+<p><code>Ruby</code>的断点调试可以使用<code>pry</code>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install pry</span><br></pre></td></tr></table></figure>
+
+<p>安装完毕后，在需要断点的地方使用:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;pry&#x27;</span></span><br><span class="line"></span><br><span class="line">name = <span class="string">&#x27;jack&#x27;</span></span><br><span class="line">binding.pry</span><br><span class="line">name += <span class="string">&#x27; jones&#x27;</span></span><br><span class="line">puts <span class="string">&quot;name:$&#123;name&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>代码运行后，会在设置了binding的地方暂停，即可进行调试。</p>
+<p>最终<a target="_blank" rel="noopener" href="https://github.com/sleepEarlier/spaceshipUpdateProfile">示例代码</a>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&quot;spaceship&quot;</span></span><br><span class="line"><span class="comment"># require &#x27;io/console&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;Open3&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;fileutils&#x27;</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;Enter Your Account:&quot;</span></span><br><span class="line">account = gets.chomp</span><br><span class="line"></span><br><span class="line"><span class="comment"># get password from keychain</span></span><br><span class="line">service = account + <span class="string">&quot;_DeveloperService&quot;</span></span><br><span class="line">cmd = <span class="string">&quot;security find-generic-password -a $USER -s <span class="subst">#&#123;service&#125;</span> -w&quot;</span></span><br><span class="line"><span class="comment"># puts cmd</span></span><br><span class="line"><span class="variable">$pwd</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># puts $pwd</span></span><br><span class="line">Open3.popen3(cmd) <span class="keyword">do</span> <span class="params">|stdin, stdout, stderr, wait_thr|</span></span><br><span class="line">    <span class="keyword">while</span> line = stdout.gets</span><br><span class="line">        line = line.strip</span><br><span class="line">        <span class="keyword">if</span> line &amp;&amp; line.length &gt; <span class="number">0</span></span><br><span class="line">            <span class="comment"># puts &quot;line: #&#123;line&#125;&quot;</span></span><br><span class="line">            <span class="variable">$pwd</span> = line</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">$pwd</span></span><br><span class="line">    <span class="variable">$pwd</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$pwd</span>.length &gt; <span class="number">0</span></span><br><span class="line">    puts <span class="string">&quot;Use Keychain Password?(y/n)&quot;</span></span><br><span class="line">    use = gets.chomp</span><br><span class="line">    <span class="keyword">if</span> use.downcase != <span class="string">&#x27;y&#x27;</span> <span class="keyword">and</span> use.downcase != <span class="string">&#x27;yes&#x27;</span></span><br><span class="line">        <span class="variable">$pwd</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$pwd</span>.length == <span class="number">0</span></span><br><span class="line">    puts <span class="string">&quot;Enter Your Password:&quot;</span></span><br><span class="line">    <span class="variable">$pwd</span> = STDIN.noecho(&amp;<span class="symbol">:gets</span>).chomp</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Spaceship.login(account, <span class="variable">$pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># save password to keychain</span></span><br><span class="line"><span class="comment"># puts &quot;Updating Keychain&quot;</span></span><br><span class="line">cmd = <span class="string">&quot;security add-generic-password -U -a $USER -s <span class="subst">#&#123;service&#125;</span> -w #$pwd&quot;</span></span><br><span class="line"><span class="comment"># puts cmd</span></span><br><span class="line">system(cmd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新设备</span></span><br><span class="line">fileDir = File.dirname(<span class="keyword">__FILE__</span>)</span><br><span class="line">deviceFile = File.join(fileDir, <span class="string">&quot;multiple-device-upload-ios.txt&quot;</span>)</span><br><span class="line">file = File.open(deviceFile) <span class="comment">#文本文件里录入的udid和设备名用tab分隔</span></span><br><span class="line">puts <span class="string">&quot;\n-ADDING DEVICES&quot;</span></span><br><span class="line">file.each <span class="keyword">do</span> <span class="params">|line|</span></span><br><span class="line">    <span class="comment"># puts &quot;line:#&#123;line&#125;&quot;</span></span><br><span class="line">    arr = line.strip.split(<span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="comment"># puts &quot;arr=#&#123;arr&#125;&quot;</span></span><br><span class="line">    udid = arr[<span class="number">0</span>]</span><br><span class="line">    name = arr[<span class="number">1</span>]</span><br><span class="line">    puts <span class="string">&quot;\t-DeviceName:<span class="subst">#&#123;name&#125;</span>, udid:<span class="subst">#&#123;udid&#125;</span>&quot;</span></span><br><span class="line">    device = Spaceship.device.create!(<span class="symbol">name:</span> arr[<span class="number">1</span>], <span class="symbol">udid:</span> arr[<span class="number">0</span>])</span><br><span class="line">    puts <span class="string">&quot;\t-add device: <span class="subst">#&#123;device.name&#125;</span> <span class="subst">#&#123;device.udid&#125;</span> <span class="subst">#&#123;device.model&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">devices = Spaceship.device.all</span><br><span class="line"></span><br><span class="line">profiles = Array.new</span><br><span class="line">profiles += Spaceship.provisioning_profile.development.all </span><br><span class="line">profiles += Spaceship.provisioning_profile.ad_hoc.all</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;\n-UPDATING PROFILES&quot;</span></span><br><span class="line">profiles.each <span class="keyword">do</span> <span class="params">|p|</span></span><br><span class="line">    puts <span class="string">&quot;\t-Updating <span class="subst">#&#123;p.name&#125;</span>&quot;</span></span><br><span class="line">    p.devices = devices</span><br><span class="line">    p.update!</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">downloadProfiles = Array.new</span><br><span class="line">downloadProfiles += Spaceship.provisioning_profile.development.all </span><br><span class="line">downloadProfiles += Spaceship.provisioning_profile.ad_hoc.all</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;\n-DOWNLOADING PROFILES&quot;</span></span><br><span class="line">downloadProfiles.each <span class="keyword">do</span> <span class="params">|p|</span></span><br><span class="line">    puts <span class="string">&quot;\t-Downloading <span class="subst">#&#123;p.name&#125;</span>&quot;</span></span><br><span class="line">    fileName = p.name</span><br><span class="line">    <span class="comment"># save to Downloads floder</span></span><br><span class="line">    downloadPath = File.expand_path(<span class="string">&quot;~/Downloads/<span class="subst">#&#123;fileName&#125;</span>.mobileprovision&quot;</span>)</span><br><span class="line">    File.write(downloadPath, p.download)</span><br><span class="line">    puts <span class="string">&quot;\t-File at: <span class="subst">#&#123;downloadPath&#125;</span>&quot;</span></span><br><span class="line">    <span class="comment"># rename and copy to Provisioning Profiles floder</span></span><br><span class="line">    dest = File.expand_path(<span class="string">&quot;~/Library/MobileDevice/Provisioning Profiles/<span class="subst">#&#123;p.uuid&#125;</span>.mobileprovision&quot;</span>)</span><br><span class="line">    FileUtils.copy(downloadPath, dest)</span><br><span class="line">    puts <span class="string">&quot;\t-Replace <span class="subst">#&#123;p.name&#125;</span> in Provisioning Profiles&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%97%9B%E7%82%B9"><span class="toc-text">痛点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spaceship"><span class="toc-text">spaceship</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Login"><span class="toc-text">Login</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#App"><span class="toc-text">App</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-1"><span class="toc-text"></span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#App-Services"><span class="toc-text">App Services</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#App-Groups"><span class="toc-text">App Groups</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Certificates"><span class="toc-text">Certificates</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Code-Signing-Certificates"><span class="toc-text">Code Signing Certificates</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Push-Certificates"><span class="toc-text">Push Certificates</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Create-a-Certificate"><span class="toc-text">Create a Certificate</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Provisioning-Profiles"><span class="toc-text">Provisioning Profiles</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Receiving-profiles"><span class="toc-text">Receiving profiles</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Create-a-Provisioning-Profile"><span class="toc-text">Create a Provisioning Profile</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Repair-all-broken-provisioning-profiles"><span class="toc-text">Repair all broken provisioning profiles</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Devices"><span class="toc-text">Devices</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Enterprise"><span class="toc-text">Enterprise</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Multiple-Spaceships"><span class="toc-text">Multiple Spaceships</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC"><span class="toc-text">脚本</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://sleepearlier.github.io/2019/10/25/使用space管理provisionProfile/">https://sleepearlier.github.io/2019/10/25/使用space管理provisionProfile/</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          初探iOS源码调试原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/10/First-Blood/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">在已有原生工程中集成Flutter</div>
+    </a>
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/17/jail-broken-env-build/">iOS越狱环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/">初探iOS源码调试原理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/">使用space管理provisionProfile</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/First-Blood/">在已有原生工程中集成Flutter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019年10月</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example1.com/">site-name1</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example2.com/">site-name2</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example3.com/">site-name3</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a href="/sitemap.xml">网站地图</a>
+        <span> | </span><a href="/atom.xml">订阅本站</a>
+        <span> | </span><a href="/about/">联系博主</a>
+      </p>
+      
+        <p>
+          <i class="fa fa-visitors"></i>
+          <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>
+          ，
+          <i class="fa fa-views"></i>
+          <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>
+        </p>
+      
+      <p>
+        <span>Copyright &copy; 2021 Usopp.</span>
+        <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span>
+        
+            <span>Count by <a href="http://busuanzi.ibruce.info/" target="_blank">busuanzi.</a></span>
+        
+        <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+  
+<script src="/localshare/js/social-share.js"></script>
+
+  
+<script src="/localshare/js/qrcode.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>

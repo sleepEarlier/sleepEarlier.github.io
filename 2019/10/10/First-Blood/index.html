@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>在已有原生工程中集成Flutter | Usopp&#39;s Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="description" content="Welcome">
+  
+  
+    <meta name="keywords" content="iOS">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Usopp's Page" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/localshare/css/share.css">
+
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Usopp&#39;s Page</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/."><i class="fa fa-home"></i> 首页</a>
+        
+          <a class="main-nav-link" href="/archives/"><i class="fa fa-archive"></i> 归档</a>
+        
+          <a class="main-nav-link" href="/about/"><i class="fa fa-user"></i> 关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml"><i class="fa fa-rss"></i> 订阅</a>
+        
+      </nav>
+    </div>
+    <div id="search-form">
+      <div id="result-mask" class="hide"></div>
+      <label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label>
+      <div id="result-wrap" class="hide">
+        <div id="search-result"></div>
+      </div>
+      <div class="hide">
+        <template id="search-tpl">
+          <div class="item">
+            <a href="/{path}" title="{title}">
+              <div class="title">{title}</div>
+              <div class="time">{date}</div>
+              <div class="tags">{tags}</div>
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-First-Blood" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      在已有原生工程中集成Flutter
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2019-10-10T05:37:24.000Z" itemprop="datePublished">2019年10月10日</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/flutter/">flutter</a>
+  </div>
+
+      
+        <span class="article-views">
+  <i class="fa fa-views"></i>
+  <i id="busuanzi_container_page_pv">
+      <i id="busuanzi_value_page_pv"></i>
+  </i>
+</span>
+
+      
+      
+<a href="/2019/10/10/First-Blood/#comments" class="article-comment-link">
+  
+    
+    
+    
+    
+    
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h5 id="创建Flutter模块"><a href="#创建Flutter模块" class="headerlink" title="创建Flutter模块"></a>创建Flutter模块</h5><p>与纯Flutter工程不同，在原生工程中接入Flutter，是以 <code>Flutter Module</code> 的形式接入的。</p>
+<p>假设我们已有一个iOS工程在 <code>some/path/MyApp</code> 路径下，使用如下命令创建Flutter模块:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> some/path/</span><br><span class="line">$ flutter create -t module my_flutter</span><br></pre></td></tr></table></figure>
+
+<p>命令完成后，会在<code>some/path/my_flutter</code>下生成Flutter模块，目录下有隐藏的<code>.ios</code>包含了此模块的iOS Flutter工程。创建时要求Module名称为全小写，否则将创建失败。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">my_flutter</span><br><span class="line">├── .android</span><br><span class="line">│   ├── Flutter</span><br><span class="line">│   ├── app</span><br><span class="line">│   ├── build.gradle</span><br><span class="line">│   ├── gradle</span><br><span class="line">│   ├── gradle.properties</span><br><span class="line">│   ├── gradlew</span><br><span class="line">│   ├── gradlew.bat</span><br><span class="line">│   ├── include_flutter.groovy</span><br><span class="line">│   ├── local.properties</span><br><span class="line">│   └── settings.gradle</span><br><span class="line">│</span><br><span class="line">├── .ios <span class="comment"># 该module的Flutter工程</span></span><br><span class="line">│   ├── Config</span><br><span class="line">│   ├── Flutter <span class="comment"># 插件、App.framework、Flutter.framework生成的目录</span></span><br><span class="line">│   ├── Runner</span><br><span class="line">│   ├── Runner.xcodeproj</span><br><span class="line">│   └── Runner.xcworkspace</span><br><span class="line">│</span><br><span class="line">├── README.md</span><br><span class="line">│</span><br><span class="line">├── lib</span><br><span class="line">│   └── main.dart <span class="comment"># 默认创建的带main函数入口的Dart文件</span></span><br><span class="line">├── pubspec.lock <span class="comment"># 完整依赖链和版本信息，类似Podfile.lock</span></span><br><span class="line">└── pubspec.yaml <span class="comment"># 依赖库管理，类似Podfile</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="让宿主工程依赖Flutter模块"><a href="#让宿主工程依赖Flutter模块" class="headerlink" title="让宿主工程依赖Flutter模块"></a>让宿主工程依赖Flutter模块</h5><ol start="2">
+<li><p>在<code>Podfile</code>中添加如下内容:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flutter_application_path = <span class="string">&#x27;path/to/my_flutter/&#x27;</span></span><br><span class="line">eval(File.read(File.join(flutter_application_path, <span class="string">&#x27;.ios&#x27;</span>, <span class="string">&#x27;Flutter&#x27;</span>, <span class="string">&#x27;podhelper.rb&#x27;</span>)), binding)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>pod install</code></p>
+<p><code>podHelp.rb</code> 这个ruby脚本会关闭Pod工程内Flutter target的bitcode，并将<code>Flutter.framework</code>和Plugin相关的pod集成到工程中。</p>
+<p>当我们在<code>some/path/my_flutter/pubspec.yaml</code>改变Flutter插件依赖时，都需要运行<code>flutter packages get</code>来刷新<code>podhelper.rb</code>中的插件列表，然后再运行<code>pod install</code>来更新宿主工程。</p>
+</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ensure that ENABLE_BITCODE is set to NO, add a #include to Generated.xcconfig, and</span></span><br><span class="line"><span class="comment"># add a run script to the Build Phases.</span></span><br><span class="line">post_install <span class="keyword">do</span> <span class="params">|installer|</span></span><br><span class="line">    installer.pods_project.targets.each <span class="keyword">do</span> <span class="params">|target|</span></span><br><span class="line">        target.build_configurations.each <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">            <span class="comment"># 关闭pod工程的bitcode</span></span><br><span class="line">            config.build_settings[<span class="string">&#x27;ENABLE_BITCODE&#x27;</span>] = <span class="string">&#x27;NO&#x27;</span></span><br><span class="line">            <span class="keyword">next</span> <span class="keyword">if</span>  config.base_configuration_reference == <span class="literal">nil</span></span><br><span class="line">            xcconfig_path = config.base_configuration_reference.real_path</span><br><span class="line">            File.open(xcconfig_path, <span class="string">&#x27;a+&#x27;</span>) <span class="keyword">do</span> <span class="params">|file|</span></span><br><span class="line">                <span class="comment"># 在xcconfig中导入Flutter的xcconfig</span></span><br><span class="line">                file.puts <span class="string">&quot;#include \&quot;<span class="subst">#&#123;File.realpath(File.join(framework_dir, <span class="string">&#x27;Generated.xcconfig&#x27;</span>))&#125;</span>\&quot;&quot;</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>另外由于<code>podHelp.rb</code>是通过 <code>post_install hook</code> 来关闭pod工程的bitcode和引入<code>Generated.xcconfig</code> ，如果原生工程的 <code>Podfile</code> 中也使用了 <code>post_install</code> 则两者会冲突，解决方式可以将 <code>podHelp.rb</code> 中<code>post_install</code> 所处理的逻辑封装成一个方法，在工程的 <code>Podfile</code> 中调用。</p>
+<ol start="4">
+<li>关闭原生工程的bitcode。由于Flutter并不支持bitcode，且脚本只是关闭了pod工程的bitcode，因此需要再将原生工程的bitcode关闭。</li>
+</ol>
+<h5 id="添加build-phase来构建Dart代码"><a href="#添加build-phase来构建Dart代码" class="headerlink" title="添加build phase来构建Dart代码"></a>添加build phase来构建Dart代码</h5><p>在原生宿主工程的<code>Build Phase</code>中，添加<code>New Run Script Phase</code>，输入脚本内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build模式 会构建App.framework，将Flutter.framework放置到engine目录中</span></span><br><span class="line"><span class="comment"># embed模式 会将两个framework拷贝到.app内的Frameworks目录中</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> build</span><br><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> embed</span><br></pre></td></tr></table></figure>
+
+<p>确保新添加的<code>Run Script</code>在<code>Target Denpendenies</code>之后，现在我们可以编译集成Flutter之后的工程了。脚本会将Dart代码编译成<code>App.framework</code>嵌入工程中。</p>
+<h5 id="在原生工程中年使用FlutterViewController"><a href="#在原生工程中年使用FlutterViewController" class="headerlink" title="在原生工程中年使用FlutterViewController"></a>在原生工程中年使用<code>FlutterViewController</code></h5><p>在 <code>AppDelegate.h</code> 中，修改继承关系，让它继承自<code>FlutterAppDelegate</code> ，添加 <code>FlutterEngine</code>类型的属性：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"><span class="meta">#import </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> : <span class="title">FlutterAppDelegate</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) FlutterEngine *flutterEngine;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>重写<code>application:didFinishLaunchingWithOptions:</code>方法：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import  <span class="comment">// Only if you have Flutter Plugins</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;AppDelegate.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// This override can be omitted if you do not have any Flutter Plugins.</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application</span><br><span class="line">    didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="comment">// 初始化Flutter引擎</span></span><br><span class="line">  <span class="keyword">self</span>.flutterEngine = [[FlutterEngine alloc] initWithName:<span class="string">@&quot;io.flutter&quot;</span> project:<span class="literal">nil</span>];</span><br><span class="line">  [<span class="keyword">self</span>.flutterEngine runWithEntrypoint:<span class="literal">nil</span>];</span><br><span class="line">  <span class="comment">// 注册插件</span></span><br><span class="line">  [GeneratedPluginRegistrant registerWithRegistry:<span class="keyword">self</span>.flutterEngine];</span><br><span class="line">  <span class="keyword">return</span> [<span class="keyword">super</span> application:application didFinishLaunchingWithOptions:launchOptions];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>FlutterViewController</code>：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&quot;AppDelegate.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&quot;ViewController.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UIButton</span> *button = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</span><br><span class="line">    [button addTarget:<span class="keyword">self</span></span><br><span class="line">               action:<span class="keyword">@selector</span>(handleButtonAction)</span><br><span class="line">     forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</span><br><span class="line">    [button setTitle:<span class="string">@&quot;Press me&quot;</span> forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    [button setBackgroundColor:[<span class="built_in">UIColor</span> blueColor]];</span><br><span class="line">    button.frame = <span class="built_in">CGRectMake</span>(<span class="number">80.0</span>, <span class="number">210.0</span>, <span class="number">160.0</span>, <span class="number">40.0</span>);</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:button];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)handleButtonAction &#123;</span><br><span class="line">    FlutterEngine *flutterEngine = [(AppDelegate *)[[<span class="built_in">UIApplication</span> sharedApplication] delegate] flutterEngine];</span><br><span class="line">    FlutterViewController *flutterViewController = [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:<span class="literal">nil</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">    [<span class="keyword">self</span> presentViewController:flutterViewController animated:<span class="literal">false</span> completion:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>到这里，一个集成Flutter的原生工程就能正常运行了，点击VC上的按钮将进入一个Flutter的页面中。</p>
+<p>当编写了多个widget时，我们也可以使用路由来展示不同的widgets：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[flutterViewController setInitialRoute:<span class="string">@&quot;route1&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<p>如果应用的<code>AppDelegate</code>已经继承自某个基类，且不方便直接修改继承关系，则需要自己去实现<code>FlutterAppLifeCycleProvider</code>协议。</p>
+<h5 id="热加载"><a href="#热加载" class="headerlink" title="热加载"></a>热加载</h5><p>在混编工程中，也可以使用热加载。区别于纯Flutter工程的完善的热加载支持，混编工程的热加载需要通过命令行工具和Dart Observatory的web页面。</p>
+<p>首先使用 <code>flutter attach</code> 让flutter等待连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> path/to/flutter_module</span><br><span class="line">flutter attach -d device-uuid</span><br><span class="line">Waiting <span class="keyword">for</span> a connection from Flutter on iPhone 7...</span><br></pre></td></tr></table></figure>
+
+<p>然后在原生工程中Run起工程，然后让flutter附加到进程上。</p>
+<p>attach成功后，就可以编辑flutter module中的Dart代码，在命令行中输入<code>r</code>即可热加载。</p>
+<p>并且热加载需要管理员权限来执行 <code>stream</code> 操作，当没有管理员权限时在终端执行<code>flutter attach</code> 会在等待一段时间后自动断开，容易让人不知所以。而在VS Code中对纯Flutter工程进行热加载调试时，会有相应的提示。这也体现了千面所说的两种混编工程热加载支持还所有不足。</p>
+<h2 id="Flutter与原生相互调用"><a href="#Flutter与原生相互调用" class="headerlink" title="Flutter与原生相互调用"></a>Flutter与原生相互调用</h2><h5 id="Flutter调用原生方法"><a href="#Flutter调用原生方法" class="headerlink" title="Flutter调用原生方法"></a>Flutter调用原生方法</h5><p>Flutter与原生之间的调用是以<code>MethodChannel</code>为桥梁来完成的 ，在Native中通过<code>FlutterMethodChannel</code>设置代码调用逻辑<code>callHandler</code>，在Flutter中通过<code>MethodChannel</code>来触发原生代码。</p>
+<p>原生代码：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"></span><br><span class="line">FlutterEngine *flutterEngine = [(AppDelegate *)[[<span class="built_in">UIApplication</span> sharedApplication] delegate] engine];</span><br><span class="line">    <span class="built_in">NSString</span> *channelName = <span class="string">@&quot;callNative&quot;</span>;</span><br><span class="line">    FlutterMethodChannel *methodChannel = [FlutterMethodChannel methodChannelWithName:channelName binaryMessenger:flutterEngine];</span><br><span class="line">    <span class="comment">// 处理fullter调用</span></span><br><span class="line">    [methodChannel setMethodCallHandler:^(FlutterMethodCall * _Nonnull call, FlutterResult _Nonnull result) &#123;</span><br><span class="line">        <span class="keyword">if</span> ([call.method isEqualToString:<span class="string">@&quot;changeColor&quot;</span>]) &#123;</span><br><span class="line">            <span class="built_in">UIColor</span> *randomColor = [<span class="built_in">UIColor</span> colorWithRed:arc4random_uniform(<span class="number">255</span>) / <span class="number">255.</span> green:arc4random_uniform(<span class="number">255</span>) / <span class="number">255.</span> blue:arc4random_uniform(<span class="number">255</span>) / <span class="number">255.</span> alpha:<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">self</span>.view.backgroundColor = randomColor;</span><br><span class="line">            result(<span class="string">@&quot;Native color did changed!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            result(FlutterMethodNotImplemented);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+
+<p>Flutter侧代码：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line">MaterialButton(</span><br><span class="line">  color: Colors.blue,</span><br><span class="line">  textColor: Colors.white,</span><br><span class="line">  child: Text(<span class="string">&quot;call native&quot;</span>),</span><br><span class="line">  onPressed: () <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> methodChannel = MethodChannel(<span class="string">&#x27;callNative&#x27;</span>);</span><br><span class="line">    <span class="built_in">String</span> res =  <span class="keyword">await</span> methodChannel.invokeMethod(<span class="string">&#x27;changeColor&#x27;</span>);</span><br><span class="line">    Toast.<span class="keyword">show</span>(res, context, duration: Toast.LENGTH_LONG);</span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h5 id="原生调用Flutter"><a href="#原生调用Flutter" class="headerlink" title="原生调用Flutter"></a>原生调用Flutter</h5><p>原生调用Flutter的方式与上面一致，双方互换，在Flutter侧设置<code>callHandler</code>，在原生通过<code>FlutterMethodChannel</code>调用相关方法。</p>
+<p>Flutter代码:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Future changeCount (MethodCall call) &#123;</span><br><span class="line">  <span class="keyword">if</span> (call.method == <span class="string">&#x27;changeCount&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> args = call.arguments;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _counter = args[<span class="number">0</span>];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> Future.value(<span class="string">&quot;Flutter count did change!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">throw</span> MissingPluginException();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> channel = MethodChannel(<span class="string">&#x27;callFlutter&#x27;</span>);</span><br><span class="line">channel.setMethodCallHandler(changeCount);</span><br></pre></td></tr></table></figure>
+
+<p>原生代码:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import </span></span><br><span class="line"></span><br><span class="line">FlutterEngine *flutterEngine = [(AppDelegate *)[[<span class="built_in">UIApplication</span> sharedApplication] delegate] engine];</span><br><span class="line"><span class="built_in">NSString</span> *channelName = <span class="string">@&quot;callFlutter&quot;</span>;</span><br><span class="line">FlutterMethodChannel *methodChannel = [FlutterMethodChannel methodChannelWithName:channelName binaryMessenger:flutterEngine];</span><br><span class="line">[methodChannel invokeMethod:<span class="string">@&quot;changeCount&quot;</span> arguments:@[@(arc4random_uniform(<span class="number">255</span>))] result:^(<span class="keyword">id</span>  _Nullable result) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *message;</span><br><span class="line">    <span class="keyword">if</span> ([result isKindOfClass:[FlutterError <span class="keyword">class</span>]]) &#123;</span><br><span class="line">        message = <span class="string">@&quot;Flutter运行失败&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ([result isEqual:FlutterMethodNotImplemented]) &#123;</span><br><span class="line">        message = <span class="string">@&quot;Flutter 未实现此方法&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        message = result ? : <span class="string">@&quot;Flutter调用成功&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="keyword">self</span>.view makeToast:message];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<p>Flutter调用原生方法时，可以获取到原生<code>callHandler</code>中设置的结果作为返回值。</p>
+<p>原生调用Flutter时，在<code>invokeMethod:arguments:result:</code>方法中的<code>result</code> 获取返回值。当Flutter运行失败时，<code>result</code>回调中会是一个<code>FlutterError</code>实例，如果Flutter侧未实现该方法，则会是一个<code>FlutterMethodNotImplemented</code>对象，其他值包括<code>nil</code>均表示调用成功。</p>
+<h2 id="隔离开发环境"><a href="#隔离开发环境" class="headerlink" title="隔离开发环境"></a>隔离开发环境</h2><p>假设团队中有一部分负责Flutter开发，其他人还是在原生环境下开发，按上面的方式把Flutter接入到一个工程中后，如果要团队的所有人员都能正常运行这个工程，则需要所有人都配置Flutter环境。</p>
+<p>因此，需要将Flutter的开发环境与原生的开发环境通隔离，过Pod的方式将Flutter的所有产物导入到原生工程中。</p>
+<p>Flutter产物主要有如下几个：</p>
+<ul>
+<li><p>Flutter引擎相关的 <code>Flutter.framework</code></p>
+</li>
+<li><p>Dart 代码相关的 <code>App.framework</code></p>
+</li>
+<li><p>插件注册入口 <code>FlutterPluginRegistrant</code></p>
+</li>
+<li><p>原生相关插件 plugins</p>
+</li>
+</ul>
+<p>通过接入了Flutter的混编工程可以看到，<code>Flutter.framework</code> 、<code>FlutterPluginRegistrant</code> 和各个插件都是以pod的形式接入，而 <code>App.framework</code> 是通过 <code>xcode_backend.sh</code> 脚本从Flutter Module中拷贝到App内的。</p>
+<p>因此我们主要处理收集 <code>App.framework</code> 并提供podspec文件即可。</p>
+<p>这里示例脚本收集了<code>App.framework</code> 、 <code>Flutter.framework</code> ，并将插件相关的产物编译为静态库。收集完成后将podspec修改为本地pod的方式方便验证。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> FLUTTER_ROOT=/Users/lindubo505/Documents/flutter</span><br><span class="line"><span class="built_in">export</span> PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line"><span class="built_in">export</span> FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$PATH</span>:/Users/lindubo505/Documents/flutter/bin&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">&quot;./product&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">mkdir ./product</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;文件夹已经存在&quot;</span></span><br><span class="line">rm -rf ./product/*</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">config=<span class="string">&#x27;Debug&#x27;</span></span><br><span class="line">appConfig=<span class="string">&quot;<span class="subst">$(echo $config | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27;)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===清理Flutter历史编译===&quot;</span></span><br><span class="line">flutter clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===重新生成plugin索引===&quot;</span></span><br><span class="line">flutter packages get</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原生成的App.framework</span></span><br><span class="line">rm -rf ./.ios/Flutter/App.framework</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===生成App.framework===&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;flutter build ios --<span class="variable">$&#123;appConfig&#125;</span>&quot;</span></span><br><span class="line">flutter build ios --<span class="variable">$&#123;appConfig&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建放置产物的目录</span></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="string">&quot;./product/app&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">mkdir ./product/app</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集App.framework，生成podspec</span></span><br><span class="line">cp -fr ./.ios/Flutter/App.framework ./product/app</span><br><span class="line">cp -f <span class="variable">$FLUTTER_ROOT</span>/App.podspec ./product/app</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集Flutter.framework与podspec</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===拷贝Flutter.framework===&quot;</span></span><br><span class="line">cp -fr ./.ios/Flutter/engine ./product/engine</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===生成plugin的静态库===&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> -r line</span><br><span class="line"><span class="keyword">do</span> </span><br><span class="line">    <span class="keyword">if</span> [[ ! <span class="string">&quot;<span class="variable">$line</span>&quot;</span> =~ ^// ]]; <span class="keyword">then</span></span><br><span class="line">        array=(<span class="variable">$&#123;line//=/ &#125;</span>)</span><br><span class="line">        plugin_name=<span class="variable">$&#123;array[0]&#125;</span></span><br><span class="line">        <span class="built_in">cd</span> .ios/Pods</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;生成lib<span class="variable">$&#123;plugin_name&#125;</span>.a...&quot;</span></span><br><span class="line">        /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;arm64 armv7&#x27;</span> -target <span class="variable">$&#123;plugin_name&#125;</span> BUILD_DIR=../../build/ios -sdk iphoneos -quiet</span><br><span class="line">        /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;x86_64&#x27;</span> -target <span class="variable">$&#123;plugin_name&#125;</span> BUILD_DIR=../../build/ios -sdk iphonesimulator -quiet</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;合并lib<span class="variable">$&#123;plugin_name&#125;</span>.a...&quot;</span></span><br><span class="line">        <span class="keyword">if</span> [[ ! -d <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">            mkdir <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        lipo -create <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphonesimulator/<span class="variable">$&#123;plugin_name&#125;</span>/lib<span class="variable">$&#123;plugin_name&#125;</span>.a&quot;</span> <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphoneos/<span class="variable">$&#123;plugin_name&#125;</span>/lib<span class="variable">$&#123;plugin_name&#125;</span>.a&quot;</span> -o <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>/lib<span class="variable">$&#123;plugin_name&#125;</span>.a&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;复制头文件&quot;</span></span><br><span class="line">        classes=<span class="variable">$&#123;array[1]&#125;</span>ios/Classes</span><br><span class="line">        <span class="keyword">for</span> header <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$classes</span>&quot;</span> -name *.h`; <span class="keyword">do</span></span><br><span class="line">            cp -f <span class="variable">$header</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>/&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;复制podspec文件&quot;</span></span><br><span class="line">        specDir=<span class="variable">$&#123;array[1]&#125;</span>ios</span><br><span class="line">        <span class="keyword">for</span> spec <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$specDir</span>&quot;</span> -name *.podspec`; <span class="keyword">do</span></span><br><span class="line">            cp -f <span class="variable">$spec</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;plugin_name&#125;</span>/&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;读取文件出错&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span> &lt; .flutter-plugins</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;===生成注册入口的二进制库文件===&quot;</span></span><br><span class="line"><span class="keyword">for</span> reg_enter_name <span class="keyword">in</span> <span class="string">&quot;FlutterPluginRegistrant&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;生成libFlutterPluginRegistrant.a...&quot;</span></span><br><span class="line">    /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;arm64 armv7&#x27;</span> -target FlutterPluginRegistrant BUILD_DIR=../../build/ios -sdk iphoneos -quiet</span><br><span class="line">    /usr/bin/env xcrun xcodebuild build -configuration <span class="variable">$&#123;config&#125;</span> ARCHS=<span class="string">&#x27;x86_64&#x27;</span> -target FlutterPluginRegistrant BUILD_DIR=../../build/ios -sdk iphonesimulator -quiet</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [[ ! -d <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">        mkdir <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;合并lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a...&quot;</span></span><br><span class="line">    lipo -create <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphonesimulator/<span class="variable">$reg_enter_name</span>/lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a&quot;</span> <span class="string">&quot;../../build/ios/<span class="variable">$&#123;config&#125;</span>-iphoneos/<span class="variable">$&#123;reg_enter_name&#125;</span>/lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a&quot;</span> -o <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>/lib<span class="variable">$&#123;reg_enter_name&#125;</span>.a&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;复制头文件&quot;</span></span><br><span class="line">    classes=<span class="string">&quot;../Flutter/<span class="variable">$&#123;reg_enter_name&#125;</span>/Classes&quot;</span></span><br><span class="line">    <span class="keyword">for</span> header <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$classes</span>&quot;</span> -name *.h`; <span class="keyword">do</span></span><br><span class="line">        cp -f <span class="variable">$header</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>/&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;复制podspec文件&quot;</span></span><br><span class="line">    specDir=<span class="string">&quot;../Flutter/<span class="variable">$&#123;reg_enter_name&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">for</span> spec <span class="keyword">in</span> `find <span class="string">&quot;<span class="variable">$specDir</span>&quot;</span> -name *.podspec`; <span class="keyword">do</span></span><br><span class="line">        cp -f <span class="variable">$spec</span> <span class="string">&quot;../../product/lib<span class="variable">$&#123;reg_enter_name&#125;</span>/&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改podspec为本地pod</span></span><br><span class="line">python ../../changePodSpec.py ../../product</span><br><span class="line"></span><br><span class="line"><span class="comment"># podspec</span></span><br><span class="line"><span class="comment"># 替换原s.source  =&gt; s.source           = &#123; :path =&gt; &#x27;.&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加s.vendored_libraries = &#x27;./*.a&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换s.source_files = &#x27;Classes/**/*&#x27;,为 s.source_files = &#x27;./*.&#123;h&#125;&#x27;</span></span><br><span class="line"><span class="comment"># 删除s.public_header_files = &#x27;Classes/**/*.h&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sed  -n ‘s/^jcdd/ganji/p’ device_info.podspec</span></span><br><span class="line"><span class="comment"># sed -n &#x27;/^[\s]*s.source[\s]+[\d\D]*&#125;/d&#x27; device_info.podspec</span></span><br><span class="line"><span class="comment"># sed &#x27;s/^[\s]*s.source[\s]+[\d\D]*&#125;/replace/g&#x27; device_info.podspec</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>changePodSpec.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os,sys,re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replaceOrAdd</span>(<span class="params">content, pattern, mark, new_desc</span>):</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;pattern: %s&quot;</span> % pattern)</span><br><span class="line">	match = re.search(pattern, content, flags=re.MULTILINE)</span><br><span class="line">	<span class="keyword">if</span> match:</span><br><span class="line">		res = match.group()</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;match: %s&quot;</span> % res)</span><br><span class="line">		content = content.replace(res, new_desc)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;unmatch: %s&quot;</span> % pattern)</span><br><span class="line">		content = content.replace(mark, mark + <span class="string">&#x27;\n  &#x27;</span> + new_desc)</span><br><span class="line">	<span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">modifyspecsInDir</span>(<span class="params">floder</span>):</span></span><br><span class="line">	output = os.popen(<span class="string">&#x27;find %s -name &quot;*.podspec&quot;&#x27;</span> % floder)</span><br><span class="line">	allLines = output.readlines()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> allLines:</span><br><span class="line">		specPath = line.strip()</span><br><span class="line">		<span class="keyword">with</span> <span class="built_in">open</span>(specPath, <span class="string">&#x27;r+&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">			content = f.read()</span><br><span class="line">			<span class="comment"># 替换原s.source  =&gt; s.source           = &#123; :path =&gt; &#x27;.&#x27; &#125;</span></span><br><span class="line">			<span class="comment"># 替换s.source_files = &#x27;Classes/**/*&#x27;,为 s.source_files = &#x27;*.&#123;h&#125;&#x27;</span></span><br><span class="line">			<span class="comment"># 增加s.vendored_libraries = &#x27;*.a&#x27;</span></span><br><span class="line">			<span class="comment"># 删除s.public_header_files = &#x27;Classes/**/*.h&#x27;</span></span><br><span class="line">			<span class="comment"># re.sub(pattern,repl,string,count,flags)</span></span><br><span class="line"></span><br><span class="line">			<span class="comment"># re.compile(r&#x27;%s = [-\\.$()/\w]+?;&#x27; % childrenNodeName)</span></span><br><span class="line">			<span class="comment"># version_pattern = &quot;s\\.version[\\s]+[\\d\\D]+?[&#125;&#x27;\&quot;]&#123;1&#125;$&quot;</span></span><br><span class="line">			version_pattern = <span class="string">r&quot;s\.version[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			match = re.search(version_pattern, content, flags=re.MULTILINE)</span><br><span class="line">			<span class="keyword">try</span>:</span><br><span class="line">				version_des = match.group()</span><br><span class="line">			<span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">				<span class="keyword">raise</span> e</span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">			source_pattern = <span class="string">r&quot;s\.source[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			source_desc = <span class="string">r&quot;s.source = &#123; :path =&gt; &#x27;.&#x27; &#125;&quot;</span></span><br><span class="line"></span><br><span class="line">			source_files_pattern = <span class="string">r&quot;s\.source_files[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			source_files_desc = <span class="string">r&quot;s.source_files = &#x27;*.&#123;h&#125;&#x27;&quot;</span></span><br><span class="line"></span><br><span class="line">			public_header_files_pattern = <span class="string">r&quot;s\.public_header_files[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line"></span><br><span class="line">			vendored_libraries_pattern = <span class="string">r&quot;s\.vendored_libraries[\s]+[\d\D]+?[&#x27;&#125;\&quot;]$&quot;</span></span><br><span class="line">			vendored_libraries_desc = <span class="string">r&quot;s.vendored_libraries = &#x27;*.a&#x27;&quot;</span></span><br><span class="line"></span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">			content = replaceOrAdd(content, source_pattern,version_des, source_desc)</span><br><span class="line"></span><br><span class="line">			index = content.find(<span class="string">&quot;s.vendored_frameworks&quot;</span>)</span><br><span class="line">			<span class="keyword">if</span> index &lt; <span class="number">0</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="string">&quot;not framework podspec&quot;</span>)</span><br><span class="line">				content = replaceOrAdd(content, source_files_pattern, version_des, source_files_desc)</span><br><span class="line">				content = replaceOrAdd(content, vendored_libraries_pattern, version_des, vendored_libraries_desc)</span><br><span class="line">				content = replaceOrAdd(content, public_header_files_pattern, version_des, <span class="string">&#x27;&#x27;</span>)					</span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="string">&#x27;skip framework podspec&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			f.seek(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">			f.truncate()</span><br><span class="line">			f.write(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		floder = sys.argv[<span class="number">1</span>]</span><br><span class="line">		<span class="comment"># floder = &#x27;/Users/lindubo505/Desktop/NativeApp/flutter_module/product&#x27;</span></span><br><span class="line">		modifyspecsInDir(os.path.abspath(floder))</span><br><span class="line">	<span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">		<span class="keyword">raise</span> e</span><br></pre></td></tr></table></figure>
+
+<p>收集完成后，修改工程的Podfile</p>
+<p>删除:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flutter_application_path = <span class="string">&#x27;/Users/lindubo505/Desktop/NativeApp/flutter_module&#x27;</span></span><br><span class="line">eval(File.read(File.join(flutter_application_path, <span class="string">&#x27;.ios&#x27;</span>, <span class="string">&#x27;Flutter&#x27;</span>, <span class="string">&#x27;podhelper.rb&#x27;</span>)), binding)</span><br></pre></td></tr></table></figure>
+
+<p>改为依赖本地pod</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="string">&#x27;Flutter&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/engine&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;App&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/app&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;device_info&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/libdevice_info&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;FlutterPluginRegistrant&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/libFlutterPluginRegistrant&#x27;</span></span><br><span class="line">pod <span class="string">&#x27;image_picker&#x27;</span>, <span class="symbol">:path</span> =&gt; <span class="string">&#x27;flutter_module/product/libimage_picker&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后删除工程<code>Build Phase</code> 中添加的 <code>Run Script</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> build</span><br><span class="line"><span class="string">&quot;<span class="variable">$FLUTTER_ROOT</span>/packages/flutter_tools/bin/xcode_backend.sh&quot;</span> embed</span><br></pre></td></tr></table></figure>
+
+<h2 id="接入成本"><a href="#接入成本" class="headerlink" title="接入成本"></a>接入成本</h2><h5 id="包体积变大"><a href="#包体积变大" class="headerlink" title="包体积变大"></a>包体积变大</h5><table>
+<thead>
+<tr>
+<th>IPA包体积</th>
+<th>大小</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初始化原生工程，无Flutter</td>
+<td>25 KB</td>
+<td></td>
+</tr>
+<tr>
+<td>接入Flutter</td>
+<td>17.6 MB</td>
+<td>主要差异为：<br/></td>
+</tr>
+<tr>
+<td>1. App.framework 6.1MB<br/></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. Flutter.framework 37.9 MB</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="内存增长"><a href="#内存增长" class="headerlink" title="内存增长"></a>内存增长</h5><table>
+<thead>
+<tr>
+<th>内存</th>
+<th>使用情况</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原生页面</td>
+<td>12.7 M</td>
+<td>iPhone 7 12.3.1</td>
+</tr>
+<tr>
+<td>原生页面+Flutter页面</td>
+<td>83.2 M</td>
+<td>iPhone 7 12.3.1</td>
+</tr>
+</tbody></table>
+<h5 id="无法跨越原生代码"><a href="#无法跨越原生代码" class="headerlink" title="无法跨越原生代码"></a>无法跨越原生代码</h5><p><code>Flutter</code>虽然具有跨平台能力，但实际开发中并躲不开原生代码，这反而对<code>Flutter</code>开发者提出了更高的要求，需要去了解两个平台的知识，理想中一个<code>Flutter</code>开发顶替两个终端开发并不存在。</p>
+<p>即使官方提供的Dart UI组件也区分了Google的<code>Material</code>和苹果的<code>Cuprtino</code>两种风格，如果想在两端展示各自风格的UI特点，会让开发者十分头痛。</p>
+<h5 id="组合而非继承"><a href="#组合而非继承" class="headerlink" title="组合而非继承"></a>组合而非继承</h5><p><code>Flutter</code>提倡“组合”，而不是“继承”。在iOS开发中，我们经常会继承UIView，重写UIView的某个生命周期函数，再添加一些方法和属性，来完成一个自定义的View。但是在<code>Flutter</code>中这些都是不可能的——属性都是<code>final</code>的，例如你继承了了一个<code>Container</code>，你是不能在它的生命周期中修改他的属性的。你始终需要嵌套组合几种<code>Widget</code>，例如<code>Row</code>，<code>Container</code>，<code>ListView</code>等<code>Widget</code>。这种方法非常不符合直觉，初学时很难想明白如何构建一个完整的组件。</p>
+<p>并且这样组合模式让Dart内的UI代码显得非常不简洁，层层的括号嵌套让人眼花缭乱，尤其是在对比SwiftUI后更加明显。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">SliverList(</span><br><span class="line">  delegate: SliverChildBuilderDelegate(</span><br><span class="line">    (context, index) &#123;</span><br><span class="line">      <span class="keyword">final</span> landmark = landmarks[index];</span><br><span class="line">      <span class="keyword">return</span> LandmarkCell(</span><br><span class="line">        landmark: landmark,</span><br><span class="line">        onTap: () &#123;</span><br><span class="line">          Navigator.push(</span><br><span class="line">            context,</span><br><span class="line">            CupertinoPageRoute(</span><br><span class="line">              builder: (context) =&gt; LandmarkDetail(</span><br><span class="line">                landmark: landmark,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          );</span><br><span class="line">        &#125;,</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">    childCount: landmarks.length,</span><br><span class="line">  ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ForEach</span>(userData.landmarks) &#123; landmark <span class="keyword">in</span></span><br><span class="line">  <span class="type">NavigationButton</span>( destination: <span class="type">LandmarkDetail</span>(landmark: landmark))</span><br><span class="line"> &#123;</span><br><span class="line">    <span class="type">LandmarkRow</span>(landmark: landmark)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两者都实现了一个可以点击的列表页，都调用了一个自定义 Cell 。</p>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><p>官方在<a target="_blank" rel="noopener" href="https://github.com/flutter/flutter/wiki/Roadmap">Flutter 2019 RoadMap</a>中也提出了2019年的计划：</p>
+<ul>
+<li><p>基础优化，包括bug修复、性能表现、错误信息、API文档等方面。</p>
+</li>
+<li><p>易于接入，提供新的module模板、更友好的文档页面、提供最佳实践、丰富iOS风格组件</p>
+</li>
+<li><p>生态系统，更好的C/C++支持、更多官方插件包、map/WebView组件完善、Google service接入、本地数据存储等。</p>
+</li>
+<li><p>工具完善，编辑器支持的完善、支持 <strong><a target="_blank" rel="noopener" href="https://langserver.org/">Language Server Protocol</a></strong> 、<a target="_blank" rel="noopener" href="https://flutter.github.io/devtools/">Dart DevTools</a>完善等。</p>
+</li>
+</ul>
+<p>参考:</p>
+<p><a href="[https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps](https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps">Add-Flutter-to-existing-apps</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1415221">Flutter Platform Channels</a></p>
+<p><a href="[https://tech.youzan.com/you-zan-flutter-hun-bian-fang-an/](https://tech.youzan.com/you-zan-flutter-hun-bian-fang-an/">有赞 Flutter 混编方案</a></p>
+<p><a href="[https://juejin.im/post/5b5811f3e51d4519700f6979](https://juejin.im/post/5b5811f3e51d4519700f6979">闲鱼Flutter混合工程持续集成的最佳实践</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5d05b45bf265da1bcc193ff4">SwiftUI vs Flutter</a></p>
+<p><a href="[https://segmentfault.com/a/1190000017164263](https://segmentfault.com/a/1190000017164263">浅谈Flutter的优缺点</a></p>
+
+        
+            <div id="toc-article">
+                
+  <div class="widget-wrap" id="toc-wrap">
+    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
+    <div class="widget">
+      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAFlutter%E6%A8%A1%E5%9D%97"><span class="toc-text">创建Flutter模块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A9%E5%AE%BF%E4%B8%BB%E5%B7%A5%E7%A8%8B%E4%BE%9D%E8%B5%96Flutter%E6%A8%A1%E5%9D%97"><span class="toc-text">让宿主工程依赖Flutter模块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0build-phase%E6%9D%A5%E6%9E%84%E5%BB%BADart%E4%BB%A3%E7%A0%81"><span class="toc-text">添加build phase来构建Dart代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8%E5%8E%9F%E7%94%9F%E5%B7%A5%E7%A8%8B%E4%B8%AD%E5%B9%B4%E4%BD%BF%E7%94%A8FlutterViewController"><span class="toc-text">在原生工程中年使用FlutterViewController</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%83%AD%E5%8A%A0%E8%BD%BD"><span class="toc-text">热加载</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flutter%E4%B8%8E%E5%8E%9F%E7%94%9F%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8"><span class="toc-text">Flutter与原生相互调用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Flutter%E8%B0%83%E7%94%A8%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95"><span class="toc-text">Flutter调用原生方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E8%B0%83%E7%94%A8Flutter"><span class="toc-text">原生调用Flutter</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-text">隔离开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E6%88%90%E6%9C%AC"><span class="toc-text">接入成本</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%85%E4%BD%93%E7%A7%AF%E5%8F%98%E5%A4%A7"><span class="toc-text">包体积变大</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%A2%9E%E9%95%BF"><span class="toc-text">内存增长</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E8%B7%A8%E8%B6%8A%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81"><span class="toc-text">无法跨越原生代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E8%80%8C%E9%9D%9E%E7%BB%A7%E6%89%BF"><span class="toc-text">组合而非继承</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol>
+    </div>
+  </div>
+
+
+            </div>
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="https://sleepearlier.github.io/2019/10/10/First-Blood/">https://sleepearlier.github.io/2019/10/10/First-Blood/</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/" rel="tag">iOS</a></li></ul>
+
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          使用space管理provisionProfile
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+      
+      
+        
+
+
+
+
+
+
+
+      
+    </footer>
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/17/jail-broken-env-build/">iOS越狱环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/25/%E5%88%9D%E6%8E%A2iOS%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E5%8E%9F%E7%90%86/">初探iOS源码调试原理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/25/%E4%BD%BF%E7%94%A8space%E7%AE%A1%E7%90%86provisionProfile/">使用space管理provisionProfile</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/First-Blood/">在已有原生工程中集成Flutter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-classify"></i> 分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019年10月</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title"><i class="fa fa-link"></i> 友情链接</h3>
+    <div class="widget">
+      <ul>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example1.com/">site-name1</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example2.com/">site-name2</a>
+        </li>
+      
+        <li>
+          <a target="_blank" rel="noopener" href="http://www.example3.com/">site-name3</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <a id="totop" href="#top"></a>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <p>
+        <a href="/sitemap.xml">网站地图</a>
+        <span> | </span><a href="/atom.xml">订阅本站</a>
+        <span> | </span><a href="/about/">联系博主</a>
+      </p>
+      
+        <p>
+          <i class="fa fa-visitors"></i>
+          <i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>
+          ，
+          <i class="fa fa-views"></i>
+          <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>
+        </p>
+      
+      <p>
+        <span>Copyright &copy; 2021 Usopp.</span>
+        <span>Theme by <a href="https://github.com/chaooo/hexo-theme-BlueLake/" target="_blank">BlueLake.</a></span>
+        
+            <span>Count by <a href="http://busuanzi.ibruce.info/" target="_blank">busuanzi.</a></span>
+        
+        <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo.</a></span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/search.json.js"></script>
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+  
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+  
+<script src="/localshare/js/social-share.js"></script>
+
+  
+<script src="/localshare/js/qrcode.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>
